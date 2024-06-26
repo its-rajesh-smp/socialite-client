@@ -6,22 +6,22 @@ import { BsPlusLg } from "react-icons/bs";
 
 function ActionBar() {
   return (
-    <div className="flex items-center gap-3  ">
+    <div className="flex items-center gap-3">
       <Avatar
         radius="full"
-        className=" bg-[#F1F5F9] cursor-pointer"
-        fallback={<BsPlusLg className="text-primary text-xl" />}
+        className="cursor-pointer bg-[#F1F5F9]"
+        fallback={<BsPlusLg className="text-xl text-primary" />}
       />
       <Avatar
         radius="full"
-        className=" bg-[#F1F5F9] cursor-pointer"
-        fallback={<FaBell className="text-primary text-xl" />}
+        className="cursor-pointer bg-[#F1F5F9]"
+        fallback={<FaBell className="text-xl text-primary" />}
       />
       <Avatar
         radius="full"
-        className="h-9 w-9 bg-[#F1F5F9] cursor-pointer"
+        className="h-9 w-9 cursor-pointer bg-[#F1F5F9]"
         fallback={
-          <BiSolidMessageSquareDetail className="text-primary text-xl" />
+          <BiSolidMessageSquareDetail className="text-xl text-primary" />
         }
       />
       <UserAvatar />

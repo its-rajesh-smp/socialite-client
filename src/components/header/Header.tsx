@@ -4,9 +4,9 @@ import ActionBar from "./ActionBar";
 
 function Header() {
   return (
-    <div className="h-[60px] w-full border-b flex items-center px-5 justify-between  py-1.5 gap-10">
+    <div className="flex h-[60px] w-full items-center justify-between gap-10 border-b px-5 py-1.5">
       <BrandSection />
-      <div className="flex items-center justify-between w-full pr-5">
+      <div className="flex w-full items-center justify-between pr-5">
         <HeaderSearch />
         <ActionBar />
       </div>

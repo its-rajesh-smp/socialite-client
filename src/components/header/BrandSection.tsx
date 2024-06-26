@@ -1,6 +1,6 @@
 function BrandSection() {
   return (
-    <div className="flex items-center gap-2 w-3/12">
+    <div className="flex w-3/12 items-center gap-2">
       <img
         className="h-8 w-8"
         src="https://cdn-icons-png.flaticon.com/512/12459/12459979.png"
