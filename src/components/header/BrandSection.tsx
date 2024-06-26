@@ -1,11 +1,11 @@
 function BrandSection() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-3/12">
       <img
         className="h-8 w-8"
         src="https://cdn-icons-png.flaticon.com/512/12459/12459979.png"
       />
-      <h1 className="text-xl font-bold">Socialite</h1>
+      <h1 className="text-xl font-bold text-primary">Socialite</h1>
     </div>
   );
 }
