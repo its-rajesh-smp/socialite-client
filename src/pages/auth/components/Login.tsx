@@ -1,6 +1,6 @@
-import { Button, Checkbox } from "@radix-ui/themes";
+import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
-import { FaGoogle } from "react-icons/fa";
+import AuthButtonGroup from "./AuthButtonGroup";
 
 function Login() {
   return (
@@ -37,30 +37,10 @@ function Login() {
               Forgot Password
             </p>
           </div>
-
-          {/* SIGN IN BTN */}
-          <Button>Sign In</Button>
-          <div className="flex items-center justify-center">
-            <hr className="w-full" />
-            <span className="mx-5 w-full text-center text-sm font-semibold">
-              Or continue with
-            </span>
-            <hr className="w-full" />
-          </div>
-
-          {/* BTN GROUPS */}
-          <div className="flex items-center justify-between">
-            <Button className="px-6">
-              <FaGoogle /> Google
-            </Button>
-            <Button className="px-6">
-              <FaGoogle /> Facebook
-            </Button>
-            <Button className="px-6">
-              <FaGoogle /> Github
-            </Button>
-          </div>
         </div>
+
+        {/* BTN GROUPS */}
+        <AuthButtonGroup mainBtnText="Sign In" />
       </div>
     </div>
   );
