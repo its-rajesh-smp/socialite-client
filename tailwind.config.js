@@ -6,6 +6,9 @@ export default {
       textColor: {
         primary: "#263040",
       },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      },
     },
   },
   plugins: [],
