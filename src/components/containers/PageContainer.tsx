@@ -3,7 +3,7 @@ export interface PageContainerProps {
 }
 
 function PageContainer({ children }: PageContainerProps) {
-  return <div>{children}</div>;
+  return <div className="w-full">{children}</div>;
 }
 
 export default PageContainer;
