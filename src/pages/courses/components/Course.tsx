@@ -7,7 +7,7 @@ interface CourseProps {
 
 function Course({ title }: CourseProps) {
   return (
-    <div className={`w-80 rounded-xl bg-slate-200 p-3`}>
+    <div className={`w-full rounded-xl bg-slate-200 p-3`}>
       <h1 className="text-2xl font-semibold text-primary">{title}</h1>
       <p className="text-xs text-slate-700">Views: 20000</p>
     </div>

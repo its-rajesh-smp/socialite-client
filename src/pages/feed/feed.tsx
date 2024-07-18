@@ -2,7 +2,7 @@ import UserStatus from "./components/UserStatus";
 
 function Feed() {
   return (
-    <div className="flex h-screen w-full gap-5">
+    <div className="flex w-full gap-5">
       {/* LEFT SIDE */}
       <div className="flex h-full w-full p-5">
         <UserStatus />
