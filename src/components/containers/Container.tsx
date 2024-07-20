@@ -6,7 +6,11 @@ export interface ContainerProps {
 }
 
 function Container({ children, className }: ContainerProps) {
-  return <section className={className}>{children}</section>;
+  return (
+    <section className={`rounded-xl bg-white p-4 shadow-sm ${className} `}>
+      {children}
+    </section>
+  );
 }
 
 export default Container;

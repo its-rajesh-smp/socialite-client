@@ -1,4 +1,5 @@
 import CreatePost from "./components/CreatePost";
+import Post from "./components/Post";
 import UserStatus from "./components/UserStatus";
 
 function Feed() {
@@ -7,8 +8,9 @@ function Feed() {
       {/* LEFT SIDE */}
       <div className="flex h-full w-full flex-col items-center justify-center p-5">
         <UserStatus />
-        <div className="flex w-[70%] justify-center gap-10 pt-10">
+        <div className="flex w-[70%] flex-col justify-center gap-8 pt-10">
           <CreatePost />
+          <Post />
         </div>
       </div>
 

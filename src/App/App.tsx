@@ -3,7 +3,7 @@ import Auth from "../pages/auth/Auth";
 
 function App() {
   return (
-    <div className="bg-primary h-screen w-full">
+    <div className="h-screen w-full bg-primary">
       {/* <Auth /> */}
       <MainLayout />
     </div>
