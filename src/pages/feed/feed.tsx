@@ -1,5 +1,6 @@
 import CreatePost from "./components/CreatePost";
 import Post from "./components/Post";
+import PeopleYouMayNow from "./components/UI/PeopleYouMayNow";
 import UserStatus from "./components/UserStatus";
 
 function Feed() {
@@ -15,7 +16,9 @@ function Feed() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="flex-shrink-1 h-full w-[50%]"></div>
+      <div className="flex-shrink-1 mr-10 h-full w-[50%]">
+        <PeopleYouMayNow />
+      </div>
     </div>
   );
 }

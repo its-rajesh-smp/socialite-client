@@ -1,0 +1,3 @@
+# HEADER HEIGHT - 60px
+
+# SIDEBAR WEIGHT - w-1\/6
