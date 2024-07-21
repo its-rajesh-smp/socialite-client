@@ -3,6 +3,7 @@ import AuthButtonGroup from "./AuthButtonGroup";
 import Input from "../../../components/inputs/Input";
 import AuthHeading from "./AuthHeading";
 import AuthBrand from "./AuthBrand";
+import { AuthSteps } from "../../../constants/auth.const";
 
 function Register() {
   return (
@@ -16,6 +17,7 @@ function Register() {
           headingText="Sign up to get started"
           subHeadingText="If you already have an account,"
           linkText="Login here!"
+          onClickLinkTextDispatchStep={AuthSteps.LOGIN}
         />
 
         {/* FORM SECTION */}

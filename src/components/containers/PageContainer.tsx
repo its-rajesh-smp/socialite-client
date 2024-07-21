@@ -1,5 +1,5 @@
 export interface PageContainerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 function PageContainer({ children }: PageContainerProps) {

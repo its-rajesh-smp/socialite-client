@@ -3,6 +3,7 @@ import Input from "../../../components/inputs/Input";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthBrand from "./AuthBrand";
 import AuthHeading from "./AuthHeading";
+import { AuthSteps } from "../../../constants/auth.const";
 
 function Login() {
   return (
@@ -16,6 +17,7 @@ function Login() {
           headingText="Sign in to your account"
           subHeadingText="If you haven’t signed up yet."
           linkText="Register here!"
+          onClickLinkTextDispatchStep={AuthSteps.REGISTER}
         />
 
         {/* FORM SECTION */}

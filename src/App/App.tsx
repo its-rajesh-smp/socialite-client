@@ -1,11 +1,12 @@
+import { RouterProvider } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
-import Auth from "../pages/auth/Auth";
+import authRoutes from "../router/authRoutes";
 
 function App() {
   return (
     <div className="h-full w-full bg-primary">
-      {/* <Auth /> */}
-      <MainLayout />
+      <RouterProvider router={authRoutes} />
+      {/* <MainLayout /> */}
     </div>
   );
 }
