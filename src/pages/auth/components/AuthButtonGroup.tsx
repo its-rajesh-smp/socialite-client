@@ -6,11 +6,14 @@ type AuthButtonGroupProps = {
   mainButtonCallback?: () => void;
 };
 
-function AuthButtonGroup({ mainBtnText }: AuthButtonGroupProps) {
+function AuthButtonGroup({
+  mainBtnText,
+  mainButtonCallback,
+}: AuthButtonGroupProps) {
   return (
     <>
       {/* SIGN IN BTN */}
-      <Button>{mainBtnText}</Button>
+      <Button onClick={mainButtonCallback}>{mainBtnText}</Button>
       <div className="flex items-center justify-center">
         <hr className="w-full" />
         <span className="mx-5 w-full text-center text-sm font-semibold">
