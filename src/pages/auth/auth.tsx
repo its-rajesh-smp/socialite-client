@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { AuthSteps } from "../../constants/auth.const";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { IAuthData } from "../../types/auth";
+import { IAuthFormData } from "../../types/auth";
 import AuthSlider from "./components/AuthSlider";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-const initialAuthDataState: IAuthData = {
+const initialAuthDataState: IAuthFormData = {
   email: "",
   password: "",
   agreeToTerms: false,

@@ -1,4 +1,4 @@
-export interface IAuthData {
+export interface IAuthFormData {
   email: string;
   password: string;
   confirmPassword?: string;

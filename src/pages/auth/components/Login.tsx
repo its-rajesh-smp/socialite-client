@@ -1,33 +1,48 @@
+import { useMutation } from "@apollo/client";
 import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
-import { IAuthData } from "../../../types/auth";
+import { LOGIN_USER_MUTATION } from "../../../graphql/auth.graphql";
+import { IAuthFormData } from "../../../types/auth";
 import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { authenticateUser } from "../../../store/auth/authSlice";
 
 interface ILoginProps {
-  authData: IAuthData;
-  setAuthData: React.Dispatch<React.SetStateAction<IAuthData>>;
+  authData: IAuthFormData;
+  setAuthData: React.Dispatch<React.SetStateAction<IAuthFormData>>;
 }
 
-function Login({ authData, setAuthData }: ILoginProps) {
-  const loginDTO: Record<string, DTO> = {
-    email: {
-      req: true,
-      operations: ["trim", "toString", "lowerCase", "minLength(3)"],
-    },
-    password: {
-      req: true,
-      operations: ["trim"],
-    },
-  };
+const loginDTO: Record<string, DTO> = {
+  email: {
+    req: true,
+    operations: ["trim", "toString", "lowerCase", "minLength(3)"],
+  },
+  password: {
+    req: true,
+    operations: ["trim"],
+  },
+};
 
-  const onLoginBtnClick = () => {
+function Login({ authData, setAuthData }: ILoginProps) {
+  const [mutateLogin] = useMutation(LOGIN_USER_MUTATION);
+  const dispatch = useAppDispatch();
+
+  const onLoginBtnClick = async () => {
     const userPayload = validateWithDTO(loginDTO, authData, {
       deleteUnneededProperties: true,
     });
+
+    const data = await mutateLogin({
+      variables: {
+        loginUserData: userPayload,
+      },
+    });
+
+    dispatch(authenticateUser(data.data?.login));
   };
 
   return (
@@ -48,7 +63,7 @@ function Login({ authData, setAuthData }: ILoginProps) {
         <div className="flex flex-col gap-4">
           <Input
             onChange={(e) =>
-              setAuthData((prev: IAuthData) => ({
+              setAuthData((prev: IAuthFormData) => ({
                 ...prev,
                 email: e.target.value,
               }))
@@ -59,7 +74,7 @@ function Login({ authData, setAuthData }: ILoginProps) {
           />
           <Input
             onChange={(e) =>
-              setAuthData((prev: IAuthData) => ({
+              setAuthData((prev: IAuthFormData) => ({
                 ...prev,
                 password: e.target.value,
               }))
@@ -72,7 +87,7 @@ function Login({ authData, setAuthData }: ILoginProps) {
             <div className="flex items-center gap-2">
               <Checkbox
                 onChange={() =>
-                  setAuthData((prev: IAuthData) => ({
+                  setAuthData((prev: IAuthFormData) => ({
                     ...prev,
                     rememberUser: !prev.rememberUser,
                   }))

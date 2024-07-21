@@ -1,18 +1,65 @@
 import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
-import { IAuthData } from "../../../types/auth";
+import { IAuthFormData } from "../../../types/auth";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
+import { REGISTER_USER_MUTATION } from "../../../graphql/auth.graphql";
+import { useMutation } from "@apollo/client";
+import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { authenticateUser } from "../../../store/auth/authSlice";
 
 interface IRegisterProps {
-  authData: IAuthData;
-  setAuthData: React.Dispatch<React.SetStateAction<IAuthData>>;
+  authData: IAuthFormData;
+  setAuthData: React.Dispatch<React.SetStateAction<IAuthFormData>>;
 }
 
+const registerDTO: Record<string, DTO> = {
+  firstName: {
+    req: true,
+    operations: ["trim"],
+  },
+  lastName: {
+    operations: ["trim"],
+  },
+  agreeToTerms: {
+    req: true,
+  },
+  email: {
+    req: true,
+    operations: ["trim", "toString", "lowerCase", "minLength(3)"],
+  },
+  password: {
+    req: true,
+    operations: ["trim"],
+  },
+  confirmPassword: {
+    req: true,
+    operations: ["trim"],
+  },
+};
+
 function Register({ authData, setAuthData }: IRegisterProps) {
-  const onRegisterBtnClick = () => {};
+  const dispatch = useAppDispatch();
+  const [mutateRegister] = useMutation(REGISTER_USER_MUTATION);
+
+  const onRegisterBtnClick = async () => {
+    validateWithDTO(registerDTO, authData);
+
+    const registerUserData = {
+      name: `${authData.firstName} ${authData.lastName}`,
+      password: authData.password,
+      email: authData.email,
+    };
+
+    const data = await mutateRegister({
+      variables: { registerUserData },
+    });
+
+    dispatch(authenticateUser(data.data?.register));
+  };
 
   return (
     <div className="w-[40%] px-10 pt-10">
@@ -33,7 +80,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
           <div className="flex items-center justify-between gap-5">
             <Input
               onChange={(e) =>
-                setAuthData((prev: IAuthData) => ({
+                setAuthData((prev: IAuthFormData) => ({
                   ...prev,
                   firstName: e.target.value,
                 }))
@@ -44,7 +91,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
             />
             <Input
               onChange={(e) =>
-                setAuthData((prev: IAuthData) => ({
+                setAuthData((prev: IAuthFormData) => ({
                   ...prev,
                   lastName: e.target.value,
                 }))
@@ -57,7 +104,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
 
           <Input
             onChange={(e) =>
-              setAuthData((prev: IAuthData) => ({
+              setAuthData((prev: IAuthFormData) => ({
                 ...prev,
                 email: e.target.value,
               }))
@@ -70,7 +117,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
           <div className="flex items-center justify-between gap-5">
             <Input
               onChange={(e) =>
-                setAuthData((prev: IAuthData) => ({
+                setAuthData((prev: IAuthFormData) => ({
                   ...prev,
                   password: e.target.value,
                 }))
@@ -81,7 +128,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
             />
             <Input
               onChange={(e) =>
-                setAuthData((prev: IAuthData) => ({
+                setAuthData((prev: IAuthFormData) => ({
                   ...prev,
                   confirmPassword: e.target.value,
                 }))
@@ -96,7 +143,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
             <div className="flex items-center gap-2">
               <Checkbox
                 onClick={() => {
-                  setAuthData((prev: IAuthData) => ({
+                  setAuthData((prev: IAuthFormData) => ({
                     ...prev,
                     agreeToTerms: !prev.agreeToTerms,
                   }));

@@ -24,11 +24,11 @@ export interface DTO {
  * Validates data against a Data Transfer Object (DTO).
  * @param {any} dto - The DTO to validate against.
  * @param {any} data - The data to validate.
- * @param {IValidateWithDTOOptions} options - The options for validation.
- * @param {boolean} options.deleteUnneededProperties - Whether to delete unneeded properties from the data.
- * @param {boolean} options.returnUpdatedData - Whether to return the updated data.
- * @param {boolean} options.showToast - Whether to show a toast message on error.
- * @param {boolean} options.logError - Whether to log the error to the console.
+ * @param {IValidateWithDTOOptions} [options] - The options for validation.
+ * @param {boolean} [options.deleteUnneededProperties] - Whether to delete unneeded properties from the data.
+ * @param {boolean} [options.returnUpdatedData] - Whether to return the updated data.
+ * @param {boolean} [options.showToast] - Whether to show a toast message on error.
+ * @param {boolean} [options.logError] - Whether to log the error to the console.
  * @returns {boolean|any} - Returns true if the data is valid, otherwise returns false or the updated data.
  */
 export const validateWithDTO = (
@@ -39,7 +39,7 @@ export const validateWithDTO = (
     returnUpdatedData = true,
     showToast = true,
     logError = true,
-  }: IValidateWithDTOOptions,
+  }: IValidateWithDTOOptions = {},
 ) => {
   let updatedData: any = {};
 
