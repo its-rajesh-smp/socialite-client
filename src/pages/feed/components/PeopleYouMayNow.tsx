@@ -1,5 +1,5 @@
-import Container from "../../../../components/containers/Container";
-import People from "./People";
+import Container from "../../../components/containers/Container";
+import People from "./UI/People";
 
 function PeopleYouMayNow() {
   return (

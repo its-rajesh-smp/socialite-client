@@ -1,6 +1,6 @@
 import NewPost from "./components/NewPost";
 import Post from "./components/Post";
-import PeopleYouMayNow from "./components/UI/PeopleYouMayNow";
+import PeopleYouMayNow from "./components/PeopleYouMayNow";
 import UserStatus from "./components/UserStatus";
 
 function Feed() {
