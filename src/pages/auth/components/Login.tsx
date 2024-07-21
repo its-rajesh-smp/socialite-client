@@ -2,6 +2,7 @@ import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
 import { IAuthData } from "../../../types/auth";
+import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
@@ -12,7 +13,22 @@ interface ILoginProps {
 }
 
 function Login({ authData, setAuthData }: ILoginProps) {
-  const onLoginBtnClick = () => {};
+  const loginDTO: Record<string, DTO> = {
+    email: {
+      req: true,
+      operations: ["trim", "toString", "lowerCase", "minLength(3)"],
+    },
+    password: {
+      req: true,
+      operations: ["trim"],
+    },
+  };
+
+  const onLoginBtnClick = () => {
+    const userPayload = validateWithDTO(loginDTO, authData, {
+      deleteUnneededProperties: true,
+    });
+  };
 
   return (
     <div className="w-[40%] px-10 pt-10">
