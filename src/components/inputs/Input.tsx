@@ -14,7 +14,7 @@ function Input({
   value,
 }: InputProps) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex w-full flex-col gap-3">
       {label && <label className="text-sm font-medium">{label}</label>}
       <input
         onChange={onChange}

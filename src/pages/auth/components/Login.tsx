@@ -46,11 +46,11 @@ function Login({ authData, setAuthData }: ILoginProps) {
   };
 
   return (
-    <div className="w-[40%] px-10 pt-10">
+    <div className="h-screen w-full px-4 pt-10 md:px-10 lg:w-[40%]">
       {/* BRAND SECTION */}
       <AuthBrand />
 
-      <div className="flex flex-col gap-7 p-16">
+      <div className="flex flex-col gap-7 p-5 lg:p-5">
         {/* INFO SECTION */}
         <AuthHeading
           headingText="Sign in to your account"

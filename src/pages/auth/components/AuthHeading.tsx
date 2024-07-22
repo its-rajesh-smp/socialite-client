@@ -23,8 +23,8 @@ function AuthHeading({
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-semibold">{headingText}</h1>
-      <p className="text-sm font-normal text-gray-700">
-        {subHeadingText}{" "}
+      <p className="flex flex-wrap gap-1 text-sm font-normal text-gray-700 md:block md:gap-0">
+        <span>{subHeadingText} </span>
         <span
           onClick={onClickLinkText}
           className="cursor-pointer text-blue-600"

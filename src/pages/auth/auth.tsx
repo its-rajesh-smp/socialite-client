@@ -23,7 +23,7 @@ function Auth() {
   const [authData, setAuthData] = useState(initialAuthDataState);
 
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex w-full flex-col-reverse md:flex-row">
       {currentAuthStep === AuthSteps.LOGIN && (
         <Login authData={authData} setAuthData={setAuthData} />
       )}

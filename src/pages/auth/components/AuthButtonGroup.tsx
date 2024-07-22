@@ -15,23 +15,26 @@ function AuthButtonGroup({
       {/* SIGN IN BTN */}
       <Button onClick={mainButtonCallback}>{mainBtnText}</Button>
       <div className="flex items-center justify-center">
-        <hr className="w-full" />
-        <span className="mx-5 w-full text-center text-sm font-semibold">
+        <hr className="w-1/2 md:w-full" />
+        <span className="mx-0 w-full text-center text-xs font-semibold md:mx-5 md:text-sm">
           Or continue with
         </span>
-        <hr className="w-full" />
+        <hr className="w-1/2 md:w-full" />
       </div>
 
       {/* BTN GROUPS */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-center gap-5 md:justify-between md:gap-5">
         <Button className="px-6">
-          <FaGoogle /> Google
+          <FaGoogle />
+          <span className="hidden md:block">Google</span>
         </Button>
         <Button className="px-6">
-          <FaGoogle /> Facebook
+          <FaGoogle />
+          <span className="hidden md:block">Google</span>
         </Button>
         <Button className="px-6">
-          <FaGoogle /> Github
+          <FaGoogle />
+          <span className="hidden md:block">Google</span>
         </Button>
       </div>
     </>
