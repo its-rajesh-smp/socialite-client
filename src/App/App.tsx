@@ -1,19 +1,23 @@
 import { RouterProvider } from "react-router-dom";
-import MainLayout from "../components/layout/MainLayout";
-import authRoutes from "../router/authRoutes";
-import { useAppSelector } from "../hooks/useAppSelector";
-import { useEffect } from "react";
 import useFetchUser from "../hooks/useFetchUser";
+import appRoutes from "../router/routes";
+import Loading from "../pages/loading/loading";
+import Error from "../pages/error/error";
 
 function App() {
-  const { isAuthenticated } = useAppSelector((state) => state.authSlice);
+  const { loading, error } = useFetchUser();
 
-  useFetchUser();
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <div className="h-full w-full bg-primary">
-      {!isAuthenticated && <RouterProvider router={authRoutes} />}
-      {isAuthenticated && <MainLayout />}
+      <RouterProvider router={appRoutes} />
     </div>
   );
 }

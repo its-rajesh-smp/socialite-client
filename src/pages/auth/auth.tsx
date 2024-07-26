@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthSteps } from "../../constants/auth.const";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { IAuthFormData } from "../../types/auth";
@@ -19,7 +19,6 @@ function Auth() {
   const currentAuthStep = useAppSelector(
     (state) => state.authStepSlice.currentStep,
   );
-
   const [authData, setAuthData] = useState(initialAuthDataState);
 
   return (

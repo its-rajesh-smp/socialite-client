@@ -3,13 +3,14 @@ import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
 import { LOGIN_USER_MUTATION } from "../../../graphql/auth.graphql";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { authenticateUser } from "../../../store/auth/authSlice";
 import { IAuthFormData } from "../../../types/auth";
 import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { authenticateUser } from "../../../store/auth/authSlice";
+import guestRoutes from "../../../router/paths/guest.routes";
 
 interface ILoginProps {
   authData: IAuthFormData;

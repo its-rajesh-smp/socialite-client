@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { setAuthStep } from "../../../store/auth/authStepSlice";
 
@@ -6,6 +7,7 @@ type AuthHeadingProps = {
   headingText?: string;
   subHeadingText?: string;
   onClickLinkTextDispatchStep?: number;
+  linkPath?: string;
 };
 
 function AuthHeading({

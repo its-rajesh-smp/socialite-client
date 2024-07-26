@@ -5,7 +5,8 @@ export interface IAuthState {
   name: string;
   email: string;
   access_token: string;
-  isAuthenticated: boolean;
+  isAuthenticated: boolean | undefined;
+  loadingUser?: boolean;
 }
 
 const initialState: IAuthState = {
@@ -13,6 +14,7 @@ const initialState: IAuthState = {
   email: "",
   name: "",
   access_token: "",
+  loadingUser: true,
 };
 
 const authSlice = createSlice({
@@ -24,10 +26,15 @@ const authSlice = createSlice({
       return {
         ...action.payload,
         isAuthenticated: true,
+        loadingUser: false,
       };
+    },
+
+    setUserLoading: (state, action: PayloadAction<boolean>) => {
+      state.loadingUser = action.payload;
     },
   },
 });
 
-export const { authenticateUser } = authSlice.actions;
+export const { authenticateUser, setUserLoading } = authSlice.actions;
 export default authSlice.reducer;

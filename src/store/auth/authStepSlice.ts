@@ -6,7 +6,10 @@ export interface IAuthState {
 }
 
 const initialState: IAuthState = {
-  currentStep: AuthSteps.LOGIN,
+  currentStep:
+    window.location.pathname === "/login"
+      ? AuthSteps.LOGIN
+      : AuthSteps.REGISTER,
 };
 
 const authStepSlice = createSlice({
