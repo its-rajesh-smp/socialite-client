@@ -31,6 +31,9 @@ function Login({ authData, setAuthData }: ILoginProps) {
   const [mutateLogin] = useMutation(LOGIN_USER_MUTATION);
   const dispatch = useAppDispatch();
 
+  /**
+   * Handles the login button click event.
+   */
   const onLoginBtnClick = async () => {
     const userPayload = validateWithDTO(loginDTO, authData, {
       deleteUnneededProperties: true,

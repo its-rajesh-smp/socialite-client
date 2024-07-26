@@ -45,6 +45,9 @@ function Register({ authData, setAuthData }: IRegisterProps) {
   const dispatch = useAppDispatch();
   const [mutateRegister] = useMutation(REGISTER_USER_MUTATION);
 
+  /**
+   * Handles the register button click event.
+   */
   const onRegisterBtnClick = async () => {
     validateWithDTO(registerDTO, authData);
 

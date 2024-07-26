@@ -19,3 +19,13 @@ export const LOGIN_USER_MUTATION = gql`
     }
   }
 `;
+
+export const FETCH_USER_QUERY = gql`
+  query FetchUser {
+    fetchUser {
+      name
+      email
+      access_token
+    }
+  }
+`;

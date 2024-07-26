@@ -1,6 +1,5 @@
 // import Courses from "../../pages/courses/courses";
 import { RouterProvider } from "react-router-dom";
-import Feed from "../../pages/feed/feed";
 import PageContainer from "../containers/PageContainer";
 import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
