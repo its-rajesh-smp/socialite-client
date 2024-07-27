@@ -10,7 +10,6 @@ import { useMutation } from "@apollo/client";
 import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { authenticateUser } from "../../../store/auth/authSlice";
-import guestRoutes from "../../../router/paths/guest.routes";
 
 interface IRegisterProps {
   authData: IAuthFormData;

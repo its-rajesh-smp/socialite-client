@@ -1,30 +1,48 @@
 import { IoCloseSharp, IoImage } from "react-icons/io5";
 import Modal from "../../../../components/others/Modal";
-import { Button, Select, Separator, TextArea } from "@radix-ui/themes";
+import { Button, Dialog, Select, Separator, TextArea } from "@radix-ui/themes";
 import SelectInput from "../../../../components/inputs/SelectInput";
+import { Visibility } from "../../../../constants/feed.const";
+import { INewPostFormData } from "../../../../types/feed";
+import { useState } from "react";
 
 interface CreatePostProps {
-  open?: boolean;
-  setOpen?: () => void;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const initialNewPostFormData: INewPostFormData = {
+  text: "",
+  visibility: Visibility.PUBLIC,
+};
+
 function CreatePost({ open, setOpen }: CreatePostProps) {
+  const [newPostFormData, setNewPostFormData] = useState(
+    initialNewPostFormData,
+  );
+
+  const handelCreatePost = () => {
+    console.log(newPostFormData);
+  };
+
   return (
     <Modal open={open}>
-      <div className="flex items-center p-4">
-        <h2 className="w-full text-center font-bold text-primary">
-          Create Post
-        </h2>
-        <Button>
+      <Dialog.Title className="flex items-center p-4">
+        <p className="w-full text-center font-bold text-primary">Create Post</p>
+
+        <Button onClick={() => setOpen(false)}>
           <IoCloseSharp className="cursor-pointer text-2xl" />
         </Button>
-      </div>
+      </Dialog.Title>
       <Separator />
       <div className="flex flex-col gap-6 p-6">
         <TextArea
           variant="soft"
           className="h-40 border-none text-xl outline-none"
           placeholder="What's on your mind?"
+          onChange={(e) => {
+            setNewPostFormData((prev) => ({ ...prev, text: e.target.value }));
+          }}
         />
 
         {/* POST OPTIONS */}
@@ -38,15 +56,24 @@ function CreatePost({ open, setOpen }: CreatePostProps) {
         {/* POST ACTIONS */}
         <div className="flex items-center justify-between">
           <SelectInput
+            onValueChange={(value) =>
+              setNewPostFormData((prev) => ({ ...prev, visibility: value }))
+            }
             className="flex gap-3 rounded-full bg-[#f9fcff] px-2 py-1 text-sm"
-            defaultValue="Everyone"
+            defaultValue={Visibility.PUBLIC}
           >
-            <Select.Item value="Everyone">Everyone</Select.Item>
-            <Select.Item value="Friend Only">Friend only</Select.Item>
-            <Select.Item value="Only Me">Only me</Select.Item>
+            {Object.entries(Visibility).map(([key, value]) => (
+              <Select.Item key={key} value={value}>
+                {value}
+              </Select.Item>
+            ))}
           </SelectInput>
 
-          <Button color="indigo" className="rounded-md px-8 py-1">
+          <Button
+            onClick={handelCreatePost}
+            color="indigo"
+            className="rounded-md px-8 py-1"
+          >
             Create
           </Button>
         </div>
