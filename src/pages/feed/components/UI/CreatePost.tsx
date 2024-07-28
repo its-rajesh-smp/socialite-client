@@ -5,6 +5,8 @@ import SelectInput from "../../../../components/inputs/SelectInput";
 import { Visibility } from "../../../../constants/feed.const";
 import { INewPostFormData } from "../../../../types/feed";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_FEED_POST_MUTATION } from "../../../../graphql/feed.graphql";
 
 interface CreatePostProps {
   open: boolean;
@@ -20,9 +22,20 @@ function CreatePost({ open, setOpen }: CreatePostProps) {
   const [newPostFormData, setNewPostFormData] = useState(
     initialNewPostFormData,
   );
+  const [mutateCreatePost] = useMutation(CREATE_FEED_POST_MUTATION);
 
-  const handelCreatePost = () => {
-    console.log(newPostFormData);
+  const handelCreatePost = async () => {
+    try {
+      const data = await mutateCreatePost({
+        variables: {
+          createPostInput: newPostFormData,
+        },
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
