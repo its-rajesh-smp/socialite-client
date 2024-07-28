@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthSteps } from "../../constants/auth.const";
 
-export interface IAuthState {
+export interface IAuthStep {
   currentStep: number;
 }
 
-const initialState: IAuthState = {
+const initialState: IAuthStep = {
   currentStep:
     window.location.pathname === "/login"
       ? AuthSteps.LOGIN

@@ -7,3 +7,10 @@ export interface IAuthFormData {
   agreeToTerms?: boolean;
   rememberUser?: boolean;
 }
+
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  profileImage?: string;
+}
