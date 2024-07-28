@@ -7,3 +7,11 @@ export const CREATE_FEED_POST_MUTATION = gql`
     }
   }
 `;
+
+export const ON_NEW_FEED_POST_ADDED_SUBSCRIPTION = gql`
+  subscription onPostAdded {
+    onPostAdded {
+      text
+    }
+  }
+`;

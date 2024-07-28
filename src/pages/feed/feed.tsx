@@ -1,6 +1,6 @@
 import NewPost from "./components/NewPost";
-import Post from "./components/Post";
 import PeopleYouMayNow from "./components/PeopleYouMayNow";
+import PostsContainer from "./components/PostsContainer";
 import UserStatus from "./components/UserStatus";
 
 function Feed() {
@@ -11,12 +11,7 @@ function Feed() {
         <UserStatus />
         <div className="flex w-[70%] flex-col justify-center gap-8 pt-10">
           <NewPost />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          <PostsContainer />
         </div>
       </div>
 
