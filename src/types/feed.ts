@@ -11,5 +11,8 @@ export interface IPost {
   text: string;
   image: string;
   visibility: string;
-  user: IUser;
+  User: IUser;
+  like: number;
+  comment: number;
+  isCurrentUserReacted?: boolean;
 }

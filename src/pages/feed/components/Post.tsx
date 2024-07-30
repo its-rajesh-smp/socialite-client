@@ -3,16 +3,27 @@ import Container from "../../../components/containers/Container";
 import PostActions from "./UI/PostActions";
 import PostHeader from "./UI/PostHeader";
 import CommentContainer from "./CommentContainer";
+import { IPost } from "../../../types/feed";
 
-function Post() {
+function Post({
+  User,
+  text,
+  image,
+  id,
+  like,
+  comment,
+  isCurrentUserReacted,
+}: IPost) {
   return (
     <Container>
-      <PostHeader />
-      <img
-        className="mt-4 rounded-xl"
-        src="https://demo.foxthemes.net/socialite-v3.0/assets/images/post/img-2.jpg"
+      <PostHeader {...User} />
+      {image && <img className="mt-4 rounded-xl" src={image} />}
+      {text && <p className="mt-4">{text}</p>}
+      <PostActions
+        isUserLiked={isCurrentUserReacted}
+        totalLikeCount={like}
+        postId={id}
       />
-      <PostActions />
       <Separator className="mt-4 w-full" />
       <CommentContainer />
     </Container>
