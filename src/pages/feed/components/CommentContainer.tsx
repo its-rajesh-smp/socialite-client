@@ -3,11 +3,17 @@ import Comment from "./UI/Comment";
 import { IoIosArrowDown } from "react-icons/io";
 import AddNewComment from "./UI/AddNewComment";
 
-function CommentContainer() {
+interface CommentContainerProps {
+  postId: string;
+  comments: any[];
+}
+
+function CommentContainer({ postId, comments }: CommentContainerProps) {
   return (
     <div className="mt-4 flex flex-col gap-3">
-      <Comment />
-      <Comment />
+      {comments.map((comment) => (
+        <Comment key={comment.id} {...comment} />
+      ))}
 
       <div className="flex cursor-pointer items-center gap-2 text-sm font-medium text-gray-500">
         <IoIosArrowDown />
@@ -16,7 +22,7 @@ function CommentContainer() {
 
       <Separator className="w-full" />
 
-      <AddNewComment />
+      <AddNewComment postId={postId} />
     </div>
   );
 }

@@ -8,6 +8,15 @@ export const GET_FEED_POSTS = gql`
       like
       comment
       isCurrentUserReacted
+      NewsPostComments {
+        id
+        text
+        User {
+          id
+          name
+          email
+        }
+      }
       User {
         id
         name
@@ -80,6 +89,29 @@ export const ON_REACT_POST_SUBSCRIPTION = gql`
       text
       id
       like
+      NewsPostComments {
+        id
+        text
+        User {
+          id
+          name
+          email
+        }
+      }
+    }
+  }
+`;
+
+export const CREATE_NEW_COMMENT_MUTATION = gql`
+  mutation createComment($createCommentInput: CreateCommentInput) {
+    createComment(createCommentInput: $createCommentInput) {
+      text
+      id
+      User {
+        id
+        name
+        email
+      }
     }
   }
 `;

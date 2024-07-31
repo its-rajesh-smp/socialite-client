@@ -15,4 +15,11 @@ export interface IPost {
   like: number;
   comment: number;
   isCurrentUserReacted?: boolean;
+  NewsPostComments: IComment[];
+}
+
+export interface IComment {
+  id: string;
+  text: string;
+  User: IUser;
 }

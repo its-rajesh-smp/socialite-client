@@ -13,6 +13,7 @@ function Post({
   like,
   comment,
   isCurrentUserReacted,
+  NewsPostComments,
 }: IPost) {
   return (
     <Container>
@@ -22,10 +23,11 @@ function Post({
       <PostActions
         isUserLiked={isCurrentUserReacted}
         totalLikeCount={like}
+        totalCommentCount={comment}
         postId={id}
       />
       <Separator className="mt-4 w-full" />
-      <CommentContainer />
+      <CommentContainer comments={NewsPostComments} postId={id} />
     </Container>
   );
 }

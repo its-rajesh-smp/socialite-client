@@ -1,7 +1,33 @@
+import { useMutation } from "@apollo/client";
 import { Avatar, Button } from "@radix-ui/themes";
-import React from "react";
+import { useState } from "react";
+import { CREATE_NEW_COMMENT_MUTATION } from "../../../../graphql/feed.graphql";
 
-function AddNewComment() {
+interface AddNewCommentProps {
+  postId: string;
+}
+
+function AddNewComment({ postId }: AddNewCommentProps) {
+  const [mutateCreateComment] = useMutation(CREATE_NEW_COMMENT_MUTATION);
+  const [text, setText] = useState("");
+
+  const handelCreateComment = async () => {
+    try {
+      console.log(text);
+      const data = await mutateCreateComment({
+        variables: {
+          createCommentInput: {
+            text,
+            postId,
+          },
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex items-center gap-3">
       <Avatar
@@ -12,11 +38,16 @@ function AddNewComment() {
         className="cursor-pointer"
       />
       <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
         placeholder="Add a comment...."
         className="w-full rounded-md p-1.5 px-3 outline-none placeholder:text-sm"
       />
 
-      <Button className="cursor-pointer rounded-full bg-[#ECF7FE] text-xs text-[#0284c7]">
+      <Button
+        onClick={handelCreateComment}
+        className="cursor-pointer rounded-full bg-[#ECF7FE] text-xs text-[#0284c7]"
+      >
         Replay
       </Button>
     </div>

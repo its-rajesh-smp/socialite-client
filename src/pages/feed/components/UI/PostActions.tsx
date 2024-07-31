@@ -14,11 +14,13 @@ interface IPostActionsProps {
   postId: string;
   isUserLiked?: boolean;
   totalLikeCount?: number;
+  totalCommentCount?: number;
 }
 
 function PostActions({
   postId,
   totalLikeCount,
+  totalCommentCount,
   isUserLiked,
 }: IPostActionsProps) {
   const [mutateReaction] = useMutation(REACT_TO_POST_MUTATION);
@@ -68,7 +70,9 @@ function PostActions({
           <Button className="h-8 w-8 cursor-pointer rounded-full bg-gray-200 p-0 text-base text-gray-600">
             <BiSolidCommentDetail />
           </Button>
-          <p className="text-xs font-medium text-[#747B86]">1,000</p>
+          <p className="text-xs font-medium text-[#747B86]">
+            {totalCommentCount}
+          </p>
         </div>
       </div>
 

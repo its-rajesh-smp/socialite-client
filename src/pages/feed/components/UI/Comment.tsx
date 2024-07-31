@@ -1,6 +1,7 @@
 import { Avatar } from "@radix-ui/themes";
+import { IComment } from "../../../../types/feed";
 
-function Comment() {
+function Comment({ User, text }: IComment) {
   return (
     <div className="flex gap-3">
       <Avatar
@@ -10,12 +11,8 @@ function Comment() {
         size="2"
       />
       <div>
-        <p className="text-sm font-medium">Rajesh Singha Maha Patra</p>
-        <p className="text-xs font-medium text-[#858C97]">
-          What a beautiful photo! I love it. 😍 What a beautiful photo! I love
-          it. 😍 What a beautiful photo! I love it. 😍 What a beautiful photo! I
-          love it. 😍
-        </p>
+        <p className="text-sm font-medium">{User.name}</p>
+        <p className="text-xs font-medium text-[#858C97]">{text}</p>
       </div>
     </div>
   );
