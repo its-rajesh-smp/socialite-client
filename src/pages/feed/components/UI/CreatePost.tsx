@@ -31,8 +31,6 @@ function CreatePost({ open, setOpen }: CreatePostProps) {
           createPostInput: newPostFormData,
         },
       });
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }

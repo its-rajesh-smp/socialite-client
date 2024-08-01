@@ -74,6 +74,40 @@ export const ON_NEW_FEED_POST_UPDATE_SUBSCRIPTION = gql`
       id
       like
       comment
+      NewsPostComments {
+        id
+        text
+        User {
+          id
+          name
+          email
+        }
+      }
+      User {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
+export const ON_NEW_FEED_COMMENT_CREATE_SUBSCRIPTION = gql`
+  subscription onCommentAdded {
+    onCommentAdded {
+      text
+      id
+      like
+      comment
+      NewsPostComments {
+        id
+        text
+        User {
+          id
+          name
+          email
+        }
+      }
       User {
         id
         name

@@ -11,9 +11,7 @@ interface CommentContainerProps {
 function CommentContainer({ postId, comments }: CommentContainerProps) {
   return (
     <div className="mt-4 flex flex-col gap-3">
-      {comments.map((comment) => (
-        <Comment key={comment.id} {...comment} />
-      ))}
+      {comments?.map((comment) => <Comment key={comment.id} {...comment} />)}
 
       <div className="flex cursor-pointer items-center gap-2 text-sm font-medium text-gray-500">
         <IoIosArrowDown />

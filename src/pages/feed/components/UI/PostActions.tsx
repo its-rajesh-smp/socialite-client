@@ -45,7 +45,6 @@ function PostActions({
           },
         },
       });
-      console.log(data);
       setIsLiked((prev) => !prev);
     } catch (error) {
       console.log(error);

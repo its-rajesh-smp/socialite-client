@@ -13,7 +13,6 @@ function AddNewComment({ postId }: AddNewCommentProps) {
 
   const handelCreateComment = async () => {
     try {
-      console.log(text);
       const data = await mutateCreateComment({
         variables: {
           createCommentInput: {
@@ -22,7 +21,6 @@ function AddNewComment({ postId }: AddNewCommentProps) {
           },
         },
       });
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
