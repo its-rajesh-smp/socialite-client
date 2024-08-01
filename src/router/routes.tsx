@@ -8,6 +8,7 @@ import AuthGuard from "./guards/AuthGuard";
 import GuestGuard from "./guards/GuestGuard";
 import guestRoutes from "./paths/guest.routes";
 import authRoutes from "./paths/auth.routes";
+import Practice from "../pages/practice/practice";
 
 const appRoutes = createBrowserRouter([
   // # GUEST ROUTES
@@ -46,6 +47,10 @@ const appRoutes = createBrowserRouter([
           {
             path: authRoutes.COURSES,
             element: <Courses />,
+          },
+          {
+            path: authRoutes.PRACTICE,
+            element: <Practice />,
           },
           {
             path: "/",

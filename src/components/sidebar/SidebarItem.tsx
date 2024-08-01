@@ -1,19 +1,24 @@
+import { NavLink, useLocation } from "react-router-dom";
+
 type SidebarItemProps = {
-  selected?: boolean;
   id: number;
   name: string;
   iconImage: string;
+  path: string;
 };
 
-function SidebarItem({ selected, id, name, iconImage }: SidebarItemProps) {
+function SidebarItem({ id, name, iconImage, path }: SidebarItemProps) {
+  const location = useLocation();
+  let isCurrentTabSelected = location.pathname === path;
   return (
-    <div
+    <NavLink
+      to={path}
       id={`${id}`}
-      className={`h-12 w-full ${selected && "bg-primary_selected"} flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 hover:bg-primary_selected`}
+      className={`h-12 w-full ${isCurrentTabSelected && "bg-primary_selected"} flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 hover:bg-primary_selected`}
     >
       <img className="h-6 w-6" alt={`${name}_icon`} src={iconImage} />{" "}
       <p className="text-sm font-semibold">{name}</p>
-    </div>
+    </NavLink>
   );
 }
 

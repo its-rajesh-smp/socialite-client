@@ -1,9 +1,12 @@
+import authRoutes from "../../router/paths/auth.routes";
+
 const sidebarItemsData = {
   Feed: {
     id: 1,
     name: "Feed",
     iconImage: "https://cdn-icons-png.flaticon.com/512/2163/2163350.png",
-    status: "archived",
+    status: "live",
+    path: authRoutes.FEED,
   },
   Messages: {
     id: 2,
@@ -38,9 +41,16 @@ const sidebarItemsData = {
   Courses: {
     id: 7,
     name: "Courses",
+    path: authRoutes.COURSES,
     iconImage: "https://cdn-icons-png.flaticon.com/512/3352/3352681.png",
+    status: "archived",
+  },
+  Practice: {
+    id: 8,
+    name: "Practice",
+    path: authRoutes.PRACTICE,
+    iconImage: "https://cdn-icons-png.flaticon.com/512/6747/6747027.png",
     status: "live",
-    selected: true,
   },
 };
 
