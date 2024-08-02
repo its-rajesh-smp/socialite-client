@@ -1,5 +1,16 @@
+import { useState } from "react";
+import CreateNewPracticeBtn from "./components/CreateNewPracticeBtn";
+
 function Practice() {
-  return <div>Practice</div>;
+  const [practiceSets, setPracticeSets] = useState([]);
+  return (
+    <div className="relative">
+      <CreateNewPracticeBtn
+        practiceSets={practiceSets}
+        setPracticeSets={setPracticeSets}
+      />
+    </div>
+  );
 }
 
 export default Practice;
