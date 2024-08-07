@@ -1,10 +1,28 @@
 import { MdDelete, MdOutlineHistory } from "react-icons/md";
 import Container from "../../../../components/containers/Container";
 import { IPracticeSet } from "../../../../types/practice";
+import { useNavigate } from "react-router-dom";
+import authRoutes from "../../../../router/paths/auth.routes";
+import { generatePathNameWithParams } from "../../../../utils/route";
 
-function PracticeSet({ name, description }: IPracticeSet) {
+function PracticeSet({ name, description, id }: IPracticeSet) {
+  const navigate = useNavigate();
+
+  /**
+   * Function to handle click on practice set
+   * @param e - click event
+   */
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    navigate(
+      generatePathNameWithParams(authRoutes.PRACTICE_SET_TASKS, {
+        practiceSetId: id,
+      }),
+    );
+  };
+
   return (
-    <Container className="flex">
+    <Container onClick={handleClick} className="flex">
       {/* LEFT SIDE */}
       <div className="flex h-full flex-col justify-between gap-3">
         <div>
