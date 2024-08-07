@@ -6,6 +6,8 @@ import SelectInput from "../../../../components/inputs/SelectInput";
 import { Visibility } from "../../../../constants/feed.const";
 import { IPracticeSet } from "../../../../types/practice";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CreatePracticeSet } from "../../../../graphql/practice.graphql";
 
 interface NewPracticeModalProps {
   open: boolean;
@@ -14,8 +16,9 @@ interface NewPracticeModalProps {
   setPracticeSets: React.Dispatch<React.SetStateAction<any>>;
 }
 
+// initial practice set input values
 const initialPracticeSetInputValue = {
-  name: "",
+  title: "",
   description: "",
   visibility: Visibility.PUBLIC,
 };
@@ -30,9 +33,24 @@ function NewPracticeModal({
     initialPracticeSetInputValue,
   );
 
-  const handelCreatePracticeSet = (e: any) => {
+  const [mutateCreatePracticeSet] = useMutation(CreatePracticeSet);
+
+  // function to create a new practice set
+  const handelCreatePracticeSet = async (e: any) => {
     e.preventDefault();
-    console.log(practiceSetInput);
+
+    try {
+      const data = await mutateCreatePracticeSet({
+        variables: {
+          createPracticeSetInput: practiceSetInput,
+        },
+      });
+
+      setPracticeSets((prev: any) => [...prev, data.data?.createPracticeSet]);
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -49,12 +67,12 @@ function NewPracticeModal({
       <Separator />
       <form className="flex flex-col gap-4 p-4">
         <Input
-          value={practiceSetInput.name}
+          value={practiceSetInput.title}
           containerClassName="gap-1"
           label="Practice Set Name"
           placeholder="ex. DSA practice"
           onChange={(e) =>
-            setPracticeSetInput((prev) => ({ ...prev, name: e.target.value }))
+            setPracticeSetInput((prev) => ({ ...prev, title: e.target.value }))
           }
         />
         <Input

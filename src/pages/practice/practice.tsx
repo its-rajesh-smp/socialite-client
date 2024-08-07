@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CreateNewPracticeBtn from "./components/CreateNewPracticeBtn";
+import PracticeSetContainer from "./components/PracticeSetContainer";
 
 function Practice() {
   const [practiceSets, setPracticeSets] = useState([]);
@@ -9,6 +10,7 @@ function Practice() {
         practiceSets={practiceSets}
         setPracticeSets={setPracticeSets}
       />
+      <PracticeSetContainer />
     </div>
   );
 }
