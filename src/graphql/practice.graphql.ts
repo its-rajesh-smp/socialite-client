@@ -9,3 +9,13 @@ export const CreatePracticeSet = gql`
     }
   }
 `;
+
+export const GetPracticeSets = gql`
+  query {
+    getAllPracticeSets {
+      id
+      title
+      description
+    }
+  }
+`;

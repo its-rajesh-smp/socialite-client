@@ -43,7 +43,7 @@ const sidebarItemsData = {
     name: "Courses",
     path: authRoutes.COURSES,
     iconImage: "https://cdn-icons-png.flaticon.com/512/3352/3352681.png",
-    status: "archived",
+    status: "live",
   },
   Practice: {
     id: 8,

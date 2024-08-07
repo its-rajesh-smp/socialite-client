@@ -1,12 +1,16 @@
+import { IPracticeSet } from "../../../types/practice";
 import PracticeSet from "./UI/PracticeSet";
 
-function PracticeSetContainer() {
+interface PracticeSetContainerProps {
+  practiceSets: IPracticeSet[];
+}
+
+function PracticeSetContainer({ practiceSets }: PracticeSetContainerProps) {
   return (
     <div className="flex flex-col gap-3">
-      <PracticeSet />
-      <PracticeSet />
-      <PracticeSet />
-      <PracticeSet />
+      {practiceSets.map((practiceSet) => (
+        <PracticeSet key={practiceSet.id} {...practiceSet} />
+      ))}
     </div>
   );
 }
