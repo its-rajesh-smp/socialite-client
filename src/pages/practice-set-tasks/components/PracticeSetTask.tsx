@@ -5,12 +5,13 @@ import {
   MdHistory,
   MdOutlineBarChart,
 } from "react-icons/md";
+import { IPracticeQuestion } from "../../../types/practice";
 
-function PracticeSetTask() {
+function PracticeSetTask({ description, title, link }: IPracticeQuestion) {
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <p className="text-sm">Find the maximum element</p>
+        <p className="text-sm">{title}</p>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-0.5 text-xs text-gray-500">
             <MdOutlineBarChart />

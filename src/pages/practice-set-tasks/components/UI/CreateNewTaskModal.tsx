@@ -1,16 +1,58 @@
+import { useMutation } from "@apollo/client";
 import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
+import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import Modal from "../../../../components/others/Modal";
+import { useParams } from "react-router-dom";
 import Input from "../../../../components/inputs/Input";
 import SelectInput from "../../../../components/inputs/SelectInput";
+import Modal from "../../../../components/others/Modal";
 import { Visibility } from "../../../../constants/feed.const";
+import { CreatePracticeSetTask } from "../../../../graphql/practiceSetTask.graphql";
+import { useAppDispatch } from "../../../../hooks/useAppDispatch";
+import { addPracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
 
 interface ICreateNewTaskModalProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const initialTaskInputValue = {
+  title: "",
+  link: "",
+  description: "",
+  visibility: Visibility.PUBLIC,
+};
+
 function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
+  const param = useParams();
+  const dispatch = useAppDispatch();
+  const [taskInput, setTaskInput] = useState(initialTaskInputValue);
+
+  const [mutateCreateSetTask] = useMutation(CreatePracticeSetTask);
+
+  /**
+   * function to create a new task
+   * @param e
+   */
+  const handelCreateTask = async (e: any) => {
+    e.preventDefault();
+    try {
+      const data = await mutateCreateSetTask({
+        variables: {
+          data: {
+            ...taskInput,
+            PracticeSetId: param.practiceSetId,
+          },
+        },
+      });
+
+      dispatch(addPracticeSetTask(data.data.createPracticeTask));
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Modal open={open}>
       <Dialog.Title className="flex items-center p-4">
@@ -23,10 +65,30 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
         </Button>
       </Dialog.Title>
       <Separator />
-      <div className="flex flex-col gap-3 p-4">
-        <Input containerClassName="!gap-1" placeholder="title" label="Title" />
-        <Input containerClassName="!gap-1" placeholder="link" label="Link" />
+      <form className="flex flex-col gap-3 p-4">
         <Input
+          value={taskInput.title}
+          onChange={(e) =>
+            setTaskInput((prev) => ({ ...prev, title: e.target.value }))
+          }
+          containerClassName="!gap-1"
+          placeholder="title"
+          label="Title"
+        />
+        <Input
+          value={taskInput.link}
+          onChange={(e) => {
+            setTaskInput((prev) => ({ ...prev, link: e.target.value }));
+          }}
+          containerClassName="!gap-1"
+          placeholder="link"
+          label="Link"
+        />
+        <Input
+          value={taskInput.description}
+          onChange={(value) => {
+            setTaskInput((prev) => ({ ...prev, description: value }));
+          }}
           containerClassName="!gap-1"
           label="Description"
           inputType="editor"
@@ -38,7 +100,10 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
             </label>
             <SelectInput
               className="flex gap-3 rounded-full bg-[#f9fcff] px-2 py-1 text-sm"
-              defaultValue={Visibility.PUBLIC}
+              defaultValue={taskInput.visibility}
+              onValueChange={(value) => {
+                setTaskInput((prev) => ({ ...prev, visibility: value }));
+              }}
             >
               {Object.entries(Visibility).map(([key, value]) => (
                 <Select.Item key={key} value={value}>
@@ -47,11 +112,15 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
               ))}
             </SelectInput>
           </div>
-          <Button color="blue" className="cursor-pointer rounded-md px-2 py-1">
+          <Button
+            onClick={handelCreateTask}
+            color="blue"
+            className="cursor-pointer rounded-md px-2 py-1"
+          >
             Create
           </Button>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 }

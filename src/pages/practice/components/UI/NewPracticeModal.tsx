@@ -7,7 +7,7 @@ import { Visibility } from "../../../../constants/feed.const";
 import { IPracticeSet } from "../../../../types/practice";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CreatePracticeSet } from "../../../../graphql/practice.graphql";
+import { CreatePracticeSet } from "../../../../graphql/practiceSet.graphql";
 
 interface NewPracticeModalProps {
   open: boolean;

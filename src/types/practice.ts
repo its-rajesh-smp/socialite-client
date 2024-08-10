@@ -8,7 +8,8 @@ export interface IPracticeSet {
 
 export interface IPracticeQuestion {
   id: string;
-  question: string;
+  title: string;
+  link: string;
   visibility: string;
-  answer: string;
+  description: string;
 }

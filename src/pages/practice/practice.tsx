@@ -2,7 +2,7 @@ import { useState } from "react";
 import CreateNewPracticeBtn from "./components/CreateNewPracticeBtn";
 import PracticeSetContainer from "./components/PracticeSetContainer";
 import { useQuery } from "@apollo/client";
-import { GetPracticeSets } from "../../graphql/practice.graphql";
+import { GetPracticeSets } from "../../graphql/practiceSet.graphql";
 
 function Practice() {
   const [practiceSets, setPracticeSets] = useState([]);
