@@ -10,7 +10,7 @@ import PreviewTagContainer, { PreviewIndex } from "./PreviewTagContainer";
 function Preview() {
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(1);
   return (
-    <div className="flex !h-full w-[50%] flex-col">
+    <div className="flex !h-full w-full flex-col">
       <PreviewTagContainer
         currentTagIndex={currentPreviewIndex}
         onChange={(tabIndex: number) => {
