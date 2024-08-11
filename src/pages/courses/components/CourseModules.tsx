@@ -1,18 +1,10 @@
-import javascriptLearning from "../data/js";
-import CourseTopic from "./CourseTopic";
-
 function CourseModules() {
   return (
-    <div className="flex flex-col gap-3">
-      <div>
-        <h1 className="text-5xl font-semibold">{javascriptLearning.heading}</h1>
-        <h2 className="text-xl">{javascriptLearning.subHeading}</h2>
-      </div>
-      <div>
-        {javascriptLearning.topics.map((topic) => {
-          return <CourseTopic key={topic.id} {...topic} />;
-        })}
-      </div>
+    <div className="flex h-full w-full flex-col gap-3">
+      <iframe
+        className="h-full w-full"
+        src="https://roadmap.sh/r/embed?id=669e83b4933fe0da0a2b2e0a"
+      ></iframe>
     </div>
   );
 }
