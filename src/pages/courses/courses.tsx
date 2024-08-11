@@ -3,7 +3,7 @@ import CourseModules from "./components/CourseModules";
 
 function Courses() {
   return (
-    <Container className="h-[calc(100vh-80px)]">
+    <Container fullHeight={true}>
       <CourseModules />
     </Container>
   );

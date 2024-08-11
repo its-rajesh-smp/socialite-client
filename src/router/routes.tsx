@@ -10,6 +10,7 @@ import guestRoutes from "./paths/guest.routes";
 import authRoutes from "./paths/auth.routes";
 import Practice from "../pages/practice/practice";
 import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
+import Compiler from "../pages/compiler/Compiler";
 
 const appRoutes = createBrowserRouter([
   // # GUEST ROUTES
@@ -56,6 +57,10 @@ const appRoutes = createBrowserRouter([
           {
             path: authRoutes.PRACTICE_SET_TASKS,
             element: <PracticeSetTasks />,
+          },
+          {
+            path: authRoutes.COMPILER,
+            element: <Compiler />,
           },
           {
             path: "/",
