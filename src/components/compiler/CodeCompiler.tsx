@@ -14,6 +14,16 @@ function CodeCompiler() {
     <SandpackProvider autoFocus template="react" theme="auto">
       <SandpackLayout className="flex h-[calc(100vh-110px)] flex-col md:flex-row">
         <PanelGroup direction="horizontal">
+          <Panel defaultSize={25}>
+            <button>A</button>
+            <button>B</button>
+          </Panel>
+
+          {/* RESIZER */}
+          <PanelResizeHandle>
+            <Separator />
+          </PanelResizeHandle>
+
           <Panel defaultSize={50}>
             {/* CODE EDITOR */}
             <SandpackCodeEditor
@@ -37,9 +47,8 @@ function CodeCompiler() {
             <Separator />
           </PanelResizeHandle>
           {/* PREVIEW */}
-          <Panel className="!h-full !w-full" defaultSize={25}>
-            <Preview />
-          </Panel>
+
+          <Preview />
         </PanelGroup>
       </SandpackLayout>
     </SandpackProvider>
