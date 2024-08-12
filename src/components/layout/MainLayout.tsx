@@ -8,7 +8,7 @@ function MainLayout() {
     <div>
       <Header />
       <div className="flex h-full gap-2 p-2">
-        {/* <Sidebar /> */}
+        <Sidebar />
         <PageContainer>
           <Outlet />
         </PageContainer>
