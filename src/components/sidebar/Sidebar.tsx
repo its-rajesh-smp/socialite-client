@@ -3,7 +3,7 @@ import sidebarItemsData from "./SidebarConstant";
 import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
-  const [hover, setHover] = useState(true);
+  const [hover, setHover] = useState(false);
   return (
     <div
       onMouseEnter={() => setHover(true)}

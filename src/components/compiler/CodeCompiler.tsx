@@ -4,20 +4,19 @@ import {
   SandpackLayout,
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
-import Preview from "./Preview";
+import PreviewRight from "./PreviewRight";
 import "./style.css";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Separator } from "@radix-ui/themes";
+import PreviewLeft from "./PreviewLeft";
 
 function CodeCompiler() {
   return (
-    <SandpackProvider autoFocus template="react" theme="auto">
+    <SandpackProvider autoSave="yes" autoFocus template="react" theme="auto">
       <SandpackLayout className="flex h-[calc(100vh-110px)] flex-col md:flex-row">
         <PanelGroup direction="horizontal">
-          <Panel defaultSize={25}>
-            <button>A</button>
-            <button>B</button>
-          </Panel>
+          {/* PREVIEW LEFT */}
+          <PreviewLeft />
 
           {/* RESIZER */}
           <PanelResizeHandle>
@@ -42,13 +41,14 @@ function CodeCompiler() {
               showInlineErrors
             />
           </Panel>
+
           {/* RESIZER */}
           <PanelResizeHandle>
             <Separator />
           </PanelResizeHandle>
-          {/* PREVIEW */}
 
-          <Preview />
+          {/* PREVIEW RIGHT */}
+          <PreviewRight />
         </PanelGroup>
       </SandpackLayout>
     </SandpackProvider>

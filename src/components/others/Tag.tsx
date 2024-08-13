@@ -1,11 +1,10 @@
-import { IconType } from "react-icons";
 import { IoMdClose } from "react-icons/io";
 
 interface ITagProps {
-  isActive: boolean;
-  onClick: () => void;
+  isActive?: boolean;
+  onClick?: any;
   title?: string;
-  icon: any;
+  icon?: any;
   showIcon?: boolean;
   showTitle?: boolean;
   showCloseBtnIcon?: boolean;
@@ -24,7 +23,7 @@ function Tag({
 }: ITagProps) {
   return (
     <div
-      className={`flex h-6 cursor-pointer items-center justify-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-sm font-semibold text-gray-600 transition-all hover:bg-gray-300 ${isActive ? "!bg-gray-300" : ""} ${containerClassName ? containerClassName : ""}`}
+      className={`flex h-6 cursor-pointer flex-nowrap items-center justify-center gap-2 text-nowrap rounded-full px-3 py-1 text-sm font-semibold text-gray-300 transition-all hover:text-gray-800 ${isActive ? "!text-gray-600" : ""} ${containerClassName ? containerClassName : ""}`}
       onClick={onClick}
     >
       {showIcon && icon}
