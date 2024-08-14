@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",
+    "@blocknote/core": "^0.15.4",
+    "@blocknote/mantine": "^0.15.4",
+    "@blocknote/react": "^0.15.4",
     "@codemirror/autocomplete": "^6.18.0",
     "@codesandbox/sandpack-react": "^2.18.2",
     "@coreui/react-chartjs": "^3.0.0",

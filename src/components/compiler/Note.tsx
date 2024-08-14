@@ -1,3 +1,4 @@
+import Editor from "../editor/Editor";
 import Input from "../inputs/Input";
 
 interface INote {
@@ -7,11 +8,7 @@ interface INote {
 function Note({ className }: INote) {
   return (
     <div className={`${className} bg-white`}>
-      <Input
-        containerClassName="h-full"
-        inputClassName="!h-full"
-        inputType="editor"
-      />
+      <Editor />
     </div>
   );
 }
