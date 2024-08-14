@@ -9,6 +9,9 @@ import {
 } from "../../store/others/codeCompiler/codeCompilerPreviewSlice.ts";
 import { PreviewIndex_Left } from "./constants.tsx";
 import LeftSideTagsContainer from "./LeftSideTagsContainer.tsx";
+import Setting from "./Setting.tsx";
+import Description from "./Description.tsx";
+import Note from "./Note.tsx";
 
 function PreviewLeft() {
   const { currentPreviewIndex_left, isCollapsed_left } = useAppSelector(
@@ -39,6 +42,18 @@ function PreviewLeft() {
 
         <SandpackFileExplorer
           className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.FILE_MANAGER.id && !isCollapsed_left ? "block" : "!hidden"}`}
+        />
+
+        <Setting
+          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.SETTING.id && !isCollapsed_left ? "block" : "!hidden"}`}
+        />
+
+        <Note
+          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.NOTE.id && !isCollapsed_left ? "block" : "!hidden"}`}
+        />
+
+        <Description
+          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.DESCRIPTION.id && !isCollapsed_left ? "block" : "!hidden"}`}
         />
       </div>
     </Panel>

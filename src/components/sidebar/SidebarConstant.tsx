@@ -58,7 +58,7 @@ const sidebarItemsData = {
     status: "live",
   },
   Compiler: {
-    id: 8,
+    id: 9,
     name: "Compiler",
     path: authRoutes.COMPILER,
     iconImage: "https://cdn-icons-png.flaticon.com/512/3573/3573187.png",

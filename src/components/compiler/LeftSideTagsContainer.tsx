@@ -1,4 +1,4 @@
-import { IoReorderThreeOutline } from "react-icons/io5";
+import { IoReorderThreeOutline, IoSettings } from "react-icons/io5";
 import { ImperativePanelHandle } from "react-resizable-panels";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
@@ -50,7 +50,6 @@ function LeftSideTagsContainer({
             title={value.name}
             icon={value.icon}
             showIcon={true}
-            showTitle={isCollapsed_left ? false : true}
             showCloseBtnIcon={false}
             containerClassName={` rounded-md text-xl ${isCollapsed_left ? "!h-10" : ""}`}
           />

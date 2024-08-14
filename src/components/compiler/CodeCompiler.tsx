@@ -2,17 +2,27 @@ import { autocompletion, completionKeymap } from "@codemirror/autocomplete";
 import {
   SandpackCodeEditor,
   SandpackLayout,
+  SandpackPredefinedTemplate,
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
+import { Separator } from "@radix-ui/themes";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import PreviewLeft from "./PreviewLeft";
 import PreviewRight from "./PreviewRight";
 import "./style.css";
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import { Separator } from "@radix-ui/themes";
-import PreviewLeft from "./PreviewLeft";
 
 function CodeCompiler() {
+  const { currentCompilerType } = useAppSelector(
+    (state) => state.codeCompilerSettingSlice,
+  );
+
   return (
-    <SandpackProvider autoSave="yes" autoFocus template="react" theme="auto">
+    <SandpackProvider
+      autoFocus
+      template={currentCompilerType as SandpackPredefinedTemplate}
+      theme="light"
+    >
       <SandpackLayout className="flex h-[calc(100vh-110px)] flex-col md:flex-row">
         <PanelGroup direction="horizontal">
           {/* PREVIEW LEFT */}

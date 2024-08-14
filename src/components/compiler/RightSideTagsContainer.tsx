@@ -50,7 +50,6 @@ function RightSideTagsContainer({
             title={value.name}
             icon={value.icon}
             showIcon={true}
-            showTitle={isCollapsed_right ? false : true}
             showCloseBtnIcon={false}
             containerClassName={` rounded-md text-xl ${isCollapsed_right ? "!h-10" : ""}`}
           />
