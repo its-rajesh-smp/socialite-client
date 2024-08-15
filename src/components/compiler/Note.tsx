@@ -1,5 +1,4 @@
 import Editor from "../editor/Editor";
-import Input from "../inputs/Input";
 
 interface INote {
   className?: string;

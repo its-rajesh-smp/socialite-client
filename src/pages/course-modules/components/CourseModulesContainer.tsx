@@ -14,7 +14,6 @@ const data = [
         link: "www.google.com",
         status: "live",
         isCompleted: true,
-        content: "Hosting",
       },
       {
         id: "1",
@@ -23,7 +22,6 @@ const data = [
         link: "www.google.com",
         status: "live",
         isCompleted: true,
-        content: "Docker",
       },
     ],
   },
@@ -39,7 +37,6 @@ const data = [
         link: "www.google.com",
         status: "live",
         isCompleted: true,
-        content: "DUMMY",
       },
       {
         id: "1",
@@ -48,7 +45,6 @@ const data = [
         link: "www.google.com",
         status: "live",
         isCompleted: true,
-        content: "C++",
       },
     ],
   },

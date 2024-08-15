@@ -12,6 +12,7 @@ import Practice from "../pages/practice/practice";
 import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
 import Compiler from "../pages/compiler/Compiler";
 import CourseModules from "../pages/course-modules/CourseModules";
+import CourseContent from "../pages/course-content/CourseContent";
 
 const appRoutes = createBrowserRouter([
   // # GUEST ROUTES
@@ -54,6 +55,10 @@ const appRoutes = createBrowserRouter([
           {
             path: authRoutes.COURSES_MODULE,
             element: <CourseModules />,
+          },
+          {
+            path: authRoutes.COURSES_CONTENT,
+            element: <CourseContent />,
           },
           {
             path: authRoutes.PRACTICE,

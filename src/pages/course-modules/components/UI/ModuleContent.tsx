@@ -1,5 +1,8 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { Table } from "@radix-ui/themes";
+import { useNavigate } from "react-router-dom";
+import { generatePathNameWithParams } from "../../../../utils/route";
+import authRoutes from "../../../../router/paths/auth.routes";
 
 export interface IContent {
   id: string;
@@ -8,7 +11,6 @@ export interface IContent {
   link: string;
   status: string;
   isCompleted: boolean;
-  content: string;
 }
 
 export interface ICourseModulesContent {
@@ -16,6 +18,16 @@ export interface ICourseModulesContent {
 }
 
 function CourseModulesContent({ content }: ICourseModulesContent) {
+  const navigate = useNavigate();
+
+  const onContentItemClick = (id: string) => {
+    navigate(
+      generatePathNameWithParams(authRoutes.COURSES_CONTENT, {
+        practiceSetId: id,
+      }),
+    );
+  };
+
   return (
     <Accordion.Content className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">
       <Table.Root>
@@ -31,7 +43,10 @@ function CourseModulesContent({ content }: ICourseModulesContent) {
 
         <Table.Body>
           {content.map((item) => (
-            <Table.Row key={item.id}>
+            <Table.Row
+              onClick={() => onContentItemClick(item.id)}
+              key={item.id}
+            >
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>{item.name}</Table.Cell>
               <Table.Cell>{item.isCompleted}</Table.Cell>
