@@ -1,15 +1,15 @@
-import Container from "../../../../components/containers/Container";
-import ModuleContent, { IContent } from "./ModuleContent";
 import * as Accordion from "@radix-ui/react-accordion";
+import Container from "../../../../components/containers/Container";
+import CourseModulesContent, { IContent } from "./ModuleContent";
 
-interface IModule {
+interface ICourseModules {
   name: string;
   id: string;
   triggerTitle: string;
   content: IContent[];
 }
 
-function Module({ content, id, name, triggerTitle }: IModule) {
+function CourseModules({ content, id, name, triggerTitle }: ICourseModules) {
   return (
     <Accordion.Item className="!mt-0" value={id}>
       <Accordion.Header>
@@ -18,9 +18,9 @@ function Module({ content, id, name, triggerTitle }: IModule) {
         </Accordion.Trigger>
       </Accordion.Header>
 
-      <ModuleContent content={content} />
+      <CourseModulesContent content={content} />
     </Accordion.Item>
   );
 }
 
-export default Module;
+export default CourseModules;

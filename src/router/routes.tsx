@@ -11,6 +11,7 @@ import authRoutes from "./paths/auth.routes";
 import Practice from "../pages/practice/practice";
 import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
 import Compiler from "../pages/compiler/Compiler";
+import CourseModules from "../pages/course-modules/CourseModules";
 
 const appRoutes = createBrowserRouter([
   // # GUEST ROUTES
@@ -49,6 +50,10 @@ const appRoutes = createBrowserRouter([
           {
             path: authRoutes.COURSES,
             element: <Courses />,
+          },
+          {
+            path: authRoutes.COURSES_MODULE,
+            element: <CourseModules />,
           },
           {
             path: authRoutes.PRACTICE,

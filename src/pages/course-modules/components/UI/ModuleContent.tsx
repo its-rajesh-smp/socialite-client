@@ -11,11 +11,11 @@ export interface IContent {
   content: string;
 }
 
-export interface IModuleContent {
+export interface ICourseModulesContent {
   content: IContent[];
 }
 
-function ModuleContent({ content }: IModuleContent) {
+function CourseModulesContent({ content }: ICourseModulesContent) {
   return (
     <Accordion.Content className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">
       <Table.Root>
@@ -45,4 +45,4 @@ function ModuleContent({ content }: IModuleContent) {
   );
 }
 
-export default ModuleContent;
+export default CourseModulesContent;

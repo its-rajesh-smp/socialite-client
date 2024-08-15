@@ -1,6 +1,6 @@
 import { Button } from "@radix-ui/themes";
 import { useState } from "react";
-import { ICourse } from "../Course";
+import { ICourse } from "./Course";
 import NewCourseModal from "../NewCourseModal";
 
 interface ICreateNewCourseBtn {

@@ -1,4 +1,4 @@
-import Module from "./Module";
+import Module from "./UI/CourseModule";
 import * as Accordion from "@radix-ui/react-accordion";
 
 const data = [
@@ -54,7 +54,7 @@ const data = [
   },
 ];
 
-function CourseModules() {
+function CourseModulesContainer() {
   return (
     <Accordion.Root
       type="multiple"
@@ -67,4 +67,4 @@ function CourseModules() {
   );
 }
 
-export default CourseModules;
+export default CourseModulesContainer;

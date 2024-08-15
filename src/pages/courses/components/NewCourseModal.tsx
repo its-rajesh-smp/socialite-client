@@ -5,7 +5,7 @@ import Input from "../../../components/inputs/Input";
 import SelectInput from "../../../components/inputs/SelectInput";
 import Modal from "../../../components/others/Modal";
 import { Visibility } from "../../../constants/feed.const";
-import { ICourse } from "./Course";
+import { ICourse } from "./UI/Course";
 
 interface ICourseModal {
   open: boolean;
