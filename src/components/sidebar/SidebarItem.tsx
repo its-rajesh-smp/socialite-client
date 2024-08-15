@@ -22,14 +22,10 @@ function SidebarItem({
     <NavLink
       to={path}
       id={`${id}`}
-      className={`h-12 w-full ${isCurrentTabSelected && "bg-primary_selected"} flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 hover:bg-primary_selected`}
+      className={`h-12 w-full overflow-hidden ${isCurrentTabSelected && "bg-primary_selected"} flex cursor-pointer items-center gap-5 rounded-xl px-4 py-3 hover:bg-primary_selected`}
     >
       <img className="h-6 w-6" alt={`${name}_icon`} src={iconImage} />{" "}
-      <p
-        className={`text-sm font-semibold ${sidebarOpen ? "block" : "hidden"} transition-all`}
-      >
-        {name}
-      </p>
+      <p className={`text-sm font-semibold transition-all`}>{name}</p>
     </NavLink>
   );
 }

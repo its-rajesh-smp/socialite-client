@@ -17,6 +17,7 @@
     "@codemirror/autocomplete": "^6.18.0",
     "@codesandbox/sandpack-react": "^2.18.2",
     "@coreui/react-chartjs": "^3.0.0",
+    "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/themes": "^3.1.1",
     "@reduxjs/toolkit": "^2.2.6",
     "graphql": "^16.9.0",
