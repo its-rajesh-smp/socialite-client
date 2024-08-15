@@ -1,4 +1,4 @@
-import Container from "../../../components/containers/Container";
+import Container from "../../../../components/containers/Container";
 import ModuleContent, { IContent } from "./ModuleContent";
 import * as Accordion from "@radix-ui/react-accordion";
 

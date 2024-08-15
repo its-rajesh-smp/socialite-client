@@ -1,11 +1,11 @@
-interface CourseProps {
+export interface ICourse {
   id: number;
   title: string;
   views: number;
   reviews: number;
 }
 
-function Course({ title }: CourseProps) {
+function Course({ title }: ICourse) {
   return (
     <div className={`w-full rounded-xl bg-slate-200 p-3`}>
       <h1 className="text-2xl font-semibold text-primary">{title}</h1>
