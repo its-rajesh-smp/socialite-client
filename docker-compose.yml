@@ -1,0 +1,10 @@
+services:
+  socialite-client:
+    image: "socialite-client"
+    ports:
+      - 5173:5173
+    environment:
+      - name = value
+    volumes:
+      - 'C:\Users\Rajesh SMP\Desktop\Personal\Socialite\socialite-client:/website' # Mounts the current directory into /cluster inside the container
+      - /website/node_modules # Ensures node_modules inside container is used
