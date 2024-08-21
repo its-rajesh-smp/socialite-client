@@ -1,12 +1,12 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-interface ModalProps {
+interface IModal {
   children?: React.ReactNode;
   className?: string;
   open?: boolean;
 }
 
-const Modal = ({ children, className, open }: ModalProps) => (
+const Modal = ({ children, className, open }: IModal) => (
   <Dialog.Root open={open}>
     <Dialog.Portal>
       <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 backdrop-blur-sm" />

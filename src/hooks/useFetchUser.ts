@@ -4,6 +4,10 @@ import { useEffect } from "react";
 import { useAppDispatch } from "./useAppDispatch";
 import { authenticateUser, setUserLoading } from "../store/auth/authSlice";
 
+/**
+ * Hook to fetch user data
+ * @returns {loading: boolean, error: any}
+ */
 function useFetchUser() {
   const dispatch = useAppDispatch();
 

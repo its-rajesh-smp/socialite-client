@@ -1,6 +1,6 @@
+import ActionBar from "./ActionBar";
 import BrandSection from "./BrandSection";
 import HeaderSearch from "./HeaderSearch";
-import ActionBar from "./ActionBar";
 
 function Header() {
   return (

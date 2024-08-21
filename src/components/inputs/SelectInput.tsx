@@ -1,10 +1,10 @@
 import { Select } from "@radix-ui/themes";
 
-interface SelectInputProps {
+interface ISelectInput {
   children: React.ReactNode;
   defaultValue?: string;
   className?: string;
-  onValueChange?: (value: string) => void;
+  onValueChange?: (value: any) => void;
 }
 
 function SelectInput({
@@ -12,7 +12,7 @@ function SelectInput({
   defaultValue,
   className,
   onValueChange = () => {},
-}: SelectInputProps) {
+}: ISelectInput) {
   return (
     <Select.Root
       onValueChange={(value) => onValueChange(value)}

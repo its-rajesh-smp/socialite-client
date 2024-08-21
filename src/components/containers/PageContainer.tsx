@@ -1,8 +1,8 @@
-export interface PageContainerProps {
+export interface IPageContainer {
   children?: React.ReactNode;
 }
 
-function PageContainer({ children }: PageContainerProps) {
+function PageContainer({ children }: IPageContainer) {
   return <div className="w-full">{children}</div>;
 }
 

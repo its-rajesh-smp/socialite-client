@@ -5,16 +5,9 @@ type SidebarItemProps = {
   name: string;
   iconImage: string;
   path: string;
-  sidebarOpen: boolean;
 };
 
-function SidebarItem({
-  id,
-  name,
-  iconImage,
-  path,
-  sidebarOpen,
-}: SidebarItemProps) {
+function SidebarItem({ id, name, iconImage, path }: SidebarItemProps) {
   const location = useLocation();
   let isCurrentTabSelected = location.pathname === path;
 

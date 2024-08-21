@@ -1,10 +1,14 @@
-import { IoReorderThreeOutline, IoSettings } from "react-icons/io5";
+import { IoReorderThreeOutline } from "react-icons/io5";
 import { ImperativePanelHandle } from "react-resizable-panels";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { setCollapsed_left } from "../../store/others/codeCompiler/codeCompilerPreviewSlice";
+import { setCollapsedLeft } from "../../store/codeCompiler/codeCompilerPreviewSlice";
 import Tag from "../others/Tag";
-import { PreviewIndex_Left } from "./constants";
+import {
+  COLLAPSE_PREVIEW_SIZE,
+  DEFAULT_PREVIEW_SIZE,
+  leftPanelTabs,
+} from "./constants";
 
 interface ILeftSideTagsContainer {
   onChange: (tabIndex: number) => void;
@@ -17,41 +21,42 @@ function LeftSideTagsContainer({
   currentTagIndex,
   panelRef,
 }: ILeftSideTagsContainer) {
-  const dispatch = useAppDispatch();
-  const { isCollapsed_left } = useAppSelector(
+  const { isCollapsedLeft } = useAppSelector(
     (state) => state.codeCompilerPreviewSlice,
   );
+  const dispatch = useAppDispatch();
 
   return (
-    <div className={`${isCollapsed_left ? "h-full" : ""}`}>
+    <div className={`${isCollapsedLeft ? "h-full" : ""}`}>
       <div
-        className={`small_scrollbar flex overflow-x-auto overflow-y-hidden bg-white p-2 ${isCollapsed_left ? "h-full !flex-col gap-5" : "h-10 flex-row gap-3"}`}
+        className={`small_scrollbar flex overflow-x-auto overflow-y-hidden bg-white p-2 ${isCollapsedLeft ? "h-full !flex-col gap-5" : "h-10 flex-row gap-3"}`}
       >
         <Tag
           icon={<IoReorderThreeOutline />}
           showIcon={true}
           onClick={() => {
-            dispatch(setCollapsed_left());
-            isCollapsed_left
-              ? panelRef?.current?.resize(35)
-              : panelRef?.current?.resize(5);
+            dispatch(setCollapsedLeft());
+            isCollapsedLeft
+              ? panelRef?.current?.resize(DEFAULT_PREVIEW_SIZE)
+              : panelRef?.current?.resize(COLLAPSE_PREVIEW_SIZE);
           }}
-          containerClassName={` rounded-md text-xl  ${isCollapsed_left ? "!h-10" : ""}`}
+          containerClassName={` rounded-md text-xl  ${isCollapsedLeft ? "!h-10" : ""}`}
         />
 
-        {Object.values(PreviewIndex_Left).map((value) => (
+        {Object.values(leftPanelTabs).map((value) => (
           <Tag
             key={value.id}
             isActive={currentTagIndex === value.id}
             onClick={() => {
               onChange(value.id);
-              isCollapsed_left && panelRef?.current?.resize(35);
+              isCollapsedLeft &&
+                panelRef?.current?.resize(DEFAULT_PREVIEW_SIZE);
             }}
             title={value.name}
             icon={value.icon}
             showIcon={true}
             showCloseBtnIcon={false}
-            containerClassName={` rounded-md text-xl ${isCollapsed_left ? "!h-10" : ""}`}
+            containerClassName={` rounded-md text-xl ${isCollapsedLeft ? "!h-10" : ""}`}
           />
         ))}
       </div>

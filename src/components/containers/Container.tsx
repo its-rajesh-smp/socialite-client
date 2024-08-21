@@ -1,18 +1,13 @@
 import React from "react";
 
-export interface ContainerProps {
-  children: React.ReactNode;
+export interface IContainer {
+  children?: React.ReactNode;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => any;
   fullHeight?: boolean;
 }
 
-function Container({
-  children,
-  className,
-  onClick,
-  fullHeight,
-}: ContainerProps) {
+function Container({ children, className, onClick, fullHeight }: IContainer) {
   return (
     <section
       onClick={onClick}

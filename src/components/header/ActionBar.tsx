@@ -1,8 +1,8 @@
 import { Avatar } from "@radix-ui/themes";
-import UserAvatar from "./UserAvatar";
-import { FaBell } from "react-icons/fa6";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { BsPlusLg } from "react-icons/bs";
+import { FaBell } from "react-icons/fa6";
+import UserAvatar from "./UserAvatar";
 
 function ActionBar() {
   return (

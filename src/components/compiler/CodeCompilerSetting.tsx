@@ -2,16 +2,16 @@ import { Button, Select } from "@radix-ui/themes";
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { setSettingData } from "../../store/others/codeCompiler/codeCompilerSettingSlice";
+import { setSettingData } from "../../store/codeCompiler/codeCompilerSettingSlice";
 import Input from "../inputs/Input";
 import SelectInput from "../inputs/SelectInput";
 import { CompilerTypes } from "./constants";
 
-interface IoSettings {
+interface ICodeCompilerSetting {
   className?: string;
 }
 
-function Setting({ className }: IoSettings) {
+function CodeCompilerSetting({ className }: ICodeCompilerSetting) {
   const { currentCompilerType, openAIKey } = useAppSelector(
     (state) => state.codeCompilerSettingSlice,
   );
@@ -36,7 +36,7 @@ function Setting({ className }: IoSettings) {
           Compiler Type :{" "}
         </label>
         <SelectInput
-          onValueChange={(value) =>
+          onValueChange={(value: CompilerTypes) =>
             setSettingInput((prev) => ({ ...prev, currentCompilerType: value }))
           }
           defaultValue={currentCompilerType}
@@ -63,4 +63,4 @@ function Setting({ className }: IoSettings) {
   );
 }
 
-export default Setting;
+export default CodeCompilerSetting;

@@ -8,14 +8,18 @@ import { Panel } from "react-resizable-panels";
 import { useAppDispatch } from "../../hooks/useAppDispatch.ts";
 import { useAppSelector } from "../../hooks/useAppSelector.ts";
 import {
-  onSizeChange_right,
-  setPreviewIndex_right,
-} from "../../store/others/codeCompiler/codeCompilerPreviewSlice.ts";
-import { PreviewIndex_Right } from "./constants.tsx";
+  onSizeChangeRight,
+  setPreviewTabRight,
+} from "../../store/codeCompiler/codeCompilerPreviewSlice.ts";
+import {
+  COLLAPSE_PREVIEW_SIZE,
+  DEFAULT_PREVIEW_SIZE,
+  rightPanelTabs,
+} from "./constants.tsx";
 import RightSideTagsContainer from "./RightSideTagsContainer.tsx";
 
 function PreviewRight() {
-  const { currentPreviewIndex_right, isCollapsed_right } = useAppSelector(
+  const { currentRightTabId, isCollapsedRight } = useAppSelector(
     (state) => state.codeCompilerPreviewSlice,
   );
 
@@ -25,32 +29,32 @@ function PreviewRight() {
   return (
     <Panel
       ref={panelRef}
-      minSize={5}
+      minSize={COLLAPSE_PREVIEW_SIZE}
       onResize={(size) => {
-        dispatch(onSizeChange_right(size));
+        dispatch(onSizeChangeRight(size));
       }}
       className="!h-full !w-full"
-      defaultSize={35}
+      defaultSize={DEFAULT_PREVIEW_SIZE}
     >
       <div className="flex !h-full w-full flex-col">
         <RightSideTagsContainer
           panelRef={panelRef}
-          currentTagIndex={currentPreviewIndex_right}
+          currentTagIndex={currentRightTabId}
           onChange={(tabIndex: number) => {
-            dispatch(setPreviewIndex_right(tabIndex));
+            dispatch(setPreviewTabRight(tabIndex));
           }}
         />
 
         <SandpackPreview
-          className={`!h-full ${currentPreviewIndex_right === PreviewIndex_Right.PREVIEW.id && !isCollapsed_right ? "block" : "!hidden"}`}
+          className={`!h-full ${currentRightTabId === rightPanelTabs.preview.id && !isCollapsedRight ? "block" : "!hidden"}`}
         />
 
         <SandpackConsole
-          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_right === PreviewIndex_Right.CONSOLE.id && !isCollapsed_right ? "block" : "!hidden"}`}
+          className={`!h-[calc(100%-2.5rem)] ${currentRightTabId === rightPanelTabs.console.id && !isCollapsedRight ? "block" : "!hidden"}`}
         />
 
         <SandpackTests
-          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_right === PreviewIndex_Right.TESTS.id && !isCollapsed_right ? "block" : "!hidden"}`}
+          className={`!h-[calc(100%-2.5rem)] ${currentRightTabId === rightPanelTabs.test.id && !isCollapsedRight ? "block" : "!hidden"}`}
         />
       </div>
     </Panel>

@@ -1,13 +1,13 @@
-import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import React from "react";
 
-interface DropDownProps {
+interface IDropDown {
   className?: string;
   menuIcon?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-const DropDownMenu = ({ menuIcon, children }: DropDownProps) => {
+const DropDownMenu = ({ menuIcon, children }: IDropDown) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>{menuIcon}</DropdownMenu.Trigger>

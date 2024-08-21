@@ -4,17 +4,21 @@ import { Panel } from "react-resizable-panels";
 import { useAppDispatch } from "../../hooks/useAppDispatch.ts";
 import { useAppSelector } from "../../hooks/useAppSelector.ts";
 import {
-  onSizeChange_left,
-  setPreviewIndex_left,
-} from "../../store/others/codeCompiler/codeCompilerPreviewSlice.ts";
-import { PreviewIndex_Left } from "./constants.tsx";
-import LeftSideTagsContainer from "./LeftSideTagsContainer.tsx";
-import Setting from "./Setting.tsx";
+  onSizeChangeLeft,
+  setPreviewTabLeft,
+} from "../../store/codeCompiler/codeCompilerPreviewSlice.ts";
+import {
+  COLLAPSE_PREVIEW_SIZE,
+  DEFAULT_PREVIEW_SIZE,
+  leftPanelTabs,
+} from "./constants.tsx";
 import Description from "./Description.tsx";
+import LeftSideTagsContainer from "./LeftSideTagsContainer.tsx";
 import Note from "./Note.tsx";
+import CodeCompilerSetting from "./CodeCompilerSetting.tsx";
 
 function PreviewLeft() {
-  const { currentPreviewIndex_left, isCollapsed_left } = useAppSelector(
+  const { currentLeftTabId, isCollapsedLeft } = useAppSelector(
     (state) => state.codeCompilerPreviewSlice,
   );
 
@@ -24,36 +28,36 @@ function PreviewLeft() {
   return (
     <Panel
       ref={panelRef}
-      minSize={5}
+      minSize={COLLAPSE_PREVIEW_SIZE}
       onResize={(size) => {
-        dispatch(onSizeChange_left(size));
+        dispatch(onSizeChangeLeft(size));
       }}
       className="!h-full !w-full"
-      defaultSize={35}
+      defaultSize={DEFAULT_PREVIEW_SIZE}
     >
       <div className="flex !h-full w-full flex-col">
         <LeftSideTagsContainer
           panelRef={panelRef}
-          currentTagIndex={currentPreviewIndex_left}
+          currentTagIndex={currentLeftTabId}
           onChange={(tabIndex: number) => {
-            dispatch(setPreviewIndex_left(tabIndex));
+            dispatch(setPreviewTabLeft(tabIndex));
           }}
         />
 
         <SandpackFileExplorer
-          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.FILE_MANAGER.id && !isCollapsed_left ? "block" : "!hidden"}`}
+          className={`!h-[calc(100%-2.5rem)] ${currentLeftTabId === leftPanelTabs.fileManager.id && !isCollapsedLeft ? "block" : "!hidden"}`}
         />
 
-        <Setting
-          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.SETTING.id && !isCollapsed_left ? "block" : "!hidden"}`}
+        <CodeCompilerSetting
+          className={`!h-[calc(100%-2.5rem)] ${currentLeftTabId === leftPanelTabs.setting.id && !isCollapsedLeft ? "block" : "!hidden"}`}
         />
 
         <Note
-          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.NOTE.id && !isCollapsed_left ? "block" : "!hidden"}`}
+          className={`!h-[calc(100%-2.5rem)] ${currentLeftTabId === leftPanelTabs.note.id && !isCollapsedLeft ? "block" : "!hidden"}`}
         />
 
         <Description
-          className={`!h-[calc(100%-2.5rem)] ${currentPreviewIndex_left === PreviewIndex_Left.DESCRIPTION.id && !isCollapsed_left ? "block" : "!hidden"}`}
+          className={`!h-[calc(100%-2.5rem)] ${currentLeftTabId === leftPanelTabs.description.id && !isCollapsedLeft ? "block" : "!hidden"}`}
         />
       </div>
     </Panel>

@@ -8,8 +8,13 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 
+const PORT = 8080;
+const HOST = "localhost";
+const BASE_URL = `http://${HOST}:${PORT}/graphql`;
+const WS_URL = `ws://${HOST}:${PORT}/graphql`;
+
 const httpLink = createHttpLink({
-  uri: "http://localhost:8080/graphql",
+  uri: BASE_URL,
   headers: {
     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
   },
@@ -17,7 +22,7 @@ const httpLink = createHttpLink({
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:8080/graphql",
+    url: WS_URL,
     connectionParams: {
       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },

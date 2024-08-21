@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-export interface CarouselContainerProps {
+export interface ICarouselContainer {
   children: React.ReactNode[];
   limit?: number;
   offset?: number;
 }
+
 function CarouselContainer({
   children,
   limit = children.length,
   offset = 0,
-}: CarouselContainerProps) {
+}: ICarouselContainer) {
   const [currentLimit, setCurrentLimit] = useState(limit);
   const [currentOffset, setCurrentOffset] = useState(offset);
 
