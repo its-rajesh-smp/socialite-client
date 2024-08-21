@@ -5,7 +5,7 @@ import { IAuthFormData } from "../../../types/auth";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
-import { REGISTER_USER_MUTATION } from "../../../graphql/auth.graphql";
+import { REGISTER_USER_MUTATION } from "../../../graphql/auth/auth.graphql";
 import { useMutation } from "@apollo/client";
 import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";

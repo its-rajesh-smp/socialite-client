@@ -5,7 +5,7 @@ import {
   ON_NEW_FEED_COMMENT_CREATE_SUBSCRIPTION,
   ON_NEW_FEED_POST_ADDED_SUBSCRIPTION,
   ON_NEW_FEED_POST_UPDATE_SUBSCRIPTION,
-} from "../../../graphql/feed.graphql";
+} from "../../../graphql/feed/comment.graphql";
 import { useState } from "react";
 import { IPost } from "../../../types/feed";
 

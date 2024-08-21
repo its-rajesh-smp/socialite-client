@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Avatar, Button } from "@radix-ui/themes";
 import { useState } from "react";
-import { CREATE_NEW_COMMENT_MUTATION } from "../../../../graphql/feed.graphql";
+import { CREATE_NEW_COMMENT_MUTATION } from "../../../../graphql/feed/comment.graphql";
 
 interface AddNewCommentProps {
   postId: string;

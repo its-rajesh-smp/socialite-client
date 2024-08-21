@@ -3,7 +3,7 @@ import { BiSolidCommentDetail } from "react-icons/bi";
 import { FaHeart } from "react-icons/fa";
 import { CiShare1 } from "react-icons/ci";
 import { useMutation } from "@apollo/client";
-import { REACT_TO_POST_MUTATION } from "../../../../graphql/feed.graphql";
+import { REACT_TO_POST_MUTATION } from "../../../../graphql/feed/comment.graphql";
 import {
   OperationTypes,
   ReactionTypes,

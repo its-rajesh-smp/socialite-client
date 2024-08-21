@@ -6,7 +6,7 @@ import { Visibility } from "../../../../constants/feed.const";
 import { INewPostFormData } from "../../../../types/feed";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_FEED_POST_MUTATION } from "../../../../graphql/feed.graphql";
+import { CREATE_FEED_POST_MUTATION } from "../../../../graphql/feed/comment.graphql";
 
 interface CreatePostProps {
   open: boolean;

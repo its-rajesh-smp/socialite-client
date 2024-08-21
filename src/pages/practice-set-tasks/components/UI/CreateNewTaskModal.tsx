@@ -7,7 +7,7 @@ import Input from "../../../../components/inputs/Input";
 import SelectInput from "../../../../components/inputs/SelectInput";
 import Modal from "../../../../components/others/Modal";
 import { Visibility } from "../../../../constants/feed.const";
-import { CreatePracticeSetTask } from "../../../../graphql/practiceSetTask.graphql";
+import { CreatePracticeSetTask } from "../../../../graphql/practice/practiceSetTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { addPracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
 import Editor from "../../../../components/editor/Editor";

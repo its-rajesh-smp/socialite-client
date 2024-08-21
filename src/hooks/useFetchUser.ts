@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_USER_QUERY } from "../graphql/auth.graphql";
+import { FETCH_USER_QUERY } from "../graphql/auth/auth.graphql";
 import { useEffect } from "react";
 import { useAppDispatch } from "./useAppDispatch";
 import { authenticateUser, setUserLoading } from "../store/auth/authSlice";
