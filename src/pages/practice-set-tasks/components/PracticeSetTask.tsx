@@ -6,10 +6,23 @@ import {
   MdOutlineBarChart,
 } from "react-icons/md";
 import { IPracticeQuestion } from "../../../types/practice";
+import { useNavigate } from "react-router-dom";
+import { generatePathNameWithParams } from "../../../utils/route";
+import authRoutes from "../../../router/paths/auth.routes";
 
-function PracticeSetTask({ description, title, link }: IPracticeQuestion) {
+function PracticeSetTask({ description, title, link, id }: IPracticeQuestion) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(
+      generatePathNameWithParams(authRoutes.PRACTICE_SET_TASK_CONTENT, {
+        practiceSetTaskId: id,
+      }),
+    );
+  };
+
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <div className="flex items-center justify-between">
         <p className="text-sm">{title}</p>
         <div className="flex items-center gap-4">

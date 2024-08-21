@@ -4,6 +4,7 @@ import { IPracticeSet } from "../../../../types/practice";
 import { useNavigate } from "react-router-dom";
 import authRoutes from "../../../../router/paths/auth.routes";
 import { generatePathNameWithParams } from "../../../../utils/route";
+import { PracticeSetTaskType } from "../../../practice-set-tasks/practiceSetTasks";
 
 function PracticeSet({ name, description, id }: IPracticeSet) {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function PracticeSet({ name, description, id }: IPracticeSet) {
     navigate(
       generatePathNameWithParams(authRoutes.PRACTICE_SET_TASKS, {
         practiceSetId: id,
+        practiceSetTaskType: PracticeSetTaskType.All,
       }),
     );
   };

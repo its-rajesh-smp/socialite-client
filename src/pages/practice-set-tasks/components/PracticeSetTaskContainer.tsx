@@ -14,9 +14,13 @@ function PracticeSetTaskContainer() {
     (state) => state.practiceSetTaskSlice,
   );
 
+  // Fetching practice set tasks
   useQuery(GetPracticeSetTasks, {
     variables: {
-      practiceSetId: params.practiceSetId,
+      data: {
+        PracticeSetId: params.practiceSetId,
+        practiceSetTaskType: params.practiceSetTaskType,
+      },
     },
     onCompleted: (data) => {
       dispatch(setPracticeSetTasks(data.getAllPracticeTasks));
@@ -25,6 +29,9 @@ function PracticeSetTaskContainer() {
 
   return (
     <div className="flex flex-col gap-2">
+      {practiceSetTasks.length === 0 && (
+        <p className="text-center text-sm">No tasks found</p>
+      )}
       {practiceSetTasks.map((practiceSetTask) => (
         <PracticeSetTask key={practiceSetTask.id} {...practiceSetTask} />
       ))}

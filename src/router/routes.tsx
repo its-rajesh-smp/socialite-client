@@ -13,6 +13,8 @@ import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
 import Compiler from "../pages/compiler/Compiler";
 import CourseModules from "../pages/course-modules/CourseModules";
 import CourseContent from "../pages/course-content/CourseContent";
+import PracticeSetTaskContainer from "../pages/practice-set-tasks/components/PracticeSetTaskContainer";
+import PracticeTaskContent from "../pages/practice-task-content/PracticeTaskContent";
 
 const appRoutes = createBrowserRouter([
   // # GUEST ROUTES
@@ -67,6 +69,10 @@ const appRoutes = createBrowserRouter([
           {
             path: authRoutes.PRACTICE_SET_TASKS,
             element: <PracticeSetTasks />,
+          },
+          {
+            path: authRoutes.PRACTICE_SET_TASK_CONTENT,
+            element: <PracticeTaskContent />,
           },
           {
             path: authRoutes.COMPILER,

@@ -10,6 +10,7 @@ import { Visibility } from "../../../../constants/feed.const";
 import { CreatePracticeSetTask } from "../../../../graphql/practiceSetTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { addPracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
+import Editor from "../../../../components/editor/Editor";
 
 interface ICreateNewTaskModalProps {
   open: boolean;
@@ -65,62 +66,69 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
         </Button>
       </Dialog.Title>
       <Separator />
-      <form className="flex flex-col gap-3 p-4">
-        <Input
-          value={taskInput.title}
-          onChange={(e) =>
-            setTaskInput((prev) => ({ ...prev, title: e.target.value }))
-          }
-          containerClassName="!gap-1"
-          placeholder="title"
-          label="Title"
-        />
-        <Input
-          value={taskInput.link}
-          onChange={(e) => {
-            setTaskInput((prev) => ({ ...prev, link: e.target.value }));
-          }}
-          containerClassName="!gap-1"
-          placeholder="link"
-          label="Link"
-        />
-        <Input
-          value={taskInput.description}
-          onChange={(value) => {
-            setTaskInput((prev) => ({ ...prev, description: value }));
-          }}
-          containerClassName="!gap-1"
-          label="Description"
-          inputType="editor"
-        />
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1">
-            <label htmlFor="visibility" className="text-xs">
-              Visibility:{" "}
-            </label>
-            <SelectInput
-              className="flex gap-3 rounded-full bg-[#f9fcff] px-2 py-1 text-sm"
-              defaultValue={taskInput.visibility}
-              onValueChange={(value) => {
-                setTaskInput((prev) => ({ ...prev, visibility: value }));
+      <Dialog.Description>
+        <form className="flex flex-col gap-3 p-4">
+          <Input
+            value={taskInput.title}
+            onChange={(e) =>
+              setTaskInput((prev) => ({ ...prev, title: e.target.value }))
+            }
+            containerClassName="!gap-1"
+            placeholder="title"
+            label="Title"
+          />
+          <Input
+            value={taskInput.link}
+            onChange={(e) => {
+              setTaskInput((prev) => ({ ...prev, link: e.target.value }));
+            }}
+            containerClassName="!gap-1"
+            placeholder="link"
+            label="Link"
+          />
+
+          <div className="small_scrollbar flex h-32 flex-col !gap-1 overflow-y-auto">
+            <label className="text-sm font-medium">Description</label>
+            <Editor
+              onChange={(value) => {
+                setTaskInput((prev) => ({
+                  ...prev,
+                  description: JSON.stringify(value),
+                }));
               }}
-            >
-              {Object.entries(Visibility).map(([key, value]) => (
-                <Select.Item key={key} value={value}>
-                  {value}
-                </Select.Item>
-              ))}
-            </SelectInput>
+              className="w-full"
+            />
           </div>
-          <Button
-            onClick={handelCreateTask}
-            color="blue"
-            className="cursor-pointer rounded-md px-2 py-1"
-          >
-            Create
-          </Button>
-        </div>
-      </form>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1">
+              <label htmlFor="visibility" className="text-xs">
+                Visibility:{" "}
+              </label>
+              <SelectInput
+                className="flex gap-3 rounded-full bg-[#f9fcff] px-2 py-1 text-sm"
+                defaultValue={taskInput.visibility}
+                onValueChange={(value) => {
+                  setTaskInput((prev) => ({ ...prev, visibility: value }));
+                }}
+              >
+                {Object.entries(Visibility).map(([key, value]) => (
+                  <Select.Item key={key} value={value}>
+                    {value}
+                  </Select.Item>
+                ))}
+              </SelectInput>
+            </div>
+            <Button
+              onClick={handelCreateTask}
+              color="blue"
+              className="cursor-pointer rounded-md px-2 py-1"
+            >
+              Create
+            </Button>
+          </div>
+        </form>
+      </Dialog.Description>
     </Modal>
   );
 }
