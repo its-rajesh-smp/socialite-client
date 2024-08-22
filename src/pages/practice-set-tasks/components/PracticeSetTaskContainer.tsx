@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import PracticeSetTask from "./PracticeSetTask";
-import { GetPracticeSetTasks } from "../../../graphql/practice/practiceSetTask.graphql";
+import { GetPracticeSetTasks } from "../../../graphql/practice/practiceTask.graphql";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { setPracticeSetTasks } from "../../../store/practiceSetTask/practiceSetTaskSlice";
