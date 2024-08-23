@@ -4,28 +4,17 @@ import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
 import { LOGIN_USER } from "../../../graphql/auth/auth.graphql";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { loginSchema } from "../../../schemas/auth.schema";
 import { authenticateUser } from "../../../store/auth/authSlice";
-import { IAuthFormData } from "../../../types/auth";
-import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
+import { IAuthFormData } from "../auth";
 
 interface ILoginProps {
   authData: IAuthFormData;
   setAuthData: React.Dispatch<React.SetStateAction<IAuthFormData>>;
 }
-
-const loginDTO: Record<string, DTO> = {
-  email: {
-    req: true,
-    operations: ["trim", "toString", "lowerCase", "minLength(3)"],
-  },
-  password: {
-    req: true,
-    operations: ["trim"],
-  },
-};
 
 function Login({ authData, setAuthData }: ILoginProps) {
   const [mutateLogin] = useMutation(LOGIN_USER);
@@ -35,17 +24,15 @@ function Login({ authData, setAuthData }: ILoginProps) {
    * Handles the login button click event.
    */
   const onLoginBtnClick = async () => {
-    const userPayload = validateWithDTO(loginDTO, authData, {
-      deleteUnneededProperties: true,
-    });
-
-    const data = await mutateLogin({
-      variables: {
-        loginUserData: userPayload,
-      },
-    });
-
-    dispatch(authenticateUser(data.data?.login));
+    try {
+      const authPayload = loginSchema.parse(authData);
+      const data = await mutateLogin({
+        variables: {
+          userData: authPayload,
+        },
+      });
+      dispatch(authenticateUser(data.data?.login));
+    } catch (error) {}
   };
 
   return (

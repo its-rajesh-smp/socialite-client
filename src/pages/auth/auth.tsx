@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AuthSteps } from "../../constants/auth.const";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { IAuthFormData } from "../../types/auth";
 import AuthSlider from "./components/AuthSlider";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-const initialAuthDataState: IAuthFormData = {
+export interface IAuthFormData {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+  firstName?: string;
+  lastName?: string;
+  agreeToTerms?: boolean;
+  rememberUser?: boolean;
+}
+
+const initialAuthData: IAuthFormData = {
   email: "",
   password: "",
   agreeToTerms: false,
@@ -19,7 +28,7 @@ function Auth() {
   const currentAuthStep = useAppSelector(
     (state) => state.authStepSlice.currentStep,
   );
-  const [authData, setAuthData] = useState(initialAuthDataState);
+  const [authData, setAuthData] = useState(initialAuthData);
 
   return (
     <div className="flex w-full flex-col-reverse md:flex-row">

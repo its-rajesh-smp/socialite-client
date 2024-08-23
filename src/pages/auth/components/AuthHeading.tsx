@@ -1,21 +1,20 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { setAuthStep } from "../../../store/auth/authStepSlice";
 
-type AuthHeadingProps = {
+interface IAuthHeadingProps {
   linkText?: string;
   headingText?: string;
   subHeadingText?: string;
   onClickLinkTextDispatchStep?: number;
   linkPath?: string;
-};
+}
 
 function AuthHeading({
   linkText,
   headingText,
   subHeadingText,
   onClickLinkTextDispatchStep = 0,
-}: AuthHeadingProps) {
+}: IAuthHeadingProps) {
   const dispatch = useAppDispatch();
 
   const onClickLinkText = () => {

@@ -1,15 +1,15 @@
 import { Button } from "@radix-ui/themes";
 import { FaGoogle } from "react-icons/fa";
 
-type AuthButtonGroupProps = {
+interface IAuthButtonGroupProps {
   mainBtnText?: string;
   mainButtonCallback?: () => void;
-};
+}
 
 function AuthButtonGroup({
   mainBtnText,
   mainButtonCallback,
-}: AuthButtonGroupProps) {
+}: IAuthButtonGroupProps) {
   return (
     <>
       {/* SIGN IN BTN */}

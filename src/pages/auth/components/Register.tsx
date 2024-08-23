@@ -1,67 +1,44 @@
+import { useMutation } from "@apollo/client";
 import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
-import { IAuthFormData } from "../../../types/auth";
+import { REGISTER_USER } from "../../../graphql/auth/auth.graphql";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { registerSchema } from "../../../schemas/auth.schema";
+import { authenticateUser } from "../../../store/auth/authSlice";
+import { IAuthFormData } from "../auth";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
-import { REGISTER_USER_MUTATION } from "../../../graphql/auth/auth.graphql";
-import { useMutation } from "@apollo/client";
-import { DTO, validateWithDTO } from "../../../utils/validateWithDTO";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { authenticateUser } from "../../../store/auth/authSlice";
 
 interface IRegisterProps {
   authData: IAuthFormData;
   setAuthData: React.Dispatch<React.SetStateAction<IAuthFormData>>;
 }
 
-const registerDTO: Record<string, DTO> = {
-  firstName: {
-    req: true,
-    operations: ["trim"],
-  },
-  lastName: {
-    operations: ["trim"],
-  },
-  agreeToTerms: {
-    req: true,
-  },
-  email: {
-    req: true,
-    operations: ["trim", "toString", "lowerCase", "minLength(3)"],
-  },
-  password: {
-    req: true,
-    operations: ["trim"],
-  },
-  confirmPassword: {
-    req: true,
-    operations: ["trim"],
-  },
-};
-
 function Register({ authData, setAuthData }: IRegisterProps) {
   const dispatch = useAppDispatch();
-  const [mutateRegister] = useMutation(REGISTER_USER_MUTATION);
+  const [mutateRegister] = useMutation(REGISTER_USER);
 
   /**
    * Handles the register button click event.
    */
   const onRegisterBtnClick = async () => {
-    validateWithDTO(registerDTO, authData);
+    try {
+      const authPayload = registerSchema.parse(authData);
 
-    const registerUserData = {
-      name: `${authData.firstName} ${authData.lastName}`,
-      password: authData.password,
-      email: authData.email,
-    };
+      const userData = {
+        name: `${authPayload.firstName} ${authPayload.lastName}`,
+        password: authPayload.password,
+        email: authPayload.email,
+      };
 
-    const data = await mutateRegister({
-      variables: { registerUserData },
-    });
+      const data = await mutateRegister({
+        variables: { userData },
+      });
 
-    dispatch(authenticateUser(data.data?.register));
+      dispatch(authenticateUser(data.data?.register));
+    } catch (error) {}
   };
 
   return (
