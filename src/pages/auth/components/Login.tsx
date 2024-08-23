@@ -26,12 +26,12 @@ function Login({ authData, setAuthData }: ILoginProps) {
   const onLoginBtnClick = async () => {
     try {
       const authPayload = loginSchema.parse(authData);
-      const data = await mutateLogin({
+      const response = await mutateLogin({
         variables: {
           userData: authPayload,
         },
       });
-      dispatch(authenticateUser(data.data?.login));
+      dispatch(authenticateUser(response.data?.loginUser));
     } catch (error) {}
   };
 

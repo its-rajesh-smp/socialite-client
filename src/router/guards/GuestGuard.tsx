@@ -2,11 +2,11 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useAppSelector";
 
 const GuestGuard = () => {
-  const { isAuthenticated, loadingUser } = useAppSelector(
+  const { isAuthenticated, isLoading } = useAppSelector(
     (state) => state.authSlice,
   );
 
-  if (loadingUser) {
+  if (isLoading) {
     return null;
   }
 

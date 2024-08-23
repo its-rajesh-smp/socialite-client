@@ -4,16 +4,16 @@ import { IUser } from "../../types/auth";
 
 export interface IAuthState {
   user: IUser | null;
-  access_token: string;
-  isAuthenticated: boolean | undefined;
-  loadingUser?: boolean;
+  accessToken: string;
+  isAuthenticated: boolean;
+  isLoading?: boolean;
 }
 
 const initialState: IAuthState = {
   user: null,
+  accessToken: "",
   isAuthenticated: false,
-  access_token: "",
-  loadingUser: true,
+  isLoading: true,
 };
 
 const authSlice = createSlice({
@@ -21,16 +21,16 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     authenticateUser: (_, action: PayloadAction<IAuthState>) => {
-      localStorage.setItem("accessToken", action.payload.access_token);
+      localStorage.setItem("accessToken", action.payload.accessToken);
       return {
         ...action.payload,
         isAuthenticated: true,
-        loadingUser: false,
+        isLoading: false,
       };
     },
 
     setUserLoading: (state, action: PayloadAction<boolean>) => {
-      state.loadingUser = action.payload;
+      state.isLoading = action.payload;
     },
   },
 });

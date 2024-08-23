@@ -33,11 +33,11 @@ function Register({ authData, setAuthData }: IRegisterProps) {
         email: authPayload.email,
       };
 
-      const data = await mutateRegister({
+      const response = await mutateRegister({
         variables: { userData },
       });
 
-      dispatch(authenticateUser(data.data?.register));
+      dispatch(authenticateUser(response.data?.registerUser));
     } catch (error) {}
   };
 
