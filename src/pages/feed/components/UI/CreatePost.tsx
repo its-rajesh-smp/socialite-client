@@ -22,13 +22,15 @@ function CreatePost({ open, setOpen }: ICreatePostProps) {
   const [newPostFormData, setNewPostFormData] = useState(
     initialNewPostFormData,
   );
+
   const [mutateCreatePost] = useMutation(CREATE_POST);
 
   const handelCreatePost = async () => {
+    console.log(newPostFormData);
     try {
       await mutateCreatePost({
         variables: {
-          postData: newPostFormData,
+          data: newPostFormData,
         },
       });
     } catch (error) {

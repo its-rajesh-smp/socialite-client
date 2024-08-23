@@ -11,9 +11,9 @@ export interface IPost {
   text: string;
   image: string;
   visibility: string;
-  User: IUser;
-  like: number;
-  comment: number;
+  user: IUser;
+  totalLikeCount: number;
+  totalCommentCount: number;
   isCurrentUserReacted?: boolean;
   NewsPostComments: IComment[];
 }
@@ -21,5 +21,5 @@ export interface IPost {
 export interface IComment {
   id: string;
   text: string;
-  User: IUser;
+  user: IUser;
 }

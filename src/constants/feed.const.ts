@@ -1,13 +1,13 @@
 export const Visibility = {
-  PUBLIC: "public",
-  PRIVATE: "private",
-  FRIENDS: "friends",
+  PUBLIC: "PUBLIC",
+  PRIVATE: "PRIVATE",
+  FRIENDS: "FRIENDS",
 };
 
 export const ReactionTypes = {
-  LIKE: "like",
-  DISLIKE: "dislike",
-  LOVE: "love",
+  LIKE: "LIKE",
+  DISLIKE: "DISLIKE",
+  LOVE: "LOVE",
 };
 
 export const OperationTypes = {

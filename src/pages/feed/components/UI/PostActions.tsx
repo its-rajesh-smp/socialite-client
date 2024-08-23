@@ -35,16 +35,19 @@ function PostActions({
       operationType = OperationTypes.DELETE;
     }
 
+    const payload = {
+      postId,
+      reactionType: reactionType,
+      operationType,
+    };
+
     try {
       await mutateReaction({
         variables: {
-          reactPostData: {
-            postId,
-            reactionType: reactionType,
-            operationType,
-          },
+          data: payload,
         },
       });
+
       setIsLiked((prev) => !prev);
     } catch (error) {
       console.log(error);

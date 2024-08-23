@@ -34,7 +34,7 @@ function Register({ authData, setAuthData }: IRegisterProps) {
       };
 
       const response = await mutateRegister({
-        variables: { userData },
+        variables: { data: userData },
       });
 
       dispatch(authenticateUser(response.data?.registerUser));

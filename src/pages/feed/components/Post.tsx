@@ -6,24 +6,24 @@ import CommentContainer from "./CommentContainer";
 import { IPost } from "../../../types/feed";
 
 function Post({
-  User,
+  user,
   text,
   image,
   id,
-  like,
-  comment,
+  totalLikeCount,
+  totalCommentCount,
   isCurrentUserReacted,
   NewsPostComments,
 }: IPost) {
   return (
     <Container>
-      <PostHeader {...User} />
+      <PostHeader {...user} />
       {image && <img className="mt-4 rounded-xl" src={image} />}
       {text && <p className="mt-4">{text}</p>}
       <PostActions
         isUserLiked={isCurrentUserReacted}
-        totalLikeCount={like}
-        totalCommentCount={comment}
+        totalLikeCount={totalLikeCount}
+        totalCommentCount={totalCommentCount}
         postId={id}
       />
       <Separator className="mt-4 w-full" />

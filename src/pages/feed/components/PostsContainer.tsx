@@ -21,7 +21,7 @@ function PostsContainer() {
   // Subscribe to post add
   useSubscription(ON_POST_ADD, {
     onData: ({ data }) => {
-      const response: IPost = data?.data?.onPostAdded;
+      const response: IPost = data?.data?.onPostAdd;
       setAllPosts((prev) => [response, ...prev]);
     },
   });

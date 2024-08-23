@@ -28,7 +28,7 @@ function Login({ authData, setAuthData }: ILoginProps) {
       const authPayload = loginSchema.parse(authData);
       const response = await mutateLogin({
         variables: {
-          userData: authPayload,
+          data: authPayload,
         },
       });
       dispatch(authenticateUser(response.data?.loginUser));
