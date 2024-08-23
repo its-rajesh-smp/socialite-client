@@ -1,8 +1,8 @@
 import { RouterProvider } from "react-router-dom";
 import useFetchUser from "../hooks/useFetchUser";
-import appRoutes from "../router/routes";
+import Error from "../pages/error/error";
 import Loading from "../pages/loading/loading";
-import Error from "../pages/error/Error";
+import appRoutes from "../router/routes";
 
 function App() {
   const { loading, error } = useFetchUser();

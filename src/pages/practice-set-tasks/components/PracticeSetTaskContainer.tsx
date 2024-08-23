@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import PracticeSetTask from "./PracticeSetTask";
-import { GetPracticeSetTasks } from "../../../graphql/practice/practiceTask.graphql";
 import { useParams } from "react-router-dom";
+import { GET_ALL_PRACTICE_TASKS } from "../../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { useAppSelector } from "../../../hooks/useAppSelector";
 import { setPracticeSetTasks } from "../../../store/practiceSetTask/practiceSetTaskSlice";
+import PracticeSetTask from "./PracticeSetTask";
 
 function PracticeSetTaskContainer() {
   const params = useParams();
@@ -15,7 +15,7 @@ function PracticeSetTaskContainer() {
   );
 
   // Fetching practice set tasks
-  useQuery(GetPracticeSetTasks, {
+  useQuery(GET_ALL_PRACTICE_TASKS, {
     variables: {
       data: {
         PracticeSetId: params.practiceSetId,

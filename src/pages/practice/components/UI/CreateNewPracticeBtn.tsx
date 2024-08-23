@@ -1,14 +1,14 @@
 import { Button } from "@radix-ui/themes";
-import NewPracticeModal from "./UI/NewPracticeModal";
 import { useState } from "react";
-import { IPracticeSet } from "../../../types/practice";
+import { IPracticeSet } from "../../../../types/practice";
+import NewPracticeModal from "../NewPracticeModal";
 
-interface CreateNewPracticeBtnProps {
+interface ICreateNewPracticeBtnProps {
   practiceSets: IPracticeSet[];
   setPracticeSets: React.Dispatch<React.SetStateAction<any>>;
 }
 
-function CreateNewPracticeBtn(props: CreateNewPracticeBtnProps) {
+function CreateNewPracticeBtn(props: ICreateNewPracticeBtnProps) {
   const [open, setOpen] = useState(false);
   return (
     <>

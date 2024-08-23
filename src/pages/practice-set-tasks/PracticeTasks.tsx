@@ -7,7 +7,7 @@ export const PracticeSetTaskType = {
   All: "All",
 };
 
-function PracticeSetTasks() {
+function PracticeTasks() {
   return (
     <div className="relative flex flex-col gap-5">
       <PracticeSetTabs />
@@ -17,4 +17,4 @@ function PracticeSetTasks() {
   );
 }
 
-export default PracticeSetTasks;
+export default PracticeTasks;

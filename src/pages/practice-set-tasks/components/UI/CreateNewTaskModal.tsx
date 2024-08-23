@@ -3,14 +3,14 @@ import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
+import Editor from "../../../../components/editor/Editor";
 import Input from "../../../../components/inputs/Input";
 import SelectInput from "../../../../components/inputs/SelectInput";
 import Modal from "../../../../components/others/Modal";
 import { Visibility } from "../../../../constants/feed.const";
-import { CreatePracticeSetTask } from "../../../../graphql/practice/practiceTask.graphql";
+import { CREATE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { addPracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
-import Editor from "../../../../components/editor/Editor";
 
 interface ICreateNewTaskModalProps {
   open: boolean;
@@ -29,7 +29,7 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
   const dispatch = useAppDispatch();
   const [taskInput, setTaskInput] = useState(initialTaskInputValue);
 
-  const [mutateCreateSetTask] = useMutation(CreatePracticeSetTask);
+  const [mutateCreateSetTask] = useMutation(CREATE_PRACTICE_TASK);
 
   /**
    * function to create a new task

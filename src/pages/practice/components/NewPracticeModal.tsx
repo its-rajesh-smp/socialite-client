@@ -1,15 +1,15 @@
-import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
-import Modal from "../../../../components/others/Modal";
-import { IoCloseSharp } from "react-icons/io5";
-import Input from "../../../../components/inputs/Input";
-import SelectInput from "../../../../components/inputs/SelectInput";
-import { Visibility } from "../../../../constants/feed.const";
-import { IPracticeSet } from "../../../../types/practice";
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CreatePracticeSet } from "../../../../graphql/practice/practiceSet.graphql";
+import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
+import { useState } from "react";
+import { IoCloseSharp } from "react-icons/io5";
+import Input from "../../../components/inputs/Input";
+import SelectInput from "../../../components/inputs/SelectInput";
+import Modal from "../../../components/others/Modal";
+import { Visibility } from "../../../constants/feed.const";
+import { CREATE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
+import { IPracticeSet } from "../../../types/practice";
 
-interface NewPracticeModalProps {
+interface INewPracticeModalProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   practiceSets: IPracticeSet[];
@@ -26,14 +26,13 @@ const initialPracticeSetInputValue = {
 function NewPracticeModal({
   open,
   setOpen,
-  practiceSets,
   setPracticeSets,
-}: NewPracticeModalProps) {
+}: INewPracticeModalProps) {
   const [practiceSetInput, setPracticeSetInput] = useState(
     initialPracticeSetInputValue,
   );
 
-  const [mutateCreatePracticeSet] = useMutation(CreatePracticeSet);
+  const [mutateCreatePracticeSet] = useMutation(CREATE_PRACTICE_SET);
 
   // function to create a new practice set
   const handelCreatePracticeSet = async (e: any) => {
@@ -42,7 +41,7 @@ function NewPracticeModal({
     try {
       const data = await mutateCreatePracticeSet({
         variables: {
-          createPracticeSetInput: practiceSetInput,
+          practiceSetData: practiceSetInput,
         },
       });
 

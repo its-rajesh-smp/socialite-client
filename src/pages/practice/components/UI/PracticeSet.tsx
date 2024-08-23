@@ -1,10 +1,10 @@
 import { MdDelete, MdOutlineHistory } from "react-icons/md";
-import Container from "../../../../components/containers/Container";
-import { IPracticeSet } from "../../../../types/practice";
 import { useNavigate } from "react-router-dom";
+import Container from "../../../../components/containers/Container";
 import authRoutes from "../../../../router/paths/auth.routes";
+import { IPracticeSet } from "../../../../types/practice";
 import { generatePathNameWithParams } from "../../../../utils/route";
-import { PracticeSetTaskType } from "../../../practice-set-tasks/practiceSetTasks";
+import { PracticeSetTaskType } from "../../../practice-set-tasks/PracticeTasks";
 
 function PracticeSet({ name, description, id }: IPracticeSet) {
   const navigate = useNavigate();

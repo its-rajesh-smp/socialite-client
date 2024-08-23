@@ -7,7 +7,7 @@ import CourseModules from "../pages/course-modules/CourseModules";
 import Courses from "../pages/courses/courses";
 import Error from "../pages/error/error";
 import Feed from "../pages/feed/feed";
-import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
+import PracticeSetTasks from "../pages/practice-set-tasks/PracticeTasks";
 import PracticeTaskContent from "../pages/practice-task-content/PracticeTaskContent";
 import Practice from "../pages/practice/practice";
 import AuthGuard from "./guards/AuthGuard";

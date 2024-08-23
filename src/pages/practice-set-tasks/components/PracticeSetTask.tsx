@@ -1,14 +1,14 @@
-import Container from "../../../components/containers/Container";
 import {
   MdDelete,
-  MdOutlineCheck,
   MdHistory,
   MdOutlineBarChart,
+  MdOutlineCheck,
 } from "react-icons/md";
-import { IPracticeQuestion } from "../../../types/practice";
 import { useNavigate } from "react-router-dom";
-import { generatePathNameWithParams } from "../../../utils/route";
+import Container from "../../../components/containers/Container";
 import authRoutes from "../../../router/paths/auth.routes";
+import { IPracticeQuestion } from "../../../types/practice";
+import { generatePathNameWithParams } from "../../../utils/route";
 
 function PracticeSetTask({ description, title, link, id }: IPracticeQuestion) {
   const navigate = useNavigate();

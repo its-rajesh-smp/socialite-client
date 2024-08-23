@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthSteps } from "../../constants/auth.const";
+import guestRoutes from "../../router/paths/guest.routes";
 
 export interface IAuthStep {
   currentStep: number;
@@ -7,13 +8,13 @@ export interface IAuthStep {
 
 const initialState: IAuthStep = {
   currentStep:
-    window.location.pathname === "/login"
+    window.location.pathname === guestRoutes.LOGIN
       ? AuthSteps.LOGIN
       : AuthSteps.REGISTER,
 };
 
 const authStepSlice = createSlice({
-  name: "auth-step",
+  name: "auth step",
   initialState,
   reducers: {
     setAuthStep(state, action: PayloadAction<number>) {
