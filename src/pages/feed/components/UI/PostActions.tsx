@@ -1,14 +1,14 @@
-import { Button } from "@radix-ui/themes";
-import { BiSolidCommentDetail } from "react-icons/bi";
-import { FaHeart } from "react-icons/fa";
-import { CiShare1 } from "react-icons/ci";
 import { useMutation } from "@apollo/client";
-import { REACT_TO_POST_MUTATION } from "../../../../graphql/feed/comment.graphql";
+import { Button } from "@radix-ui/themes";
+import { useState } from "react";
+import { BiSolidCommentDetail } from "react-icons/bi";
+import { CiShare1 } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 import {
   OperationTypes,
   ReactionTypes,
 } from "../../../../constants/feed.const";
-import { useState } from "react";
+import { REACT_POST } from "../../../../graphql/feed/reaction.graphql";
 
 interface IPostActionsProps {
   postId: string;
@@ -23,7 +23,7 @@ function PostActions({
   totalCommentCount,
   isUserLiked,
 }: IPostActionsProps) {
-  const [mutateReaction] = useMutation(REACT_TO_POST_MUTATION);
+  const [mutateReaction] = useMutation(REACT_POST);
   const [isLiked, setIsLiked] = useState(isUserLiked);
 
   const handleReaction = async (reactionType: string) => {
@@ -36,9 +36,9 @@ function PostActions({
     }
 
     try {
-      const data = await mutateReaction({
+      await mutateReaction({
         variables: {
-          reactPostInput: {
+          reactPostData: {
             postId,
             reactionType: reactionType,
             operationType,

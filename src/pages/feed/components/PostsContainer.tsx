@@ -1,54 +1,35 @@
 import { useQuery, useSubscription } from "@apollo/client";
 import Post from "./Post";
 import {
-  GET_FEED_POSTS,
-  ON_NEW_FEED_COMMENT_CREATE_SUBSCRIPTION,
-  ON_NEW_FEED_POST_ADDED_SUBSCRIPTION,
-  ON_NEW_FEED_POST_UPDATE_SUBSCRIPTION,
-} from "../../../graphql/feed/comment.graphql";
+  GET_ALL_POSTS,
+  ON_POST_ADD,
+  ON_POST_UPDATE,
+} from "../../../graphql/feed/post.graphql";
 import { useState } from "react";
 import { IPost } from "../../../types/feed";
 
 function PostsContainer() {
   const [allPosts, setAllPosts] = useState<IPost[]>([]);
 
-  // FETCH ALL POSTS
-  useQuery(GET_FEED_POSTS, {
+  // Get all posts
+  useQuery(GET_ALL_POSTS, {
     onCompleted: (data) => {
-      setAllPosts(data.getFeedPosts);
+      setAllPosts(data.getAllPosts);
     },
   });
 
-  // SUBSCRIPTION FOR NEW POST
-  useSubscription(ON_NEW_FEED_POST_ADDED_SUBSCRIPTION, {
+  // Subscribe to post add
+  useSubscription(ON_POST_ADD, {
     onData: ({ data }) => {
       const response: IPost = data?.data?.onPostAdded;
       setAllPosts((prev) => [response, ...prev]);
     },
   });
 
-  // SUBSCRIPTION FOR UPDATE OF POST
-  useSubscription(ON_NEW_FEED_POST_UPDATE_SUBSCRIPTION, {
+  // Subscribe to post update
+  useSubscription(ON_POST_UPDATE, {
     onData: ({ data }) => {
       const response: IPost = data?.data?.onPostUpdate;
-      setAllPosts((prev) => {
-        return prev.map((post) => {
-          if (post.id === response.id) {
-            return response;
-          }
-          return post;
-        });
-      });
-    },
-  });
-
-  // SUBSCRIPTION FOR POST LIKE
-
-  // SUBSCRIPTION FOR POST COMMENT
-  useSubscription(ON_NEW_FEED_COMMENT_CREATE_SUBSCRIPTION, {
-    onData: ({ data }) => {
-      console.log(data);
-      const response: IPost = data?.data?.onCommentAdded;
       setAllPosts((prev) => {
         return prev.map((post) => {
           if (post.id === response.id) {

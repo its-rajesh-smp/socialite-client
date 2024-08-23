@@ -3,12 +3,12 @@ import Comment from "./UI/Comment";
 import { IoIosArrowDown } from "react-icons/io";
 import AddNewComment from "./UI/AddNewComment";
 
-interface CommentContainerProps {
+interface ICommentContainerProps {
   postId: string;
   comments: any[];
 }
 
-function CommentContainer({ postId, comments }: CommentContainerProps) {
+function CommentContainer({ postId, comments }: ICommentContainerProps) {
   return (
     <div className="mt-4 flex flex-col gap-3">
       {comments?.map((comment) => <Comment key={comment.id} {...comment} />)}

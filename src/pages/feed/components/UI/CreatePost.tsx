@@ -1,14 +1,14 @@
-import { IoCloseSharp, IoImage } from "react-icons/io5";
-import Modal from "../../../../components/others/Modal";
-import { Button, Dialog, Select, Separator, TextArea } from "@radix-ui/themes";
-import SelectInput from "../../../../components/inputs/SelectInput";
-import { Visibility } from "../../../../constants/feed.const";
-import { INewPostFormData } from "../../../../types/feed";
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_FEED_POST_MUTATION } from "../../../../graphql/feed/comment.graphql";
+import { Button, Dialog, Select, Separator, TextArea } from "@radix-ui/themes";
+import { useState } from "react";
+import { IoCloseSharp, IoImage } from "react-icons/io5";
+import SelectInput from "../../../../components/inputs/SelectInput";
+import Modal from "../../../../components/others/Modal";
+import { Visibility } from "../../../../constants/feed.const";
+import { CREATE_POST } from "../../../../graphql/feed/post.graphql";
+import { INewPostFormData } from "../../../../types/feed";
 
-interface CreatePostProps {
+interface ICreatePostProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -18,17 +18,17 @@ const initialNewPostFormData: INewPostFormData = {
   visibility: Visibility.PUBLIC,
 };
 
-function CreatePost({ open, setOpen }: CreatePostProps) {
+function CreatePost({ open, setOpen }: ICreatePostProps) {
   const [newPostFormData, setNewPostFormData] = useState(
     initialNewPostFormData,
   );
-  const [mutateCreatePost] = useMutation(CREATE_FEED_POST_MUTATION);
+  const [mutateCreatePost] = useMutation(CREATE_POST);
 
   const handelCreatePost = async () => {
     try {
-      const data = await mutateCreatePost({
+      await mutateCreatePost({
         variables: {
-          createPostInput: newPostFormData,
+          postData: newPostFormData,
         },
       });
     } catch (error) {

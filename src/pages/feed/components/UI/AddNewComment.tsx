@@ -1,21 +1,21 @@
 import { useMutation } from "@apollo/client";
 import { Avatar, Button } from "@radix-ui/themes";
 import { useState } from "react";
-import { CREATE_NEW_COMMENT_MUTATION } from "../../../../graphql/feed/comment.graphql";
+import { CREATE_COMMENT } from "../../../../graphql/feed/comment.graphql";
 
 interface AddNewCommentProps {
   postId: string;
 }
 
 function AddNewComment({ postId }: AddNewCommentProps) {
-  const [mutateCreateComment] = useMutation(CREATE_NEW_COMMENT_MUTATION);
+  const [mutateCreateComment] = useMutation(CREATE_COMMENT);
   const [text, setText] = useState("");
 
   const handelCreateComment = async () => {
     try {
-      const data = await mutateCreateComment({
+      await mutateCreateComment({
         variables: {
-          createCommentInput: {
+          commentData: {
             text,
             postId,
           },
