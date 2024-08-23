@@ -9,7 +9,7 @@ import { authenticateUser } from "../../../store/auth/authSlice";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
-import { IAuthFormData } from "../auth";
+import { IAuthFormData } from "../Auth";
 
 interface ILoginProps {
   authData: IAuthFormData;

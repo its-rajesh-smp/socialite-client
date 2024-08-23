@@ -5,12 +5,12 @@ import Input from "../../../components/inputs/Input";
 import SelectInput from "../../../components/inputs/SelectInput";
 import Modal from "../../../components/others/Modal";
 import { Visibility } from "../../../constants/feed.const";
-import { ICourse } from "./UI/Course";
+import { ICourseProps } from "./UI/Course";
 
-interface ICourseModal {
+interface ICourseModalProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  practiceSets: ICourse[];
+  practiceSets: ICourseProps[];
   setPracticeSets: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -21,13 +21,15 @@ const initialCourseInputValue = {
   visibility: Visibility.PUBLIC,
 };
 
-function NewCourseModal({ open, setOpen }: ICourseModal) {
+function NewCourseModal({ open, setOpen }: ICourseModalProps) {
   const [courseInput, setCourseInput] = useState(initialCourseInputValue);
 
-  // function to create a new course
+  /**
+   * function to create a new course
+   * @param e
+   */
   const handelCreateCourse = async (e: any) => {
     e.preventDefault();
-
     try {
       setOpen(false);
     } catch (error) {

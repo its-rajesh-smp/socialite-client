@@ -1,6 +1,6 @@
-import Course, { ICourse } from "./UI/Course";
+import Course, { ICourseProps } from "./UI/Course";
 
-const data: ICourse[] = [
+const data: ICourseProps[] = [
   {
     id: "sdf",
     reviews: 250,

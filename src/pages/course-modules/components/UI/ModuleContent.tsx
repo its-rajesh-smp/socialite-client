@@ -13,11 +13,11 @@ export interface IContent {
   isCompleted: boolean;
 }
 
-export interface ICourseModulesContent {
+export interface IModuleContentProps {
   content: IContent[];
 }
 
-function CourseModulesContent({ content }: ICourseModulesContent) {
+function ModuleContent({ content }: IModuleContentProps) {
   const navigate = useNavigate();
 
   const onContentItemClick = (id: string) => {
@@ -29,7 +29,7 @@ function CourseModulesContent({ content }: ICourseModulesContent) {
   };
 
   return (
-    <Accordion.Content className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">
+    <Accordion.Content className="overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
       <Table.Root>
         <Table.Header>
           <Table.Row>
@@ -60,4 +60,4 @@ function CourseModulesContent({ content }: ICourseModulesContent) {
   );
 }
 
-export default CourseModulesContent;
+export default ModuleContent;

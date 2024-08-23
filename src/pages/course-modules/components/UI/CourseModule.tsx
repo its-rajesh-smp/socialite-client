@@ -2,16 +2,16 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { PiDotsSixVertical } from "react-icons/pi";
 import Container from "../../../../components/containers/Container";
-import CourseModulesContent, { IContent } from "./ModuleContent";
+import ModulesContent, { IContent } from "./ModuleContent";
 
-interface ICourseModules {
+interface ICourseModuleProps {
   name: string;
   id: string;
   triggerTitle: string;
   content: IContent[];
 }
 
-function CourseModules({ content, id, name, triggerTitle }: ICourseModules) {
+function CourseModule({ content, id, name, triggerTitle }: ICourseModuleProps) {
   return (
     <Accordion.Item className="!mt-0" value={id}>
       <Accordion.Header>
@@ -29,9 +29,9 @@ function CourseModules({ content, id, name, triggerTitle }: ICourseModules) {
         </Accordion.Trigger>
       </Accordion.Header>
 
-      <CourseModulesContent content={content} />
+      <ModulesContent content={content} />
     </Accordion.Item>
   );
 }
 
-export default CourseModules;
+export default CourseModule;

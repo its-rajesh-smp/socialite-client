@@ -1,4 +1,4 @@
-import Module from "./UI/CourseModule";
+import CourseModule from "./UI/CourseModule";
 import * as Accordion from "@radix-ui/react-accordion";
 
 const data = [
@@ -57,7 +57,7 @@ function CourseModulesContainer() {
       className="flex h-full w-full flex-col gap-3"
     >
       {data.map((module) => (
-        <Module key={module.id} {...module} />
+        <CourseModule key={module.id} {...module} />
       ))}
     </Accordion.Root>
   );

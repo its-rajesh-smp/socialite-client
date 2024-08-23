@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { generatePathNameWithParams } from "../../../../utils/route";
 import authRoutes from "../../../../router/paths/auth.routes";
 
-export interface ICourse {
+export interface ICourseProps {
   id: string;
   title: string;
   views: number;
   reviews: number;
 }
 
-function Course({ title, id }: ICourse) {
+function Course({ title, id }: ICourseProps) {
   const navigate = useNavigate();
 
   const onCourseClick = () => {

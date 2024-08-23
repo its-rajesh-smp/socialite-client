@@ -1,20 +1,19 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import Auth from "../pages/auth/auth";
+import Compiler from "../pages/compiler/Compiler";
+import CourseContent from "../pages/course-content/CourseContent";
+import CourseModules from "../pages/course-modules/CourseModules";
 import Courses from "../pages/courses/courses";
 import Error from "../pages/error/error";
 import Feed from "../pages/feed/feed";
+import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
+import PracticeTaskContent from "../pages/practice-task-content/PracticeTaskContent";
+import Practice from "../pages/practice/practice";
 import AuthGuard from "./guards/AuthGuard";
 import GuestGuard from "./guards/GuestGuard";
-import guestRoutes from "./paths/guest.routes";
 import authRoutes from "./paths/auth.routes";
-import Practice from "../pages/practice/practice";
-import PracticeSetTasks from "../pages/practice-set-tasks/practiceSetTasks";
-import Compiler from "../pages/compiler/Compiler";
-import CourseModules from "../pages/course-modules/CourseModules";
-import CourseContent from "../pages/course-content/CourseContent";
-import PracticeSetTaskContainer from "../pages/practice-set-tasks/components/PracticeSetTaskContainer";
-import PracticeTaskContent from "../pages/practice-task-content/PracticeTaskContent";
+import guestRoutes from "./paths/guest.routes";
 
 const appRoutes = createBrowserRouter([
   // # GUEST ROUTES

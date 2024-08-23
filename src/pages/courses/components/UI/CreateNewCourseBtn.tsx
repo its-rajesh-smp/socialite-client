@@ -1,14 +1,14 @@
 import { Button } from "@radix-ui/themes";
 import { useState } from "react";
-import { ICourse } from "./Course";
+import { ICourseProps } from "./Course";
 import NewCourseModal from "../NewCourseModal";
 
-interface ICreateNewCourseBtn {
-  practiceSets: ICourse[];
+interface ICreateNewCourseBtnProps {
+  practiceSets: ICourseProps[];
   setPracticeSets: React.Dispatch<React.SetStateAction<any>>;
 }
 
-function CreateNewCourseBtn(props: ICreateNewCourseBtn) {
+function CreateNewCourseBtn(props: ICreateNewCourseBtnProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
