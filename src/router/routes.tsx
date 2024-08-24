@@ -7,6 +7,7 @@ import CourseModules from "../pages/course-modules/CourseModules";
 import Courses from "../pages/courses/Courses";
 import Error from "../pages/error/Error";
 import Feed from "../pages/feed/Feed";
+import MyCalendar from "../pages/my-calendar/Calendar";
 import PracticeSetTasks from "../pages/practice-set-tasks/PracticeTasks";
 import PracticeTaskContent from "../pages/practice-task-content/PracticeTaskContent";
 import Practice from "../pages/practice/Practice";
@@ -76,6 +77,10 @@ const appRoutes = createBrowserRouter([
           {
             path: authRoutes.COMPILER,
             element: <Compiler />,
+          },
+          {
+            path: authRoutes.MY_CALENDAR,
+            element: <MyCalendar />,
           },
           {
             path: "/",

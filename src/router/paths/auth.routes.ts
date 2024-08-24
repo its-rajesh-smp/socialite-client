@@ -7,6 +7,7 @@ const authRoutes = {
   PRACTICE_SET_TASKS: "/practice-set-tasks/:practiceSetId/:practiceSetTaskType",
   PRACTICE_SET_TASK_CONTENT: "/practice-set-task-content/:practiceSetTaskId",
   COMPILER: "/compiler",
+  MY_CALENDAR: "/my-calendar",
 };
 
 export default authRoutes;

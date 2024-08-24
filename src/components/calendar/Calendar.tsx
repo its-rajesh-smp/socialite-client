@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 
 const events = [{ title: "Meeting", start: new Date() }];
 
-function Calender() {
+function Calendar() {
   return (
     <div className="!h-full">
       <FullCalendar
@@ -30,4 +30,4 @@ function renderEventContent(eventInfo: any) {
   );
 }
 
-export default Calender;
+export default Calendar;

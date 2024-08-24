@@ -64,6 +64,13 @@ const sidebarItems = {
     iconImage: "https://cdn-icons-png.flaticon.com/512/3573/3573187.png",
     status: "live",
   },
+  myCalendar: {
+    id: 10,
+    name: "My Calendar",
+    path: authRoutes.MY_CALENDAR,
+    iconImage: "https://cdn-icons-png.flaticon.com/512/10692/10692035.png",
+    status: "archived",
+  },
 };
 
 export default sidebarItems;

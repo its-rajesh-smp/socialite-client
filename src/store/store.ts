@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./auth/authSlice";
 import authStepSlice from "./auth/authStepSlice";
-import practiceSetTaskSlice from "./practiceSetTask/practiceSetTaskSlice";
 import codeCompilerPreviewSlice from "./codeCompiler/codeCompilerPreviewSlice";
 import codeCompilerSettingSlice from "./codeCompiler/codeCompilerSettingSlice";
+import practiceSetTaskSlice from "./practiceSetTask/practiceSetTaskSlice";
+import sidebarSlice from "./sidebar/sidebarSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     practiceSetTaskSlice,
     codeCompilerPreviewSlice,
     codeCompilerSettingSlice,
+    sidebarSlice,
   },
 });
 
