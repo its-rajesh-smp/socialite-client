@@ -1,12 +1,11 @@
-import CodeCompiler from "../../components/compiler/CodeCompiler";
-import Container from "../../components/containers/Container";
-import CodingTaskActionBar from "./components/UI/CodingTaskActionBar";
+import ResourceTask from "./components/ResourceTask";
 
 function PracticeTaskContent() {
   return (
-    <Container fullHeight>
-      <CodeCompiler rightBottomPreviewContent={<CodingTaskActionBar />} />
-    </Container>
+    <div>
+      {/* <CodingTask /> */}
+      <ResourceTask />
+    </div>
   );
 }
 
