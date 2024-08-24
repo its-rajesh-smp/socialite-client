@@ -41,7 +41,7 @@ function NewPracticeModal({
     try {
       const data = await mutateCreatePracticeSet({
         variables: {
-          practiceSetData: practiceSetInput,
+          data: practiceSetInput,
         },
       });
 

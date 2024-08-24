@@ -3,14 +3,14 @@ import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
-import Editor from "../../../../components/editor/Editor";
-import Input from "../../../../components/inputs/Input";
-import SelectInput from "../../../../components/inputs/SelectInput";
-import Modal from "../../../../components/others/Modal";
-import { Visibility } from "../../../../constants/feed.const";
-import { CREATE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
-import { useAppDispatch } from "../../../../hooks/useAppDispatch";
-import { addPracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
+import Editor from "../../../components/editor/Editor";
+import Input from "../../../components/inputs/Input";
+import SelectInput from "../../../components/inputs/SelectInput";
+import Modal from "../../../components/others/Modal";
+import { Visibility } from "../../../constants/feed.const";
+import { CREATE_PRACTICE_TASK } from "../../../graphql/practice/practiceTask.graphql";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { addPracticeSetTask } from "../../../store/practiceSetTask/practiceSetTaskSlice";
 
 interface ICreateNewTaskModalProps {
   open: boolean;
@@ -19,7 +19,6 @@ interface ICreateNewTaskModalProps {
 
 const initialTaskInputValue = {
   title: "",
-  link: "",
   description: "",
   visibility: Visibility.PUBLIC,
 };
@@ -38,12 +37,14 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
   const handelCreateTask = async (e: any) => {
     e.preventDefault();
     try {
+      const payload = {
+        ...taskInput,
+        practiceSetId: param.practiceSetId,
+      };
+
       const data = await mutateCreateSetTask({
         variables: {
-          data: {
-            ...taskInput,
-            PracticeSetId: param.practiceSetId,
-          },
+          data: payload,
         },
       });
 
@@ -76,15 +77,6 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
             containerClassName="!gap-1"
             placeholder="title"
             label="Title"
-          />
-          <Input
-            value={taskInput.link}
-            onChange={(e) => {
-              setTaskInput((prev) => ({ ...prev, link: e.target.value }));
-            }}
-            containerClassName="!gap-1"
-            placeholder="link"
-            label="Link"
           />
 
           <div className="small_scrollbar flex h-32 flex-col !gap-1 overflow-y-auto">

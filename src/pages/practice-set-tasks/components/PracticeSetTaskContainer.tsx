@@ -4,7 +4,7 @@ import { GET_ALL_PRACTICE_TASKS } from "../../../graphql/practice/practiceTask.g
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import { setPracticeSetTasks } from "../../../store/practiceSetTask/practiceSetTaskSlice";
-import PracticeSetTask from "./PracticeSetTask";
+import PracticeSetTask from "./UI/PracticeSetTask";
 
 function PracticeSetTaskContainer() {
   const params = useParams();
@@ -17,10 +17,7 @@ function PracticeSetTaskContainer() {
   // Fetching practice set tasks
   useQuery(GET_ALL_PRACTICE_TASKS, {
     variables: {
-      data: {
-        PracticeSetId: params.practiceSetId,
-        practiceSetTaskType: params.practiceSetTaskType,
-      },
+      practiceSetId: params.practiceSetId,
     },
     onCompleted: (data) => {
       dispatch(setPracticeSetTasks(data.getAllPracticeTasks));

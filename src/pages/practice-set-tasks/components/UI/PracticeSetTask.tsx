@@ -5,10 +5,11 @@ import {
   MdOutlineCheck,
 } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import Container from "../../../components/containers/Container";
-import authRoutes from "../../../router/paths/auth.routes";
-import { IPracticeQuestion } from "../../../types/practice";
-import { generatePathNameWithParams } from "../../../utils/route";
+import Container from "../../../../components/containers/Container";
+import authRoutes from "../../../../router/paths/auth.routes";
+import { IPracticeQuestion } from "../../../../types/practice";
+import { generatePathNameWithParams } from "../../../../utils/route";
+import { RxDragHandleDots2 } from "react-icons/rx";
 
 function PracticeSetTask({ description, title, link, id }: IPracticeQuestion) {
   const navigate = useNavigate();
@@ -24,7 +25,10 @@ function PracticeSetTask({ description, title, link, id }: IPracticeQuestion) {
   return (
     <Container onClick={handleClick}>
       <div className="flex items-center justify-between">
-        <p className="text-sm">{title}</p>
+        <div className="flex items-center gap-2">
+          <RxDragHandleDots2 className="cursor-move text-xl text-gray-500" />
+          <p className="text-sm">{title}</p>
+        </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-0.5 text-xs text-gray-500">
             <MdOutlineBarChart />

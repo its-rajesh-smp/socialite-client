@@ -1,5 +1,5 @@
 import { Button } from "@radix-ui/themes";
-import CreateNewTaskModal from "./CreateNewTaskModal";
+import CreateNewTaskModal from "../CreateNewTaskModal";
 import { useState } from "react";
 
 function CreateNewTaskBtn() {
