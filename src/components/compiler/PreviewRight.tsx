@@ -18,7 +18,11 @@ import {
 } from "./constants.tsx";
 import RightSideTagsContainer from "./RightSideTagsContainer.tsx";
 
-function PreviewRight() {
+interface IPreviewRightProps {
+  bottomPreviewContent?: React.ReactNode;
+}
+
+function PreviewRight({ bottomPreviewContent }: IPreviewRightProps) {
   const { currentRightTabId, isCollapsedRight } = useAppSelector(
     (state) => state.codeCompilerPreviewSlice,
   );
@@ -56,6 +60,8 @@ function PreviewRight() {
         <SandpackTests
           className={`!h-[calc(100%-2.5rem)] ${currentRightTabId === rightPanelTabs.test.id && !isCollapsedRight ? "block" : "!hidden"}`}
         />
+
+        {bottomPreviewContent}
       </div>
     </Panel>
   );

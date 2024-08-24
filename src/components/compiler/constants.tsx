@@ -1,8 +1,7 @@
 import { BiTestTube } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa";
-import { GiPaper } from "react-icons/gi";
 import { IoSettings, IoTerminalOutline } from "react-icons/io5";
-import { MdDescription, MdFileCopy } from "react-icons/md";
+import { MdDescription, MdFileCopy, MdOutlineEditNote } from "react-icons/md";
 
 export enum CompilerTypes {
   static = "static",
@@ -20,7 +19,7 @@ export const rightPanelTabs = {
 export const leftPanelTabs = {
   fileManager: { id: 0, name: "File Manager", icon: <MdFileCopy /> },
   description: { id: 1, name: "Description", icon: <MdDescription /> },
-  note: { id: 2, name: "Note", icon: <GiPaper /> },
+  note: { id: 2, name: "Note", icon: <MdOutlineEditNote /> },
   setting: { id: 99, name: "Setting", icon: <IoSettings /> },
 };
 

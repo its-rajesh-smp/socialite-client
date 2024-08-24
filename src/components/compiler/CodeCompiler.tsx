@@ -12,7 +12,12 @@ import PreviewLeft from "./PreviewLeft";
 import PreviewRight from "./PreviewRight";
 import "./style.css";
 
-function CodeCompiler() {
+interface ICodeCompilerProps {
+  rightBottomPreviewContent?: React.ReactNode;
+  leftBottomPreviewContent?: React.ReactNode;
+}
+
+function CodeCompiler({ rightBottomPreviewContent }: ICodeCompilerProps) {
   const { currentCompilerType } = useAppSelector(
     (state) => state.codeCompilerSettingSlice,
   );
@@ -58,7 +63,7 @@ function CodeCompiler() {
           </PanelResizeHandle>
 
           {/* PREVIEW RIGHT */}
-          <PreviewRight />
+          <PreviewRight bottomPreviewContent={rightBottomPreviewContent} />
         </PanelGroup>
       </SandpackLayout>
     </SandpackProvider>
