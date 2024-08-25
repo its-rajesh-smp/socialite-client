@@ -1,10 +1,15 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import { IPracticeQuestion } from "../../types/practice";
+import { IPracticeQuestion, IPracticeSet } from "../../types/practice";
+
+const initialState = {
+  practiceTasks: [] as IPracticeQuestion[],
+  currentPracticeSet: {} as IPracticeSet,
+};
 
 const practiceSetTaskSlice = createSlice({
   name: "practice set task",
-  initialState: [] as IPracticeQuestion[],
+  initialState: initialState,
   reducers: {
     /**
      * set practice set tasks
@@ -12,11 +17,9 @@ const practiceSetTaskSlice = createSlice({
      * @param action
      * @returns
      */
-    setPracticeSetTasks: (
-      state,
-      action: PayloadAction<IPracticeQuestion[]>,
-    ) => {
-      state = action.payload;
+    setPracticeSetTasks: (state, action) => {
+      state.practiceTasks = action.payload.practiceTasks;
+      state.currentPracticeSet = action.payload.currentPracticeSet;
       return state;
     },
 
@@ -27,7 +30,7 @@ const practiceSetTaskSlice = createSlice({
      * @returns
      */
     addPracticeSetTask: (state, action: PayloadAction<IPracticeQuestion>) => {
-      state.push(action.payload);
+      state.practiceTasks.push(action.payload);
       return state;
     },
 
@@ -41,8 +44,10 @@ const practiceSetTaskSlice = createSlice({
       state,
       action: PayloadAction<IPracticeQuestion["id"]>,
     ) => {
-      const index = state.findIndex((task) => task.id === action.payload);
-      state.splice(index, 1);
+      const index = state.practiceTasks.findIndex(
+        (task) => task.id === action.payload,
+      );
+      state.practiceTasks.splice(index, 1);
       return state;
     },
 
@@ -56,8 +61,10 @@ const practiceSetTaskSlice = createSlice({
       state,
       action: PayloadAction<IPracticeQuestion>,
     ) => {
-      const index = state.findIndex((task) => task.id === action.payload.id);
-      state[index] = action.payload;
+      const index = state.practiceTasks.findIndex(
+        (task) => task.id === action.payload.id,
+      );
+      state.practiceTasks[index] = action.payload;
       return state;
     },
 
@@ -67,7 +74,10 @@ const practiceSetTaskSlice = createSlice({
      * @returns
      */
     clearPracticeSetTasks: () => {
-      return [];
+      return {
+        currentPracticeSet: {} as IPracticeSet,
+        practiceTasks: [] as IPracticeQuestion[],
+      };
     },
   },
 });

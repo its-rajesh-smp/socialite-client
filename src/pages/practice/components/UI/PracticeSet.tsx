@@ -5,7 +5,7 @@ import { IPracticeSet } from "../../../../types/practice";
 
 function PracticeSet({
   id,
-  name,
+  title,
   description,
   user,
   onPracticeSetClick,
@@ -33,11 +33,11 @@ function PracticeSet({
   };
 
   return (
-    <Container onClick={(e: any) => onClick(e)} className="flex">
+    <Container onClick={(e: any) => onClick(e)} className="flex cursor-pointer">
       {/* LEFT SIDE */}
       <div className="flex h-full flex-col justify-between gap-3">
         <div>
-          <h3 className="text-xl font-medium">{name}</h3>
+          <h3 className="text-xl font-medium">{title}</h3>
           <p className="text-sm text-gray-500">{description}</p>
         </div>
         <div className="flex items-center gap-4">

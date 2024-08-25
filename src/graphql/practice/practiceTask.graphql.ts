@@ -8,6 +8,14 @@ export const GET_ALL_PRACTICE_TASKS = gql`
       description
       title
     }
+    getAPracticeSet(id: $practiceSetId) {
+      id
+      title
+      description
+      user {
+        id
+      }
+    }
   }
 `;
 

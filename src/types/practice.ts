@@ -2,7 +2,7 @@ import { IUser } from "./auth";
 
 export interface IPracticeSet {
   id: string;
-  name: string;
+  title: string;
   description: string;
   visibility: string;
   practiceQuestions: IPracticeQuestion[];
@@ -14,7 +14,7 @@ export interface IPracticeSet {
 export interface IPracticeQuestion {
   id: string;
   title: string;
-  link: string;
   visibility: string;
   description: string;
+  user: IUser;
 }

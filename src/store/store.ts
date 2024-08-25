@@ -4,6 +4,7 @@ import authStepSlice from "./auth/authStepSlice";
 import codeCompilerPreviewSlice from "./codeCompiler/codeCompilerPreviewSlice";
 import codeCompilerSettingSlice from "./codeCompiler/codeCompilerSettingSlice";
 import practiceSetTaskSlice from "./practiceSetTask/practiceSetTaskSlice";
+import practiceTaskActionSlice from "./practiceSetTask/practiceTaskActionSlice";
 import sidebarSlice from "./sidebar/sidebarSlice";
 
 export const store = configureStore({
@@ -14,6 +15,7 @@ export const store = configureStore({
     codeCompilerPreviewSlice,
     codeCompilerSettingSlice,
     sidebarSlice,
+    practiceTaskActionSlice,
   },
 });
 

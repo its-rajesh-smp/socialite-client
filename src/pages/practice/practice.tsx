@@ -14,7 +14,6 @@ function Practice() {
   // Fetching practice sets based on current tab
   useQuery(getQueryBySlug(param.practiceTabSlug), {
     onCompleted: (data) => {
-      console.log(data);
       setPracticeSets(normalizeData(data));
     },
     onError: (err) => console.log(err),

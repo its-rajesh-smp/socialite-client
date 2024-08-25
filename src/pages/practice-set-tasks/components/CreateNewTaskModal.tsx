@@ -27,7 +27,6 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
   const param = useParams();
   const dispatch = useAppDispatch();
   const [taskInput, setTaskInput] = useState(initialTaskInputValue);
-
   const [mutateCreateSetTask] = useMutation(CREATE_PRACTICE_TASK);
 
   /**
