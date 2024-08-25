@@ -1,17 +1,23 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { GET_ALL_PRACTICE_SET } from "../../graphql/practice/practiceSet.graphql";
+import { useParams } from "react-router-dom";
 import PracticeSetContainer from "./components/PracticeSetContainer";
 import CreateNewPracticeBtn from "./components/UI/CreateNewPracticeBtn";
 import PracticeSetTabs from "./components/UI/PracticeSetTabs";
+import { normalizeData } from "./helpers/getData";
+import { getQueryBySlug } from "./helpers/getQuery";
 
 function Practice() {
   const [practiceSets, setPracticeSets] = useState([]);
+  const param = useParams();
 
-  useQuery(GET_ALL_PRACTICE_SET, {
+  // Fetching practice sets based on current tab
+  useQuery(getQueryBySlug(param.practiceTabSlug), {
     onCompleted: (data) => {
-      setPracticeSets(data.getAllPracticeSets);
+      console.log(data);
+      setPracticeSets(normalizeData(data));
     },
+    onError: (err) => console.log(err),
   });
 
   return (
@@ -21,7 +27,10 @@ function Practice() {
         setPracticeSets={setPracticeSets}
       />
       <PracticeSetTabs />
-      <PracticeSetContainer practiceSets={practiceSets} />
+      <PracticeSetContainer
+        setPracticeSets={setPracticeSets}
+        practiceSets={practiceSets}
+      />
     </div>
   );
 }
