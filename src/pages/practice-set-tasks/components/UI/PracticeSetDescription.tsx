@@ -13,6 +13,8 @@ import {
   toggleEditing,
 } from "../../../../store/practiceSetTask/practiceTaskActionSlice";
 import { accordionStates } from "../../../../constants/common.const";
+import { useMutation } from "@apollo/client";
+import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
 
 function PracticeSetDescription() {
   const authenticatedUser = useAppSelector((state) => state.authSlice);
@@ -23,15 +25,35 @@ function PracticeSetDescription() {
     (state) => state.practiceTaskActionSlice,
   );
   const dispatch = useAppDispatch();
+  const [mutateFork] = useMutation(FORK_PRACTICE_SET);
   const isEditable = currentPracticeSet?.user?.id === authenticatedUser?.id;
 
   /**
-   * Function to handle click on edit button
+   * Function to handle edit button click
    * @param e  - click event
    */
   const onEditBtnClick = (e: any) => {
     e.stopPropagation();
     dispatch(toggleEditing());
+  };
+
+  /**
+   * Function to handle fork button click
+   * @param e  - click event
+   */
+  const onForkBtnClick = async (e: any) => {
+    e.stopPropagation();
+    try {
+      const data = await mutateFork({
+        variables: {
+          practiceSetId: currentPracticeSet?.id,
+        },
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -63,7 +85,10 @@ function PracticeSetDescription() {
                   <MdOutlineSave className="cursor-pointer text-2xl text-primary transition-all hover:text-blue-500" />
                 </>
               )}
-              <MdOutlineAssignmentReturned className="cursor-pointer text-2xl text-primary transition-all hover:text-blue-500" />
+              <MdOutlineAssignmentReturned
+                onClick={onForkBtnClick}
+                className="cursor-pointer text-2xl text-primary transition-all hover:text-blue-500"
+              />
             </div>
           </Accordion.Content>
         </Accordion.Item>
