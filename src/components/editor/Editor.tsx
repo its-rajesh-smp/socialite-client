@@ -7,9 +7,10 @@ interface IEditor {
   className?: string;
   onChange?: (value: string) => void;
   value?: string;
+  editable?: boolean;
 }
 
-function Editor({ className, onChange, value }: IEditor) {
+function Editor({ className, onChange, value, editable = true }: IEditor) {
   const initialContent = JSON.parse(
     value ||
       JSON.stringify([
@@ -26,6 +27,7 @@ function Editor({ className, onChange, value }: IEditor) {
 
   return (
     <BlockNoteView
+      editable={editable}
       onChange={() => onChange?.(editor.document as any)}
       className={className}
       editor={editor}

@@ -6,7 +6,7 @@ const authRoutes = {
   PRACTICE: "/practice/:practiceTabSlug",
   PRACTICE_SET_TASKS:
     "/practice-set-tasks/:practiceSetId/:practiceSetTaskType/:practiceSetDescAccordionState",
-  PRACTICE_SET_TASK_CONTENT: "/practice-set-task-content/:practiceSetTaskId",
+  PRACTICE_SET_TASK_CONTENT: "/practice-set-task-content/:practiceTaskId",
   COMPILER: "/compiler",
   MY_CALENDAR: "/my-calendar",
 };

@@ -19,6 +19,17 @@ export const GET_ALL_PRACTICE_TASKS = gql`
   }
 `;
 
+export const GET_A_PRACTICE_TASK = gql`
+  query getAPracticeTask($id: String) {
+    getAPracticeTask(id: $id) {
+      id
+      link
+      description
+      title
+    }
+  }
+`;
+
 export const CREATE_PRACTICE_TASK = gql`
   mutation createPracticeSetTask($data: CreatePracticeTaskInput!) {
     createPracticeTask(practiceTaskData: $data) {

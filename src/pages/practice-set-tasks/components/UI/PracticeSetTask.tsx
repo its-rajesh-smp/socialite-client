@@ -28,7 +28,7 @@ function PracticeSetTask({ title, id }: IPracticeQuestion) {
   const handleClick = () => {
     navigate(
       generatePathNameWithParams(authRoutes.PRACTICE_SET_TASK_CONTENT, {
-        practiceSetTaskId: id,
+        practiceTaskId: id,
       }),
     );
   };
