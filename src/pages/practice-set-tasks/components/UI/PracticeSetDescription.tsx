@@ -1,4 +1,6 @@
+import { useMutation } from "@apollo/client";
 import * as Accordion from "@radix-ui/react-accordion";
+
 import { BiEdit } from "react-icons/bi";
 import {
   MdKeyboardArrowDown,
@@ -6,15 +8,15 @@ import {
   MdOutlineSave,
 } from "react-icons/md";
 import Container from "../../../../components/containers/Container";
+import IconButton from "../../../../components/inputs/IconButton";
+import { accordionStates } from "../../../../constants/common.const";
+import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import {
   setPracticeSetDescAccordionState,
   toggleEditing,
 } from "../../../../store/practiceSetTask/practiceTaskActionSlice";
-import { accordionStates } from "../../../../constants/common.const";
-import { useMutation } from "@apollo/client";
-import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
 
 function PracticeSetDescription() {
   const authenticatedUser = useAppSelector((state) => state.authSlice);
@@ -25,7 +27,7 @@ function PracticeSetDescription() {
     (state) => state.practiceTaskActionSlice,
   );
   const dispatch = useAppDispatch();
-  const [mutateFork] = useMutation(FORK_PRACTICE_SET);
+  const [mutateFork, { loading: forkLoading }] = useMutation(FORK_PRACTICE_SET);
   const isEditable = currentPracticeSet?.user?.id === authenticatedUser?.id;
 
   /**
@@ -85,10 +87,9 @@ function PracticeSetDescription() {
                   <MdOutlineSave className="cursor-pointer text-2xl text-primary transition-all hover:text-blue-500" />
                 </>
               )}
-              <MdOutlineAssignmentReturned
-                onClick={onForkBtnClick}
-                className="cursor-pointer text-2xl text-primary transition-all hover:text-blue-500"
-              />
+              <IconButton loading={forkLoading} onClick={onForkBtnClick}>
+                <MdOutlineAssignmentReturned />
+              </IconButton>
             </div>
           </Accordion.Content>
         </Accordion.Item>

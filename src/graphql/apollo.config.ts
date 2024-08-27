@@ -1,12 +1,15 @@
 import {
   ApolloClient,
+  ApolloLink,
   InMemoryCache,
   createHttpLink,
   split,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
+import { toast } from "react-toastify";
 
 const PORT = 8080;
 const HOST = "localhost";
@@ -41,9 +44,27 @@ const splitLink = split(
   httpLink,
 );
 
+// Error handling link
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      toast.error(`${message}`);
+      console.error(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+      );
+    });
+  }
+  if (networkError) {
+    console.error(`[Network error]: ${networkError}`);
+  }
+});
+
+// Combine the error link with the rest of the links
+const link = ApolloLink.from([errorLink, splitLink]);
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: splitLink,
+  link,
 });
 
 export default client;
