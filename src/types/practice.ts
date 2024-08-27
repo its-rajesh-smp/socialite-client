@@ -9,6 +9,7 @@ export interface IPracticeSet {
   user: IUser;
   onPracticeSetClick?: (practiceSetId: string) => void;
   onPracticeSetDelete?: (practiceSetId: string) => void;
+  isCurrentUserForked?: boolean;
 }
 
 export interface IPracticeQuestion {
@@ -17,4 +18,5 @@ export interface IPracticeQuestion {
   visibility: string;
   description: string;
   user: IUser;
+  submittedAt: Date;
 }

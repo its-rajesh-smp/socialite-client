@@ -8,15 +8,18 @@ import {
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import Container from "../../../../components/containers/Container";
+import Chip from "../../../../components/others/Chip";
 import { DELETE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import authRoutes from "../../../../router/paths/auth.routes";
 import { deletePracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
 import { IPracticeQuestion } from "../../../../types/practice";
+import { getTimeAgo } from "../../../../utils/date";
 import { generatePathNameWithParams } from "../../../../utils/route";
+import { BiCheck, BiCheckbox } from "react-icons/bi";
 
-function PracticeSetTask({ title, id }: IPracticeQuestion) {
+function PracticeSetTask({ title, id, submittedAt }: IPracticeQuestion) {
   const { editing } = useAppSelector((state) => state.practiceTaskActionSlice);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -59,13 +62,26 @@ function PracticeSetTask({ title, id }: IPracticeQuestion) {
           {editing && (
             <RxDragHandleDots2 className="cursor-move text-xl text-gray-500" />
           )}
+
+          <p className="text-2xl">
+            {submittedAt ? <BiCheck /> : <BiCheckbox />}
+          </p>
+
           <p className="text-sm">{title}</p>
         </div>
+
         <div className="flex items-center gap-4">
+          {submittedAt && (
+            <Chip size="1">
+              <p>{getTimeAgo(submittedAt)}</p>
+            </Chip>
+          )}
+
           <div className="flex items-center gap-0.5 text-xs text-gray-500">
             <MdOutlineBarChart />
             <p>250</p>
           </div>
+
           {editing && (
             <MdDelete
               onClick={handleDelete}

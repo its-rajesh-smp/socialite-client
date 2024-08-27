@@ -57,14 +57,14 @@ const practiceSetTaskSlice = createSlice({
      * @param action
      * @returns
      */
-    updatePracticeSetTask: (
-      state,
-      action: PayloadAction<IPracticeQuestion>,
-    ) => {
+    updatePracticeSetTask: (state, action) => {
       const index = state.practiceTasks.findIndex(
         (task) => task.id === action.payload.id,
       );
-      state.practiceTasks[index] = action.payload;
+      state.practiceTasks[index] = {
+        ...state.practiceTasks[index],
+        ...action.payload,
+      };
       return state;
     },
 
@@ -79,6 +79,20 @@ const practiceSetTaskSlice = createSlice({
         practiceTasks: [] as IPracticeQuestion[],
       };
     },
+
+    /**
+     * update current practice set
+     * @param state
+     * @param action
+     * @returns
+     */
+    updateCurrentPracticeSet: (state, action) => {
+      state.currentPracticeSet = {
+        ...state.currentPracticeSet,
+        ...action.payload,
+      };
+      return state;
+    },
   },
 });
 
@@ -88,6 +102,7 @@ export const {
   setPracticeSetTasks,
   updatePracticeSetTask,
   clearPracticeSetTasks,
+  updateCurrentPracticeSet,
 } = practiceSetTaskSlice.actions;
 
 export default practiceSetTaskSlice.reducer;

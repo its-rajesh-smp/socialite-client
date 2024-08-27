@@ -8,6 +8,7 @@ export interface IPracticeTaskContent {
   title: string;
   description: string;
   id: string;
+  submittedAt: Date;
 }
 
 function PracticeTaskContent() {

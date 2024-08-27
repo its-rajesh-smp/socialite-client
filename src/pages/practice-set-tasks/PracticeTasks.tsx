@@ -48,6 +48,7 @@ function PracticeTasks() {
         practiceTasks: getAllPracticeTasks,
         currentPracticeSet: getAPracticeSet,
       };
+      console.log(payload);
       dispatch(setPracticeSetTasks(payload));
     },
   });

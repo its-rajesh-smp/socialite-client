@@ -7,11 +7,13 @@ export const GET_ALL_PRACTICE_TASKS = gql`
       link
       description
       title
+      submittedAt
     }
     getAPracticeSet(id: $practiceSetId) {
       id
       title
       description
+      isCurrentUserForked
       user {
         id
       }
@@ -26,6 +28,7 @@ export const GET_A_PRACTICE_TASK = gql`
       link
       description
       title
+      submittedAt
     }
   }
 `;

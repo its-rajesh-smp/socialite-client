@@ -1,18 +1,20 @@
 import { useMutation } from "@apollo/client";
 import * as Accordion from "@radix-ui/react-accordion";
-
 import { BiEdit } from "react-icons/bi";
 import {
   MdKeyboardArrowDown,
   MdOutlineAssignmentReturned,
   MdOutlineSave,
 } from "react-icons/md";
+import { toast } from "react-toastify";
 import Container from "../../../../components/containers/Container";
 import IconButton from "../../../../components/inputs/IconButton";
+import Chip from "../../../../components/others/Chip";
 import { accordionStates } from "../../../../constants/common.const";
 import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
+import { updateCurrentPracticeSet } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
 import {
   setPracticeSetDescAccordionState,
   toggleEditing,
@@ -29,6 +31,7 @@ function PracticeSetDescription() {
   const dispatch = useAppDispatch();
   const [mutateFork, { loading: forkLoading }] = useMutation(FORK_PRACTICE_SET);
   const isEditable = currentPracticeSet?.user?.id === authenticatedUser?.id;
+  const isForked = currentPracticeSet?.isCurrentUserForked;
 
   /**
    * Function to handle edit button click
@@ -43,19 +46,23 @@ function PracticeSetDescription() {
    * Function to handle fork button click
    * @param e  - click event
    */
-  const onForkBtnClick = async (e: any) => {
+  const onForkBtnClick = (e: any) => {
     e.stopPropagation();
-    try {
-      const data = await mutateFork({
-        variables: {
-          practiceSetId: currentPracticeSet?.id,
-        },
-      });
-
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    mutateFork({
+      variables: {
+        practiceSetId: currentPracticeSet?.id,
+      },
+      onCompleted: () => {
+        dispatch(
+          updateCurrentPracticeSet({
+            isCurrentUserForked: true,
+          }),
+        );
+        toast.success(
+          "Forked successfully: Now you can do tasks from this practice set",
+        );
+      },
+    });
   };
 
   return (
@@ -87,9 +94,13 @@ function PracticeSetDescription() {
                   <MdOutlineSave className="cursor-pointer text-2xl text-primary transition-all hover:text-blue-500" />
                 </>
               )}
-              <IconButton loading={forkLoading} onClick={onForkBtnClick}>
-                <MdOutlineAssignmentReturned />
-              </IconButton>
+              {!isForked ? (
+                <IconButton loading={forkLoading} onClick={onForkBtnClick}>
+                  <MdOutlineAssignmentReturned />
+                </IconButton>
+              ) : (
+                <Chip>Forked</Chip>
+              )}
             </div>
           </Accordion.Content>
         </Accordion.Item>

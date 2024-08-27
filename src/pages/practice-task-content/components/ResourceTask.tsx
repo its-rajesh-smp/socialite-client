@@ -3,7 +3,7 @@ import Editor from "../../../components/editor/Editor";
 import { IPracticeTaskContent } from "../PracticeTaskContent";
 import ResourceTaskActionBar from "./UI/ResourceTaskActionBar";
 
-function ResourceTask({ id, description }: IPracticeTaskContent) {
+function ResourceTask({ id, description, submittedAt }: IPracticeTaskContent) {
   return (
     <div className="flex justify-center">
       <Container
@@ -13,7 +13,11 @@ function ResourceTask({ id, description }: IPracticeTaskContent) {
         <div className="small_scrollbar h-[calc(100vh-150px)] w-full overflow-x-auto overflow-y-auto px-2">
           <Editor editable={false} value={description} />
         </div>
-        <ResourceTaskActionBar practiceTaskId={id} userResponse="CONFIRM" />
+        <ResourceTaskActionBar
+          lastSubmittedAt={submittedAt}
+          practiceTaskId={id}
+          userResponse="CONFIRM"
+        />
       </Container>
     </div>
   );

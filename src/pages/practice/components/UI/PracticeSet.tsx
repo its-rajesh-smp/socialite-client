@@ -2,6 +2,7 @@ import { MdDelete, MdOutlineHistory } from "react-icons/md";
 import Container from "../../../../components/containers/Container";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import { IPracticeSet } from "../../../../types/practice";
+import Chip from "../../../../components/others/Chip";
 
 function PracticeSet({
   id,
@@ -10,6 +11,7 @@ function PracticeSet({
   user,
   onPracticeSetClick,
   onPracticeSetDelete,
+  isCurrentUserForked,
 }: IPracticeSet) {
   const authenticatedUser = useAppSelector((state) => state.authSlice);
   const isEditable = user?.id === authenticatedUser?.id;
@@ -37,7 +39,10 @@ function PracticeSet({
       {/* LEFT SIDE */}
       <div className="flex h-full flex-col justify-between gap-3">
         <div>
-          <h3 className="text-xl font-medium">{title}</h3>
+          <div className="flex flex-col gap-0.5">
+            {isCurrentUserForked && <Chip size="1">Forked</Chip>}
+            <h3 className="text-xl font-medium">{title}</h3>
+          </div>
           <p className="text-sm text-gray-500">{description}</p>
         </div>
         <div className="flex items-center gap-4">

@@ -1,14 +1,15 @@
-import { IconButton as RadixIconButton } from "@radix-ui/themes";
+import { Button, IconButton as RadixIconButton } from "@radix-ui/themes";
 
 interface IIconButtonProps {
   children: React.ReactNode;
-  onClick?: (e: any) => Promise<void>;
+  onClick?: (e: any) => any;
   className?: string;
   disabled?: boolean;
   loading?: boolean;
   title?: string;
   size?: "1" | "2" | "3" | "4";
   variant?: "solid" | "soft" | "outline";
+  type?: "normal" | "iconButton";
 }
 
 function IconButton({
@@ -18,16 +19,16 @@ function IconButton({
   size = "2",
 }: IIconButtonProps) {
   return (
-    <RadixIconButton
+    <Button
       onClick={onClick}
-      className="cursor-pointer text-2xl transition-all hover:text-primary"
+      className="cursor-pointer transition-all hover:text-primary"
       color="gray"
       variant="soft"
       loading={loading}
       size={size}
     >
       {children}
-    </RadixIconButton>
+    </Button>
   );
 }
 

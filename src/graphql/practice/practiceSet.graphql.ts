@@ -6,6 +6,7 @@ export const GET_ALL_PRACTICE_SETS = gql`
       id
       title
       description
+      isCurrentUserForked
       user {
         id
       }
@@ -19,6 +20,7 @@ export const GET_MY_PRACTICE_SETS = gql`
       id
       title
       description
+      isCurrentUserForked
       user {
         id
       }
@@ -32,6 +34,7 @@ export const CREATE_PRACTICE_SET = gql`
       id
       title
       description
+      isCurrentUserForked
       user {
         id
       }
