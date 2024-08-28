@@ -19,7 +19,6 @@ interface ICreateNewTaskModalProps {
 
 const initialTaskInputValue = {
   title: "",
-  description: "",
   visibility: Visibility.PUBLIC,
   taskType: taskTypes.RESOURCE,
 };
