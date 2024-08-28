@@ -3,11 +3,11 @@
  * @param timestamp in milliseconds
  * @returns  time ago
  */
-export const getTimeAgo = (timestamp: number | string | Date) => {
+export const getTimeAgo = (timestamp: any) => {
+  if (!timestamp) return;
+
   const now = Date.now();
-
   const parsedTimestamp = new Date(timestamp).getTime();
-
   const seconds = Math.floor((now - parsedTimestamp) / 1000);
 
   const intervals = [

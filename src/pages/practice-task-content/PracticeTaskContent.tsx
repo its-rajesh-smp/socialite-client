@@ -1,37 +1,35 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { GET_A_PRACTICE_TASK } from "../../graphql/practice/practiceTask.graphql";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { setPracticeTaskContent } from "../../store/practiceTaskContent/practiceTaskContentSlice";
 import ResourceTask from "./components/ResourceTask";
-
-export interface IPracticeTaskContent {
-  title: string;
-  description: string;
-  id: string;
-  submittedAt: Date;
-}
 
 function PracticeTaskContent() {
   const params = useParams();
-  const [practiceTaskContent, setPracticeTaskContent] =
-    useState<IPracticeTaskContent | null>(null);
+  const dispatch = useAppDispatch();
+  const currentPracticeTask = useAppSelector(
+    (state) => state.practiceTaskContentSlice,
+  );
 
+  // Fetching the current practice task
   useQuery(GET_A_PRACTICE_TASK, {
     variables: {
       id: params.practiceTaskId,
     },
     onCompleted(response) {
-      setPracticeTaskContent(response.getAPracticeTask);
+      dispatch(setPracticeTaskContent(response.getAPracticeTask));
     },
   });
 
+  if (!currentPracticeTask) return;
+
   return (
-    practiceTaskContent && (
-      <div>
-        {/* <CodingTask /> */}
-        <ResourceTask {...practiceTaskContent} />
-      </div>
-    )
+    <div>
+      {/* <CodingTask /> */}
+      <ResourceTask />
+    </div>
   );
 }
 

@@ -1,9 +1,12 @@
 import Container from "../../../components/containers/Container";
 import Editor from "../../../components/editor/Editor";
-import { IPracticeTaskContent } from "../PracticeTaskContent";
+import { useAppSelector } from "../../../hooks/useAppSelector";
 import ResourceTaskActionBar from "./UI/ResourceTaskActionBar";
 
-function ResourceTask({ id, description, submittedAt }: IPracticeTaskContent) {
+function ResourceTask() {
+  const currentPracticeTask = useAppSelector(
+    (state) => state.practiceTaskContentSlice,
+  );
   return (
     <div className="flex justify-center">
       <Container
@@ -11,13 +14,9 @@ function ResourceTask({ id, description, submittedAt }: IPracticeTaskContent) {
         className="flex w-1/2 flex-col items-center gap-0 px-3 pb-0"
       >
         <div className="small_scrollbar h-[calc(100vh-150px)] w-full overflow-x-auto overflow-y-auto px-2">
-          <Editor editable={false} value={description} />
+          <Editor editable={false} value={currentPracticeTask.description} />
         </div>
-        <ResourceTaskActionBar
-          lastSubmittedAt={submittedAt}
-          practiceTaskId={id}
-          userResponse="CONFIRM"
-        />
+        <ResourceTaskActionBar />
       </Container>
     </div>
   );

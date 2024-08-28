@@ -1,14 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { accordionStates } from "../../constants/common.const";
 import { GET_ALL_PRACTICE_TASKS } from "../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { setPracticeSetTasks } from "../../store/practiceSetTask/practiceSetTaskSlice";
-import {
-  setEditing,
-  setPracticeSetDescAccordionState,
-} from "../../store/practiceSetTask/practiceTaskActionSlice";
 import PracticeSetTaskContainer from "./components/PracticeSetTaskContainer";
 import CreateNewTaskBtn from "./components/UI/CreateNewTaskBtn";
 import PracticeSetDescription from "./components/UI/PracticeSetDescription";
@@ -22,18 +16,6 @@ export const PracticeSetTaskType = {
 function PracticeTasks() {
   const params = useParams();
   const dispatch = useAppDispatch();
-  /**
-   * Setting practice set description accordion state
-   */
-  useEffect(() => {
-    dispatch(setEditing(false));
-    dispatch(
-      setPracticeSetDescAccordionState(params.practiceSetDescAccordionState),
-    );
-    return () => {
-      dispatch(setPracticeSetDescAccordionState(accordionStates.collapsed));
-    };
-  }, [params]);
 
   /**
    * Fetching practice set tasks with current practice set
@@ -48,7 +30,6 @@ function PracticeTasks() {
         practiceTasks: getAllPracticeTasks,
         currentPracticeSet: getAPracticeSet,
       };
-      console.log(payload);
       dispatch(setPracticeSetTasks(payload));
     },
   });

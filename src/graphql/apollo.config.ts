@@ -65,6 +65,14 @@ const link = ApolloLink.from([errorLink, splitLink]);
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "network-only", // or 'no-cache'
+    },
+    query: {
+      fetchPolicy: "network-only", // or 'no-cache'
+    },
+  },
 });
 
 export default client;

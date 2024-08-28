@@ -1,8 +1,14 @@
 import { MdDelete, MdOutlineHistory } from "react-icons/md";
 import Container from "../../../../components/containers/Container";
-import { useAppSelector } from "../../../../hooks/useAppSelector";
-import { IPracticeSet } from "../../../../types/practice";
 import Chip from "../../../../components/others/Chip";
+import { accordionStates } from "../../../../constants/common.const";
+import { useAppDispatch } from "../../../../hooks/useAppDispatch";
+import { useAppSelector } from "../../../../hooks/useAppSelector";
+import {
+  setPracticeSetDescAccordionState,
+  setPracticeTaskEditing,
+} from "../../../../store/practiceSetTask/practiceTaskActionSlice";
+import { IPracticeSet } from "../../../../types/practice";
 
 function PracticeSet({
   id,
@@ -15,6 +21,7 @@ function PracticeSet({
 }: IPracticeSet) {
   const authenticatedUser = useAppSelector((state) => state.authSlice);
   const isEditable = user?.id === authenticatedUser?.id;
+  const dispatch = useAppDispatch();
 
   /**
    * Function to handle click on practice set
@@ -23,6 +30,8 @@ function PracticeSet({
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     onPracticeSetClick?.(id);
+    dispatch(setPracticeTaskEditing(false));
+    dispatch(setPracticeSetDescAccordionState(accordionStates.collapsed));
   };
 
   /**

@@ -4,22 +4,17 @@ import { toast } from "react-toastify";
 import IconButton from "../../../../components/inputs/IconButton";
 import { SUBMIT_TASK } from "../../../../graphql/practice/userSubmitTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
+import { useAppSelector } from "../../../../hooks/useAppSelector";
 import { updatePracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
+import { updatePracticeTaskContent } from "../../../../store/practiceTaskContent/practiceTaskContentSlice";
 import { getTimeAgo } from "../../../../utils/date";
 
-interface IResourceTaskActionBarProps {
-  practiceTaskId: string;
-  userResponse: string;
-  lastSubmittedAt: Date;
-}
-
-function ResourceTaskActionBar({
-  practiceTaskId,
-  lastSubmittedAt,
-}: IResourceTaskActionBarProps) {
+function ResourceTaskActionBar() {
+  const currentPracticeTask = useAppSelector(
+    (state) => state.practiceTaskContentSlice,
+  );
   const [mutateSubmitResourceTask, { loading: submitLoading }] =
     useMutation(SUBMIT_TASK);
-
   const dispatch = useAppDispatch();
 
   /**
@@ -27,7 +22,7 @@ function ResourceTaskActionBar({
    */
   const handleSubmitResourceTask = async () => {
     const payload = {
-      practiceTaskId,
+      practiceTaskId: currentPracticeTask.id,
       userResponse: "CONFIRM",
       submittedAt: new Date(),
     };
@@ -38,6 +33,7 @@ function ResourceTaskActionBar({
     });
 
     dispatch(updatePracticeSetTask({ submittedAt: payload.submittedAt }));
+    dispatch(updatePracticeTaskContent({ submittedAt: payload.submittedAt }));
     toast.success("Submitted successfully");
   };
 
@@ -48,9 +44,10 @@ function ResourceTaskActionBar({
         <GoBug className="cursor-pointer text-xl text-primary hover:text-blue-500" />
 
         <div className="flex items-center gap-4">
-          {lastSubmittedAt && (
+          {currentPracticeTask.submittedAt && (
             <p className="text-xs text-gray-500">
-              Last submitted at : <span>{getTimeAgo(lastSubmittedAt)}</span>
+              Last submitted at :{" "}
+              <span>{getTimeAgo(currentPracticeTask.submittedAt)}</span>
             </p>
           )}
           <IconButton

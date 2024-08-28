@@ -4,7 +4,7 @@ export const GET_ALL_PRACTICE_TASKS = gql`
   query getAllPracticeTasks($practiceSetId: String) {
     getAllPracticeTasks(practiceSetId: $practiceSetId) {
       id
-      link
+
       description
       title
       submittedAt
@@ -25,7 +25,7 @@ export const GET_A_PRACTICE_TASK = gql`
   query getAPracticeTask($id: String) {
     getAPracticeTask(id: $id) {
       id
-      link
+
       description
       title
       submittedAt
@@ -37,7 +37,7 @@ export const CREATE_PRACTICE_TASK = gql`
   mutation createPracticeSetTask($data: CreatePracticeTaskInput!) {
     createPracticeTask(practiceTaskData: $data) {
       id
-      link
+
       description
       title
     }
@@ -48,7 +48,7 @@ export const UPDATE_PRACTICE_TASK = gql`
   mutation updatePracticeTask($data: UpdatePracticeTaskInput!) {
     updatePracticeTask(practiceTaskData: $data) {
       id
-      link
+
       description
       title
     }

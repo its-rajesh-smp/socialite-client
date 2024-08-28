@@ -10,7 +10,7 @@ const practiceTaskActionSlice = createSlice({
   name: "practice task action",
   initialState: initialState,
   reducers: {
-    setEditing: (state, action) => {
+    setPracticeTaskEditing: (state, action) => {
       state.editing = action.payload;
     },
     toggleEditing: (state) => {
@@ -22,6 +22,9 @@ const practiceTaskActionSlice = createSlice({
   },
 });
 
-export const { setEditing, toggleEditing, setPracticeSetDescAccordionState } =
-  practiceTaskActionSlice.actions;
+export const {
+  setPracticeTaskEditing,
+  toggleEditing,
+  setPracticeSetDescAccordionState,
+} = practiceTaskActionSlice.actions;
 export default practiceTaskActionSlice.reducer;

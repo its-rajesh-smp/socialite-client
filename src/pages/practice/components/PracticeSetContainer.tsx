@@ -27,7 +27,6 @@ function PracticeSetContainer({
     navigate(
       generatePathNameWithParams(authRoutes.PRACTICE_SET_TASKS, {
         practiceSetId,
-        practiceSetDescAccordionState: accordionStates.expanded,
       }),
     );
   };

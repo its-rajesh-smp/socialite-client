@@ -5,7 +5,6 @@ function PracticeSetTaskContainer() {
   const practiceSetTasks = useAppSelector(
     (state) => state.practiceSetTaskSlice,
   );
-
   return (
     <div className="flex flex-col gap-2">
       {practiceSetTasks.practiceTasks.length === 0 && (

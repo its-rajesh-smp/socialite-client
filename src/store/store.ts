@@ -6,6 +6,7 @@ import codeCompilerSettingSlice from "./codeCompiler/codeCompilerSettingSlice";
 import practiceSetTaskSlice from "./practiceSetTask/practiceSetTaskSlice";
 import practiceTaskActionSlice from "./practiceSetTask/practiceTaskActionSlice";
 import sidebarSlice from "./sidebar/sidebarSlice";
+import practiceTaskContentSlice from "./practiceTaskContent/practiceTaskContentSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     codeCompilerSettingSlice,
     sidebarSlice,
     practiceTaskActionSlice,
+    practiceTaskContentSlice,
   },
 });
 
