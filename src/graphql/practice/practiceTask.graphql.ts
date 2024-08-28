@@ -25,10 +25,12 @@ export const GET_A_PRACTICE_TASK = gql`
   query getAPracticeTask($id: String) {
     getAPracticeTask(id: $id) {
       id
-
       description
       title
       submittedAt
+      user {
+        id
+      }
     }
   }
 `;
@@ -48,7 +50,6 @@ export const UPDATE_PRACTICE_TASK = gql`
   mutation updatePracticeTask($data: UpdatePracticeTaskInput!) {
     updatePracticeTask(practiceTaskData: $data) {
       id
-
       description
       title
     }

@@ -5,8 +5,9 @@ import codeCompilerPreviewSlice from "./codeCompiler/codeCompilerPreviewSlice";
 import codeCompilerSettingSlice from "./codeCompiler/codeCompilerSettingSlice";
 import practiceSetTaskSlice from "./practiceSetTask/practiceSetTaskSlice";
 import practiceTaskActionSlice from "./practiceSetTask/practiceTaskActionSlice";
-import sidebarSlice from "./sidebar/sidebarSlice";
+import practiceTaskContentActionSlice from "./practiceTaskContent/practiceTaskContentActionSlice";
 import practiceTaskContentSlice from "./practiceTaskContent/practiceTaskContentSlice";
+import sidebarSlice from "./sidebar/sidebarSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     sidebarSlice,
     practiceTaskActionSlice,
     practiceTaskContentSlice,
+    practiceTaskContentActionSlice,
   },
 });
 

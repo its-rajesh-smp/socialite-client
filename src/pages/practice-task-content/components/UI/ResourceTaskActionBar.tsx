@@ -13,6 +13,9 @@ function ResourceTaskActionBar() {
   const currentPracticeTask = useAppSelector(
     (state) => state.practiceTaskContentSlice,
   );
+  const isEditing = useAppSelector(
+    (state) => state.practiceTaskContentActionSlice.isContentEditable,
+  );
   const [mutateSubmitResourceTask, { loading: submitLoading }] =
     useMutation(SUBMIT_TASK);
   const dispatch = useAppDispatch();
@@ -54,6 +57,7 @@ function ResourceTaskActionBar() {
             className="w-fit"
             loading={submitLoading}
             onClick={handleSubmitResourceTask}
+            disabled={isEditing}
           >
             <p>Submit</p>
           </IconButton>

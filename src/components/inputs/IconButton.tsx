@@ -1,4 +1,4 @@
-import { Button, IconButton as RadixIconButton } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 
 interface IIconButtonProps {
   children: React.ReactNode;
@@ -16,12 +16,14 @@ function IconButton({
   children,
   onClick,
   loading,
+  disabled,
   size = "2",
 }: IIconButtonProps) {
   return (
     <Button
+      disabled={disabled}
       onClick={onClick}
-      className="cursor-pointer transition-all hover:text-primary"
+      className={`transition-all ${disabled ? "cursor-not-allowed" : "cursor-pointer hover:text-primary"} `}
       color="gray"
       variant="soft"
       loading={loading}

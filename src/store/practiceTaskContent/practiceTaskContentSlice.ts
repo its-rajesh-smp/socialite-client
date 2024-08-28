@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUser } from "../../types/auth";
 
 export interface IPracticeTaskContent {
   title: string;
   description: string;
   id: string;
-  submittedAt: Date;
+  submittedAt: Date | null;
   type: "resource" | "coding";
+  user: IUser | null;
 }
 
-const initialState = {
+const initialState: IPracticeTaskContent = {
   title: "",
   description: "",
   id: "",
   submittedAt: null,
   type: "resource",
+  user: null,
 };
 
 const practiceTaskContentSlice = createSlice({
