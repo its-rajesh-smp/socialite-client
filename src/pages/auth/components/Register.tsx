@@ -38,7 +38,9 @@ function Register({ authData, setAuthData }: IRegisterProps) {
       });
 
       dispatch(authenticateUser(response.data?.registerUser));
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
