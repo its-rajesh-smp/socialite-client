@@ -48,7 +48,7 @@ function CodeCompiler({ rightBottomPreviewContent }: ICodeCompilerProps) {
                   filterStrict: true,
                 }),
               ]}
-              extensionsKeymap={[completionKeymap]}
+              extensionsKeymap={[...completionKeymap]}
               wrapContent
               className="!h-full"
               closableTabs

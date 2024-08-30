@@ -11,8 +11,6 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 import { toast } from "react-toastify";
 
-const PORT = 8080;
-const HOST = "localhost";
 // const BASE_URL = `http://${HOST}:${PORT}/graphql`;
 // const WS_URL = `ws://${HOST}:${PORT}/graphql`;
 const BASE_URL = `https://socialite-server-its-rajesh-smp-rajesh-smps-projects.vercel.app/graphql`;

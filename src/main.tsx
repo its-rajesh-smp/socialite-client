@@ -6,7 +6,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import App from "./app/App";
+import App from "./app/App.tsx";
 import client from "./graphql/apollo.config";
 import "./index.css";
 import { store } from "./store/store";

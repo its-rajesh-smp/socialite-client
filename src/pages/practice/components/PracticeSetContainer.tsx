@@ -1,6 +1,5 @@
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import { accordionStates } from "../../../constants/common.const";
 import { DELETE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
 import authRoutes from "../../../router/paths/auth.routes";
 import { IPracticeSet } from "../../../types/practice";
