@@ -20,7 +20,6 @@ const httpLink = createHttpLink({
   uri: BASE_URL,
   headers: {
     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-    "Apollo-Require-Preflight": "true",
   },
 });
 
