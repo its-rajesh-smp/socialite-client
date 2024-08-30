@@ -16,7 +16,7 @@ function App() {
   }
 
   return (
-    <div className="app h-full w-full bg-primary">
+    <div className="h-full w-full bg-primary">
       <RouterProvider router={appRoutes} />
     </div>
   );
