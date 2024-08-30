@@ -16,14 +16,17 @@ function Editor({ className, onChange, value, editable = true }: IEditor) {
       JSON.stringify([
         {
           type: "paragraph",
-          content: "Welcome to this demo!",
+          content: "Write your description here...",
         },
       ]),
   );
 
-  const editor = useCreateBlockNote({
-    initialContent,
-  });
+  const editor = useCreateBlockNote(
+    {
+      initialContent,
+    },
+    [value],
+  );
 
   return (
     <BlockNoteView
