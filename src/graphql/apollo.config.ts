@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 // const BASE_URL = `http://${HOST}:${PORT}/graphql`;
 // const WS_URL = `ws://${HOST}:${PORT}/graphql`;
 const BASE_URL = `https://socialite-server-its-rajesh-smp-rajesh-smps-projects.vercel.app/graphql`;
-const WS_URL = `ws://socialite-server-its-rajesh-smp-rajesh-smps-projects.vercel.app/graphql`;
+const WS_URL = `wss://socialite-server-its-rajesh-smp-rajesh-smps-projects.vercel.app/graphql`;
 
 const httpLink = createHttpLink({
   uri: BASE_URL,
