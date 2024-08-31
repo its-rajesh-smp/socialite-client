@@ -1,7 +1,7 @@
 import { BiTestTube } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa";
 import { IoSettings, IoTerminalOutline } from "react-icons/io5";
-import { MdDescription, MdFileCopy, MdOutlineEditNote } from "react-icons/md";
+import { MdFileCopy, MdOutlineEditNote } from "react-icons/md";
 
 export enum CompilerTypes {
   static = "static",
