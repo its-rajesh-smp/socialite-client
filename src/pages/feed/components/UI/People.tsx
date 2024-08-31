@@ -10,7 +10,7 @@ function People() {
           radius="full"
         />
         <div>
-          <p className="text-sm font-medium">Rajesh Singha Maha Patra</p>
+          <p className="text-sm font-medium">Jhon Doe</p>
           <p className="text-xs font-medium text-[#858C97]">125k Following</p>
         </div>
       </div>

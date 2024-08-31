@@ -1,10 +1,13 @@
 import Calendar from "../../components/calendar/Calendar";
+import UnderConstructionContainer from "../../components/containers/UnderConstructionContainer";
 
 function MyCalendar() {
   return (
-    <div>
-      <Calendar />
-    </div>
+    <UnderConstructionContainer>
+      <div>
+        <Calendar />
+      </div>
+    </UnderConstructionContainer>
   );
 }
 

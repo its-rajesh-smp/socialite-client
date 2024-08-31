@@ -64,16 +64,15 @@ function ResourceTask() {
             </p>
           </Container>
           <hr />
-          {currentPracticeTask.description && (
-            <Editor
-              className="pt-2"
-              onChange={(value) =>
-                setEditedContent((prev) => ({ ...prev, description: value }))
-              }
-              editable={isEditing}
-              value={currentPracticeTask.description}
-            />
-          )}
+
+          <Editor
+            className="pt-2"
+            onChange={(value) =>
+              setEditedContent((prev) => ({ ...prev, description: value }))
+            }
+            editable={isEditing}
+            value={currentPracticeTask.description}
+          />
         </div>
         <ResourceTaskActionBar />
         {hasEditAccess && <ActionDropdown onSave={onContentSave} />}

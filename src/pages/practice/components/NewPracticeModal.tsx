@@ -1,7 +1,8 @@
 import { useMutation } from "@apollo/client";
-import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
+import { Dialog, Select, Separator } from "@radix-ui/themes";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import Button from "../../../components/inputs/Button";
 import Input from "../../../components/inputs/Input";
 import SelectInput from "../../../components/inputs/SelectInput";
 import Modal from "../../../components/others/Modal";
@@ -32,14 +33,15 @@ function NewPracticeModal({
     initialPracticeSetInputValue,
   );
 
-  const [mutateCreatePracticeSet] = useMutation(CREATE_PRACTICE_SET);
+  const [createPracticeSetMutation, { loading: createPracticeSetLoading }] =
+    useMutation(CREATE_PRACTICE_SET);
 
   // function to create a new practice set
   const handelCreatePracticeSet = async (e: any) => {
     e.preventDefault();
 
     try {
-      const data = await mutateCreatePracticeSet({
+      const data = await createPracticeSetMutation({
         variables: {
           data: practiceSetInput,
         },
@@ -59,7 +61,7 @@ function NewPracticeModal({
           Create Practice Set
         </p>
 
-        <Button onClick={() => setOpen(false)}>
+        <Button type="iconButton" onClick={() => setOpen(false)}>
           <IoCloseSharp className="cursor-pointer text-2xl" />
         </Button>
       </Dialog.Title>
@@ -107,8 +109,8 @@ function NewPracticeModal({
             </SelectInput>
           </div>
           <Button
+            loading={createPracticeSetLoading}
             onClick={handelCreatePracticeSet}
-            color="blue"
             className="cursor-pointer rounded-md px-2 py-1"
           >
             Create

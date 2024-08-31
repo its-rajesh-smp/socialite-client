@@ -2,19 +2,16 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { GET_A_PRACTICE_TASK } from "../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useAppSelector } from "../../hooks/useAppSelector";
 import { setPracticeTaskContent } from "../../store/practiceTaskContent/practiceTaskContentSlice";
 import ResourceTask from "./components/ResourceTask";
+import PracticeTaskContentSkeleton from "./components/UI/PracticeTaskContentSkeleton";
 
 function PracticeTaskContent() {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const currentPracticeTask = useAppSelector(
-    (state) => state.practiceTaskContentSlice,
-  );
 
   // Fetching the current practice task
-  useQuery(GET_A_PRACTICE_TASK, {
+  const { loading: loadingPracticeTask } = useQuery(GET_A_PRACTICE_TASK, {
     variables: {
       id: params.practiceTaskId,
     },
@@ -23,7 +20,9 @@ function PracticeTaskContent() {
     },
   });
 
-  if (!currentPracticeTask) return;
+  if (loadingPracticeTask) {
+    return <PracticeTaskContentSkeleton />;
+  }
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { GoBug } from "react-icons/go";
 import { toast } from "react-toastify";
-import IconButton from "../../../../components/inputs/IconButton";
+import Button from "../../../../components/inputs/Button";
 import { SUBMIT_TASK } from "../../../../graphql/practice/userSubmitTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
@@ -53,14 +53,14 @@ function ResourceTaskActionBar() {
               <span>{getTimeAgo(currentPracticeTask.submittedAt)}</span>
             </p>
           )}
-          <IconButton
+          <Button
             className="w-fit"
             loading={submitLoading}
             onClick={handleSubmitResourceTask}
             disabled={isEditing}
           >
             <p>Submit</p>
-          </IconButton>
+          </Button>
         </div>
       </div>
     </div>
