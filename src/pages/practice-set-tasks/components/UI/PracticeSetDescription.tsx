@@ -8,7 +8,7 @@ import {
 } from "react-icons/md";
 import { toast } from "react-toastify";
 import Container from "../../../../components/containers/Container";
-import IconButton from "../../../../components/inputs/IconButton";
+import Button from "../../../../components/inputs/Button";
 import Chip from "../../../../components/others/Chip";
 import { accordionStates } from "../../../../constants/common.const";
 import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
@@ -95,9 +95,9 @@ function PracticeSetDescription() {
                 </>
               )}
               {!isForked ? (
-                <IconButton loading={forkLoading} onClick={onForkBtnClick}>
+                <Button loading={forkLoading} onClick={onForkBtnClick}>
                   <MdOutlineAssignmentReturned />
-                </IconButton>
+                </Button>
               ) : (
                 <Chip>Forked</Chip>
               )}
