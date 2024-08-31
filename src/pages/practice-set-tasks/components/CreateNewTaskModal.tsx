@@ -1,8 +1,9 @@
 import { useMutation } from "@apollo/client";
-import { Button, Dialog, Select, Separator } from "@radix-ui/themes";
+import { Dialog, Select, Separator } from "@radix-ui/themes";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
+import Button from "../../../components/inputs/Button";
 import Input from "../../../components/inputs/Input";
 import SelectInput from "../../../components/inputs/SelectInput";
 import Modal from "../../../components/others/Modal";
@@ -27,7 +28,8 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
   const param = useParams();
   const dispatch = useAppDispatch();
   const [taskInput, setTaskInput] = useState(initialTaskInputValue);
-  const [mutateCreateSetTask] = useMutation(CREATE_PRACTICE_TASK);
+  const [createPracticeTaskMutation, { loading: createTaskLoading }] =
+    useMutation(CREATE_PRACTICE_TASK);
 
   /**
    * function to create a new task
@@ -41,7 +43,7 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
         practiceSetId: param.practiceSetId,
       };
 
-      const data = await mutateCreateSetTask({
+      const data = await createPracticeTaskMutation({
         variables: {
           data: payload,
         },
@@ -61,7 +63,7 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
           Create Practice Task
         </p>
 
-        <Button onClick={() => setOpen(false)}>
+        <Button type="iconButton" onClick={() => setOpen(false)}>
           <IoCloseSharp className="cursor-pointer text-2xl" />
         </Button>
       </Dialog.Title>
@@ -117,11 +119,7 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
                 </SelectInput>
               </div>
             </div>
-            <Button
-              onClick={handelCreateTask}
-              color="blue"
-              className="cursor-pointer rounded-md px-2 py-1"
-            >
+            <Button loading={createTaskLoading} onClick={handelCreateTask}>
               Create
             </Button>
           </div>

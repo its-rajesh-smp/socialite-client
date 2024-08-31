@@ -19,8 +19,13 @@ import {
   setPracticeSetDescAccordionState,
   toggleEditing,
 } from "../../../../store/practiceSetTask/practiceTaskActionSlice";
+import PracticeSetDescriptionSkeleton from "./PracticeSetDescriptionSkeleton";
 
-function PracticeSetDescription() {
+interface IPracticeSetDescriptionProps {
+  loading?: boolean;
+}
+
+function PracticeSetDescription({ loading }: IPracticeSetDescriptionProps) {
   const authenticatedUser = useAppSelector((state) => state.authSlice);
   const { currentPracticeSet } = useAppSelector(
     (state) => state.practiceSetTaskSlice,
@@ -65,6 +70,10 @@ function PracticeSetDescription() {
     });
   };
 
+  if (loading) {
+    return <PracticeSetDescriptionSkeleton />;
+  }
+
   return (
     <Container>
       <Accordion.Root
@@ -95,7 +104,11 @@ function PracticeSetDescription() {
                 </>
               )}
               {!isForked ? (
-                <Button loading={forkLoading} onClick={onForkBtnClick}>
+                <Button
+                  type="iconButton"
+                  loading={forkLoading}
+                  onClick={onForkBtnClick}
+                >
                   <MdOutlineAssignmentReturned />
                 </Button>
               ) : (

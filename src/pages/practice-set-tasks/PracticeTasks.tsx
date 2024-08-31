@@ -20,7 +20,7 @@ function PracticeTasks() {
   /**
    * Fetching practice set tasks with current practice set
    */
-  useQuery(GET_ALL_PRACTICE_TASKS, {
+  const { loading: loadingPracticeTasks } = useQuery(GET_ALL_PRACTICE_TASKS, {
     variables: {
       practiceSetId: params.practiceSetId,
     },
@@ -36,9 +36,9 @@ function PracticeTasks() {
 
   return (
     <div className="relative flex flex-col gap-5">
-      <PracticeSetDescription />
-      <PracticeTaskTabs />
-      <PracticeSetTaskContainer />
+      <PracticeSetDescription loading={loadingPracticeTasks} />
+      <PracticeTaskTabs loading={loadingPracticeTasks} />
+      <PracticeSetTaskContainer loading={loadingPracticeTasks} />
       <CreateNewTaskBtn />
     </div>
   );
