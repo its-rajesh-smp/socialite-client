@@ -56,9 +56,9 @@ function PreviewLeft() {
           className={`!h-[calc(100%-2.5rem)] ${currentLeftTabId === leftPanelTabs.note.id && !isCollapsedLeft ? "block" : "!hidden"}`}
         />
 
-        <Description
+        {/* <Description
           className={`!h-[calc(100%-2.5rem)] ${currentLeftTabId === leftPanelTabs.description.id && !isCollapsedLeft ? "block" : "!hidden"}`}
-        />
+        /> */}
       </div>
     </Panel>
   );

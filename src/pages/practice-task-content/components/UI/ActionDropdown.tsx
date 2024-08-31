@@ -6,12 +6,16 @@ import { toast } from "react-toastify";
 import DropDownMenu from "../../../../components/others/DropDownMenu";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { setPracticeTaskContentEditable } from "../../../../store/practiceTaskContent/practiceTaskContentActionSlice";
+import { useAppSelector } from "../../../../hooks/useAppSelector";
 
 interface IActionDropdownProps {
   onSave: () => void;
 }
 
 function ActionDropdown({ onSave }: IActionDropdownProps) {
+  const isEditing = useAppSelector(
+    (state) => state.practiceTaskContentActionSlice.isContentEditable,
+  );
   const dispatch = useAppDispatch();
 
   const onClickEdit = () => {
@@ -35,19 +39,22 @@ function ActionDropdown({ onSave }: IActionDropdownProps) {
         }
       >
         <DropdownMenu.Item
-          onClick={onClickEdit}
+          onClick={isEditing ? onClickSave : onClickEdit}
           className="flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm hover:bg-gray-100"
         >
-          <CiEdit className="text-xl text-primary" />
-          Edit
+          {isEditing ? (
+            <>
+              <CiSaveDown1 className="text-xl text-primary" />
+              Save
+            </>
+          ) : (
+            <>
+              <CiEdit className="text-xl text-primary" />
+              Edit
+            </>
+          )}
         </DropdownMenu.Item>
-        <DropdownMenu.Item
-          onClick={onClickSave}
-          className="flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm hover:bg-gray-100"
-        >
-          <CiSaveDown1 className="text-xl text-primary" />
-          Save
-        </DropdownMenu.Item>
+
         <DropdownMenu.Item className="flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm hover:bg-gray-100">
           <AiOutlineDelete className="text-xl text-primary" /> Delete
         </DropdownMenu.Item>

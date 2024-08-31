@@ -18,7 +18,7 @@ export const rightPanelTabs = {
 
 export const leftPanelTabs = {
   fileManager: { id: 0, name: "File Manager", icon: <MdFileCopy /> },
-  description: { id: 1, name: "Description", icon: <MdDescription /> },
+  // description: { id: 1, name: "Description", icon: <MdDescription /> },
   note: { id: 2, name: "Note", icon: <MdOutlineEditNote /> },
   setting: { id: 99, name: "Setting", icon: <IoSettings /> },
 };
