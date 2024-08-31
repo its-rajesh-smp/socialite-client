@@ -12,12 +12,15 @@ function Practice() {
   const param = useParams();
 
   // Fetching practice sets based on current tab
-  useQuery(getQueryBySlug(param.practiceTabSlug), {
-    onCompleted: (data) => {
-      setPracticeSets(normalizeData(data));
+  const { loading: loadingPracticeSets } = useQuery(
+    getQueryBySlug(param.practiceTabSlug),
+    {
+      onCompleted: (data) => {
+        setPracticeSets(normalizeData(data));
+      },
+      onError: (err) => console.log(err),
     },
-    onError: (err) => console.log(err),
-  });
+  );
 
   return (
     <div className="relative flex flex-col gap-5">
@@ -25,8 +28,9 @@ function Practice() {
         practiceSets={practiceSets}
         setPracticeSets={setPracticeSets}
       />
-      <PracticeSetTabs />
+      <PracticeSetTabs loading={loadingPracticeSets} />
       <PracticeSetContainer
+        loading={loadingPracticeSets}
         setPracticeSets={setPracticeSets}
         practiceSets={practiceSets}
       />

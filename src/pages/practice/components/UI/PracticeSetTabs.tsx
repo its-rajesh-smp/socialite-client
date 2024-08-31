@@ -4,8 +4,13 @@ import Container from "../../../../components/containers/Container";
 import { practiceTabs } from "../../../../constants/practice.const";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { setCurrentPracticeSetTab } from "../../../../store/practiceSet/practiceSetTabSlice";
+import PracticeSetTabsSkeleton from "./PracticeSetTabsSkeleton";
 
-function PracticeSetTabs() {
+interface IPracticeSetTabs {
+  loading?: boolean;
+}
+
+function PracticeSetTabs({ loading }: IPracticeSetTabs) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -13,6 +18,10 @@ function PracticeSetTabs() {
     dispatch(setCurrentPracticeSetTab(tab));
     navigate(`/practice/${tab.slug}`);
   };
+
+  if (loading) {
+    return <PracticeSetTabsSkeleton />;
+  }
 
   return (
     <Container className="flex justify-between">

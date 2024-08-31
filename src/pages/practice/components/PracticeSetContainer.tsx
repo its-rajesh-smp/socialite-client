@@ -5,15 +5,18 @@ import authRoutes from "../../../router/paths/auth.routes";
 import { IPracticeSet } from "../../../types/practice";
 import { generatePathNameWithParams } from "../../../utils/route";
 import PracticeSet from "./UI/PracticeSet";
+import PracticeSetContainerSkeleton from "./UI/PracticeSetContainerSkeleton";
 
 interface IPracticeSetContainerProps {
   practiceSets: IPracticeSet[];
   setPracticeSets: React.Dispatch<React.SetStateAction<any>>;
+  loading?: boolean;
 }
 
 function PracticeSetContainer({
   practiceSets,
   setPracticeSets,
+  loading,
 }: IPracticeSetContainerProps) {
   const navigate = useNavigate();
   const [mutateDelete] = useMutation(DELETE_PRACTICE_SET);
@@ -49,6 +52,8 @@ function PracticeSetContainer({
       console.log(error);
     }
   };
+
+  if (loading) return <PracticeSetContainerSkeleton />;
 
   return (
     <div className="flex flex-col gap-3">
