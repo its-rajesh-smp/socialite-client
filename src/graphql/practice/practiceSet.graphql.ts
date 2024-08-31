@@ -28,6 +28,20 @@ export const GET_MY_PRACTICE_SETS = gql`
   }
 `;
 
+export const GET_MY_FORKED_PRACTICE_SETS = gql`
+  query {
+    getMyForkedPracticeSets {
+      id
+      title
+      description
+      isCurrentUserForked
+      user {
+        id
+      }
+    }
+  }
+`;
+
 export const CREATE_PRACTICE_SET = gql`
   mutation createPracticeSet($data: CreatePracticeSetInput!) {
     createPracticeSet(practiceSetData: $data) {

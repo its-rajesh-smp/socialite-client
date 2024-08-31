@@ -1,6 +1,7 @@
 import { practiceTabs } from "../../../constants/practice.const";
 import {
   GET_ALL_PRACTICE_SETS,
+  GET_MY_FORKED_PRACTICE_SETS,
   GET_MY_PRACTICE_SETS,
 } from "../../../graphql/practice/practiceSet.graphql";
 
@@ -27,7 +28,7 @@ export const getQueryBySlug = (slug: string | undefined) => {
     case practiceTabs.createdByMe.slug:
       return GET_MY_PRACTICE_SETS;
     case practiceTabs.assignedToMe.slug:
-      return GET_MY_PRACTICE_SETS;
+      return GET_MY_FORKED_PRACTICE_SETS;
     default:
       return GET_ALL_PRACTICE_SETS;
   }

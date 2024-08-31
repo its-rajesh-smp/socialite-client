@@ -10,8 +10,8 @@ export const normalizeData = (data: any) => {
   if (data?.getMyPracticeSets) {
     return data.getMyPracticeSets;
   }
-  if (data?.getAssignedToMePracticeSets) {
-    return data.getAssignedToMePracticeSets;
+  if (data?.getMyForkedPracticeSets) {
+    return data.getMyForkedPracticeSets;
   }
   return [];
 };
