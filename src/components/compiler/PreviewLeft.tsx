@@ -7,15 +7,14 @@ import {
   onSizeChangeLeft,
   setPreviewTabLeft,
 } from "../../store/codeCompiler/codeCompilerPreviewSlice.ts";
+import CodeCompilerSetting from "./CodeCompilerSetting.tsx";
 import {
   COLLAPSE_PREVIEW_SIZE,
   DEFAULT_PREVIEW_SIZE,
   leftPanelTabs,
 } from "./constants.tsx";
-import Description from "./Description.tsx";
 import LeftSideTagsContainer from "./LeftSideTagsContainer.tsx";
 import Note from "./Note.tsx";
-import CodeCompilerSetting from "./CodeCompilerSetting.tsx";
 
 function PreviewLeft() {
   const { currentLeftTabId, isCollapsedLeft } = useAppSelector(
