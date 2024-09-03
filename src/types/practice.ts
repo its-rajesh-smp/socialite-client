@@ -19,4 +19,11 @@ export interface IPracticeQuestion {
   description: string;
   user: IUser;
   submittedAt: Date;
+  userTaskMetadata: IUserTaskMetadata;
+}
+
+export interface IUserTaskMetadata {
+  isBookmarked: boolean;
+  note: string;
+  submissionCount: number;
 }

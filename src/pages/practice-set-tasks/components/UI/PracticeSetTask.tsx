@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { BiCheck, BiCheckbox } from "react-icons/bi";
 import {
   MdDelete,
   MdHistory,
@@ -17,9 +18,13 @@ import { deletePracticeSetTask } from "../../../../store/practiceSetTask/practic
 import { IPracticeQuestion } from "../../../../types/practice";
 import { getTimeAgo } from "../../../../utils/date";
 import { generatePathNameWithParams } from "../../../../utils/route";
-import { BiCheck, BiCheckbox } from "react-icons/bi";
 
-function PracticeSetTask({ title, id, submittedAt }: IPracticeQuestion) {
+function PracticeSetTask({
+  title,
+  id,
+  submittedAt,
+  userTaskMetadata,
+}: IPracticeQuestion) {
   const { editing } = useAppSelector((state) => state.practiceTaskActionSlice);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -77,10 +82,12 @@ function PracticeSetTask({ title, id, submittedAt }: IPracticeQuestion) {
             </Chip>
           )}
 
-          <div className="flex items-center gap-0.5 text-xs text-gray-500">
-            <MdOutlineBarChart />
-            <p>250</p>
-          </div>
+          {userTaskMetadata?.submissionCount && (
+            <div className="flex items-center gap-0.5 text-xs text-gray-500">
+              <MdOutlineBarChart />
+              <p>{userTaskMetadata?.submissionCount}</p>
+            </div>
+          )}
 
           {editing && (
             <MdDelete

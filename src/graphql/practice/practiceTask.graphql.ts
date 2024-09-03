@@ -4,10 +4,14 @@ export const GET_ALL_PRACTICE_TASKS = gql`
   query getAllPracticeTasks($practiceSetId: String) {
     getAllPracticeTasks(practiceSetId: $practiceSetId) {
       id
-
       description
       title
       submittedAt
+      userTaskMetadata {
+        isBookmarked
+        note
+        submissionCount
+      }
     }
     getAPracticeSet(id: $practiceSetId) {
       id
