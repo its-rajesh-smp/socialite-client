@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isContentEditable: false,
+  isSidebarOpened: false,
 };
 
 const practiceTaskContentActionSlice = createSlice({
@@ -11,9 +12,12 @@ const practiceTaskContentActionSlice = createSlice({
     setPracticeTaskContentEditable: (state, action) => {
       state.isContentEditable = action.payload;
     },
+    setPracticeSetSidebar: (state, action) => {
+      state.isSidebarOpened = action.payload;
+    },
   },
 });
 
-export const { setPracticeTaskContentEditable } =
+export const { setPracticeTaskContentEditable, setPracticeSetSidebar } =
   practiceTaskContentActionSlice.actions;
 export default practiceTaskContentActionSlice.reducer;

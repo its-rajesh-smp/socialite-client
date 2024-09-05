@@ -27,3 +27,8 @@ export interface IUserTaskMetadata {
   note: string;
   submissionCount: number;
 }
+
+export interface ITaskTag {
+  id: string;
+  name: string;
+}

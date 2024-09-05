@@ -1,7 +1,7 @@
 import { Badge } from "@radix-ui/themes";
 
 interface IChipProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   color?:
     | "gray"
     | "gold"
@@ -33,6 +33,8 @@ interface IChipProps {
   className?: string;
   radius?: "small" | "full" | "none" | "medium" | "large";
   variant?: "soft" | "solid" | "surface" | "outline";
+  text?: string;
+  onClick?: () => void;
 }
 
 function Chip({
@@ -42,6 +44,8 @@ function Chip({
   size = "2",
   radius = "full",
   variant = "soft",
+  text = "",
+  onClick = () => {},
 }: IChipProps) {
   return (
     <Badge
@@ -50,8 +54,10 @@ function Chip({
       color={color}
       variant={variant}
       radius={radius}
+      onClick={onClick}
     >
-      {children}
+      {text && <p>{text}</p>}
+      {children && children}
     </Badge>
   );
 }

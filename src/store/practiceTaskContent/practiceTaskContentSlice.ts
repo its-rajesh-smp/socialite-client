@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../types/auth";
+import { ITaskTag } from "../../types/practice";
 
 export interface IPracticeTaskContent {
   title: string;
@@ -8,26 +9,46 @@ export interface IPracticeTaskContent {
   submittedAt: Date | null;
   type: "resource" | "coding";
   user: IUser | null;
+  taskTags: ITaskTag[];
 }
 
-const initialState: IPracticeTaskContent = {
-  title: "",
-  description: "",
-  id: "",
-  submittedAt: null,
-  type: "resource",
-  user: null,
+const initialState = {
+  currentTask: {
+    title: "",
+    description: "",
+    id: "",
+    submittedAt: null,
+    type: "resource",
+    user: null,
+    taskTags: [],
+  } as IPracticeTaskContent,
+  updatedTask: {
+    title: "",
+    description: "",
+    id: "",
+    submittedAt: null,
+    type: "resource",
+    user: null,
+    taskTags: [],
+  } as IPracticeTaskContent,
 };
 
 const practiceTaskContentSlice = createSlice({
   name: "practice task content",
   initialState: initialState,
   reducers: {
-    setPracticeTaskContent(_, action) {
-      return action.payload;
+    setPracticeTaskContent(state, action) {
+      state.currentTask = action.payload;
+      state.updatedTask = action.payload;
+      return state;
     },
+
     updatePracticeTaskContent(state, action) {
-      return { ...state, ...action.payload };
+      state.updatedTask = {
+        ...state.updatedTask,
+        ...action.payload,
+      };
+      return state;
     },
   },
 });

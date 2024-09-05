@@ -1,10 +1,11 @@
 import { Button as RadixButton } from "@radix-ui/themes";
 import Loader from "../others/Loader";
 
-interface IButtonProps {
+export interface IButtonProps {
   children: React.ReactNode;
   onClick?: (e: any) => any;
   className?: string;
+  childrenContainerClassName?: string;
   disabled?: boolean;
   loading?: boolean;
   title?: string;
@@ -47,6 +48,7 @@ function Button({
   type = "normal",
   color = "blue",
   className = "",
+  childrenContainerClassName = "",
 }: IButtonProps) {
   let finalClassName = `relative flex items-center justify-center ${className} transition-all ${disabled ? "cursor-not-allowed" : "cursor-pointer opacity-70 hover:opacity-100"}`;
   switch (type) {
@@ -69,7 +71,9 @@ function Button({
       color={color}
     >
       {loading && <Loader className="absolute text-lg" />}
-      <span className={`${loading ? "opacity-0" : "opacity-100"}`}>
+      <span
+        className={`${loading ? "opacity-0" : "opacity-100"} ${childrenContainerClassName}`}
+      >
         {children}
       </span>
     </RadixButton>

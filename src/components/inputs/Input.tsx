@@ -1,6 +1,7 @@
 import { TextArea } from "@radix-ui/themes";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { TagsInput } from "react-tag-input-component";
 
 type InputType =
   | "text"
@@ -9,7 +10,8 @@ type InputType =
   | "number"
   | "date"
   | "text-area"
-  | "editor";
+  | "editor"
+  | "tag";
 
 type InputProps = {
   placeholder?: string;
@@ -18,7 +20,9 @@ type InputProps = {
   containerClassName?: string;
   onChange?: (e: any) => void;
   value?: string;
+  tagValue?: string[];
   inputType?: InputType;
+  disabled?: boolean;
 };
 
 function Input({
@@ -29,6 +33,8 @@ function Input({
   value,
   inputType = "text",
   containerClassName = "",
+  tagValue = [],
+  disabled = false,
 }: InputProps) {
   switch (inputType) {
     case "text-area":
@@ -54,6 +60,19 @@ function Input({
             value={value}
             onChange={onChange}
             theme="snow"
+          />
+        </div>
+      );
+
+    case "tag":
+      return (
+        <div>
+          <TagsInput
+            value={tagValue}
+            onChange={onChange}
+            name={label}
+            placeHolder={placeholder}
+            disabled={disabled}
           />
         </div>
       );

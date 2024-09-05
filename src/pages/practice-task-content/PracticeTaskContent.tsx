@@ -2,8 +2,10 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { GET_A_PRACTICE_TASK } from "../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { setCurrentTaskTags } from "../../store/practiceSetTask/taskTagSlice";
 import { setPracticeTaskContent } from "../../store/practiceTaskContent/practiceTaskContentSlice";
-import ResourceTask from "./components/ResourceTask";
+import TaskContainerSidebar from "./components/TaskContainerSidebar/TaskContainerSidebar";
+import ResourceTask from "./components/TaskTypes/Resource/ResourceTask";
 import PracticeTaskContentSkeleton from "./components/UI/PracticeTaskContentSkeleton";
 
 function PracticeTaskContent() {
@@ -17,6 +19,7 @@ function PracticeTaskContent() {
     },
     onCompleted(response) {
       dispatch(setPracticeTaskContent(response.getAPracticeTask));
+      dispatch(setCurrentTaskTags(response.getAPracticeTask.taskTags));
     },
   });
 
@@ -25,9 +28,12 @@ function PracticeTaskContent() {
   }
 
   return (
-    <div>
-      {/* <CodingTask /> */}
-      <ResourceTask />
+    <div className="relative flex">
+      <div className="w-full">
+        {/* <CodingTask /> */}
+        <ResourceTask />
+      </div>
+      <TaskContainerSidebar />
     </div>
   );
 }

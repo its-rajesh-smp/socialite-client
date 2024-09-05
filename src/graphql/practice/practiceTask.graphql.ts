@@ -32,6 +32,10 @@ export const GET_A_PRACTICE_TASK = gql`
       description
       title
       submittedAt
+      taskTags {
+        id
+        name
+      }
       user {
         id
       }
