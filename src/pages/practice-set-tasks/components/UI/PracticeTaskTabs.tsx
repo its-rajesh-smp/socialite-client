@@ -1,5 +1,6 @@
-import { Button } from "@radix-ui/themes";
 import Container from "../../../../components/containers/Container";
+import Button from "../../../../components/inputs/Button";
+import { taskTabs } from "../../../../constants/task.const";
 import PracticeTasksTabsSkeleton from "./PracticeTasksTabsSkeleton";
 
 interface IPracticeTaskTabs {
@@ -14,12 +15,9 @@ function PracticeTaskTabs({ loading }: IPracticeTaskTabs) {
   return (
     <Container className="flex items-center justify-between">
       <div className="flex items-center gap-5">
-        <Button>All</Button>
-        <Button>Completed</Button>
-        <Button>Remaining</Button>
-      </div>
-      <div className="flex items-center gap-5">
-        <Button>Revision</Button>
+        {Object.values(taskTabs).map((tab) => (
+          <Button className="!rounded-md">{tab.name}</Button>
+        ))}
       </div>
     </Container>
   );

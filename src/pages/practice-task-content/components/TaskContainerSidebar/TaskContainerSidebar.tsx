@@ -14,7 +14,6 @@ function TaskContainerSidebar() {
   const isOpened = useAppSelector(
     (state) => state.practiceTaskContentActionSlice.isSidebarOpened,
   );
-
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   // Close sidebar when clicking outside
