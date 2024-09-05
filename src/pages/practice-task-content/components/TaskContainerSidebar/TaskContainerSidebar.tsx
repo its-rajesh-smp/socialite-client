@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import { MdClose, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import Button from "../../../../components/inputs/Button";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
+import useClickOutside from "../../../../hooks/useOutsideClick";
 import { setPracticeSetSidebar } from "../../../../store/practiceTaskContent/practiceTaskContentActionSlice";
 import EditTaskAction from "./UI/EditTaskAction";
 import SidebarSection from "./UI/SidebarSection";
@@ -13,10 +15,19 @@ function TaskContainerSidebar() {
     (state) => state.practiceTaskContentActionSlice.isSidebarOpened,
   );
 
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  // Close sidebar when clicking outside
+  useClickOutside(sidebarRef, () => {
+    if (isOpened) {
+      dispatch(setPracticeSetSidebar(false));
+    }
+  });
+
   // If sidebar is closed
   if (!isOpened)
     return (
-      <div className="absolute right-0 top-0 p-2">
+      <div className="absolute right-0 top-0 p-4">
         <Button
           onClick={() => dispatch(setPracticeSetSidebar(true))}
           type="iconButton"
@@ -29,7 +40,10 @@ function TaskContainerSidebar() {
   // If sidebar is opened
   return (
     isOpened && (
-      <div className="absolute right-0 top-0 flex h-full w-[500px] flex-col gap-4 overflow-hidden rounded-md border bg-primary_selected p-2 shadow-sm transition-all">
+      <div
+        ref={sidebarRef}
+        className={`absolute right-0 top-0 flex h-full w-1/3 flex-col gap-4 overflow-hidden rounded-md border bg-primary_selected p-4 shadow-sm transition-all`}
+      >
         <div className="self-end">
           <Button
             onClick={() => dispatch(setPracticeSetSidebar(false))}

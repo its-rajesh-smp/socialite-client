@@ -4,7 +4,10 @@ import Button from "../../../../../components/inputs/Button";
 import { useAppDispatch } from "../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
 import { updatePracticeTask } from "../../../../../store/practiceSetTask/actions/resourceTaskAction";
-import { setPracticeTaskContentEditable } from "../../../../../store/practiceTaskContent/practiceTaskContentActionSlice";
+import {
+  setPracticeSetSidebar,
+  setPracticeTaskContentEditable,
+} from "../../../../../store/practiceTaskContent/practiceTaskContentActionSlice";
 
 function EditTaskAction() {
   const isEditing = useAppSelector(
@@ -13,14 +16,16 @@ function EditTaskAction() {
   const dispatch = useAppDispatch();
 
   const onClickEdit = () => {
-    toast.info("Editing mode enabled");
     dispatch(setPracticeTaskContentEditable(true));
   };
 
   const onClickSave = () => {
     dispatch(setPracticeTaskContentEditable(false));
     dispatch(updatePracticeTask());
-    toast.info("Document is saved");
+    dispatch(setPracticeSetSidebar(false));
+    toast.success("Saved successfully", {
+      position: "top-center",
+    });
   };
 
   return (
