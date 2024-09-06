@@ -55,9 +55,13 @@ function TaskContainerSidebar() {
         <div className="flex h-full flex-col gap-4">
           <div className="flex h-fit w-full flex-col gap-4">
             {Object.values(taskContainerSidebarSections).map((section) => (
-              <SidebarSection key={section.title} {...section} />
+              <>
+                <hr />
+                <SidebarSection key={section.title} {...section} />
+              </>
             ))}
           </div>
+          <hr />
           <EditTaskAction />
         </div>
       </div>
