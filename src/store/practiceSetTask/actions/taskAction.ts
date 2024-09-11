@@ -3,6 +3,10 @@ import { UPDATE_PRACTICE_TASK } from "../../../graphql/practice/practiceTask.gra
 import { setPracticeTaskContent } from "../../practiceTaskContent/practiceTaskContentSlice";
 import { AppDispatch, RootState } from "../../store";
 
+/**
+ * Function to update practice task
+ * @returns void
+ */
 export const updatePracticeTask = () => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     const updatePracticeTask = getState().practiceTaskContentSlice.updatedTask;

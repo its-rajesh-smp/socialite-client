@@ -3,14 +3,19 @@ import { BiLink } from "react-icons/bi";
 import { MdDelete, MdOutlineBarChart, MdOutlineCheck } from "react-icons/md";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Container from "../../../../components/containers/Container";
 import Button from "../../../../components/inputs/Button";
 import Chip from "../../../../components/others/Chip";
 import { DELETE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
+import { SUBMIT_TASK } from "../../../../graphql/practice/userSubmitTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import authRoutes from "../../../../router/paths/auth.routes";
-import { deletePracticeSetTask } from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
+import {
+  deletePracticeSetTask,
+  updatePracticeSetTask,
+} from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import { IPracticeQuestion } from "../../../../types/practice";
 import { getTimeAgo } from "../../../../utils/date";
 import { generatePathNameWithParams } from "../../../../utils/route";
@@ -28,6 +33,8 @@ function PracticeSetTask({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [mutateDelete] = useMutation(DELETE_PRACTICE_TASK);
+  const [mutateSubmitResourceTask, { loading: submitLoading }] =
+    useMutation(SUBMIT_TASK);
 
   /**
    * Function to handle click on task
@@ -72,7 +79,23 @@ function PracticeSetTask({
   /**
    * Function to handle submit
    */
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: any) => {
+    e.stopPropagation();
+    const payload = {
+      practiceTaskId: id,
+      userResponse: "CONFIRM",
+      submittedAt: new Date(),
+    };
+    const response = await mutateSubmitResourceTask({
+      variables: {
+        data: payload,
+      },
+    });
+
+    const data = response.data?.submitUserTask;
+    dispatch(updatePracticeSetTask(data));
+    toast.success("Submitted successfully");
+  };
 
   return (
     <Container className="cursor-pointer" onClick={handleClick}>
@@ -134,6 +157,7 @@ function PracticeSetTask({
             color="green"
             type="iconButton"
             variant="ghost"
+            loading={submitLoading}
           >
             <MdOutlineCheck />
           </Button>

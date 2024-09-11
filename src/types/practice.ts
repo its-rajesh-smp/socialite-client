@@ -34,3 +34,13 @@ export interface ITaskTag {
   id: string;
   name: string;
 }
+
+export interface IPracticeTaskContent {
+  title: string;
+  description: string;
+  id: string;
+  submittedAt: Date | null;
+  type: "resource" | "coding";
+  user: IUser | null;
+  taskTags: ITaskTag[];
+}

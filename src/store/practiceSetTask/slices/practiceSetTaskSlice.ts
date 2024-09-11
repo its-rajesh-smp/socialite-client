@@ -58,13 +58,18 @@ const practiceSetTaskSlice = createSlice({
      * @returns
      */
     updatePracticeSetTask: (state, action) => {
-      const index = state.practiceTasks.findIndex(
-        (task) => task.id === action.payload.id,
-      );
-      state.practiceTasks[index] = {
-        ...state.practiceTasks[index],
-        ...action.payload,
-      };
+      const updatedTaskList = state.practiceTasks.map((task) => {
+        if (task.id === action.payload.id) {
+          return {
+            ...task,
+            ...action.payload,
+          };
+        }
+        return task;
+      });
+
+      state.practiceTasks = updatedTaskList;
+
       return state;
     },
 

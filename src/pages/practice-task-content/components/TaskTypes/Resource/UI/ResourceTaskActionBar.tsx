@@ -6,7 +6,7 @@ import { SUBMIT_TASK } from "../../../../../../graphql/practice/userSubmitTask.g
 import { useAppDispatch } from "../../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../../hooks/useAppSelector";
 import { updatePracticeSetTask } from "../../../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
-import { updatePracticeTaskContent } from "../../../../../../store/practiceTaskContent/practiceTaskContentSlice";
+import { updateTaskAfterSubmit } from "../../../../../../store/practiceTaskContent/practiceTaskContentSlice";
 import { getTimeAgo } from "../../../../../../utils/date";
 
 function ResourceTaskActionBar() {
@@ -34,9 +34,8 @@ function ResourceTaskActionBar() {
         data: payload,
       },
     });
-
     dispatch(updatePracticeSetTask({ submittedAt: payload.submittedAt }));
-    dispatch(updatePracticeTaskContent({ submittedAt: payload.submittedAt }));
+    dispatch(updateTaskAfterSubmit({ submittedAt: payload.submittedAt }));
     toast.success("Submitted successfully");
   };
 

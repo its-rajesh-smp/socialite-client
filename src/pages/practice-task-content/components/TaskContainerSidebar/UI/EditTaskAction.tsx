@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import Button from "../../../../../components/inputs/Button";
 import { useAppDispatch } from "../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
-import { updatePracticeTask } from "../../../../../store/practiceSetTask/actions/resourceTaskAction";
+import { updatePracticeTask } from "../../../../../store/practiceSetTask/actions/taskAction";
 import {
   setPracticeSetSidebar,
   setPracticeTaskContentEditable,
