@@ -7,12 +7,13 @@ import {
 } from "../../../../../graphql/practice/taskTag.graphql";
 import { useAppDispatch } from "../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
+
 import {
   addToAllTaskTag,
   addToCurrentTaskTag,
   deleteACurrentTaskTag,
   setAllTaskTags,
-} from "../../../../../store/practiceSetTask/taskTagSlice";
+} from "../../../../../store/practiceSetTask/slices/taskTagSlice";
 import { ITaskTag } from "../../../../../types/practice";
 
 function TaskTag() {

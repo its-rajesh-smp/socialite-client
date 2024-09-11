@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { GET_ALL_PRACTICE_TASKS } from "../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { setPracticeSetTasks } from "../../store/practiceSetTask/practiceSetTaskSlice";
+import { setPracticeSetTasks } from "../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import PracticeSetTaskContainer from "./components/PracticeSetTaskContainer";
 import CreateNewTaskBtn from "./components/UI/CreateNewTaskBtn";
 import PracticeSetDescription from "./components/UI/PracticeSetDescription";

@@ -12,7 +12,7 @@ import { Visibility } from "../../../constants/feed.const";
 import { taskTypes } from "../../../constants/task.const";
 import { CREATE_PRACTICE_TASK } from "../../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { addPracticeSetTask } from "../../../store/practiceSetTask/practiceSetTaskSlice";
+import { addPracticeSetTask } from "../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import { ITaskTag } from "../../../types/practice";
 
 interface ICreateNewTaskModalProps {

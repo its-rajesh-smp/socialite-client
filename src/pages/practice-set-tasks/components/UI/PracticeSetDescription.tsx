@@ -14,11 +14,11 @@ import { accordionStates } from "../../../../constants/common.const";
 import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
-import { updateCurrentPracticeSet } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
+import { updateCurrentPracticeSet } from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import {
   setPracticeSetDescAccordionState,
   toggleEditing,
-} from "../../../../store/practiceSetTask/practiceTaskActionSlice";
+} from "../../../../store/practiceSetTask/slices/practiceTaskActionSlice";
 import PracticeSetDescriptionSkeleton from "./PracticeSetDescriptionSkeleton";
 
 interface IPracticeSetDescriptionProps {

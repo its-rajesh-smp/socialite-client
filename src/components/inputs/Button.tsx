@@ -54,20 +54,20 @@ function Button({
   title = "",
   tooltip = false,
 }: IButtonProps) {
-  let finalClassName = `relative flex items-center justify-center ${className} transition-all ${
+  let finalClassName = `relative flex items-center justify-center ${className} transition-all rounded-md  ${
     disabled
       ? "cursor-not-allowed"
       : "cursor-pointer opacity-70 hover:opacity-100"
   }`;
   switch (type) {
     case "iconButton":
-      finalClassName += ` rounded-md p-1 text-2xl  `;
+      finalClassName += `  p-1 text-2xl  `;
       break;
     case "normal":
-      finalClassName += ` rounded-sm px-3 py-1 `;
+      finalClassName += `  px-3 py-1 `;
       break;
     default:
-      finalClassName += `rounded-sm px-3 py-1 `;
+      finalClassName += ` px-3 py-1 `;
       break;
   }
 

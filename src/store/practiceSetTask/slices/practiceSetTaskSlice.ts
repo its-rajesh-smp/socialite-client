@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import { IPracticeQuestion, IPracticeSet } from "../../types/practice";
+import { IPracticeQuestion, IPracticeSet } from "../../../types/practice";
 
 const initialState = {
   practiceTasks: [] as IPracticeQuestion[],

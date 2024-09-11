@@ -7,7 +7,7 @@ import { useAppSelector } from "../../../../hooks/useAppSelector";
 import {
   setPracticeSetDescAccordionState,
   setPracticeTaskEditing,
-} from "../../../../store/practiceSetTask/practiceTaskActionSlice";
+} from "../../../../store/practiceSetTask/slices/practiceTaskActionSlice";
 import { IPracticeSet } from "../../../../types/practice";
 
 function PracticeSet({

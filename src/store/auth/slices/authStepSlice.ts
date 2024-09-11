@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthSteps } from "../../constants/auth.const";
-import guestRoutes from "../../router/paths/guest.routes";
+import { AuthSteps } from "../../../constants/auth.const";
+import guestRoutes from "../../../router/paths/guest.routes";
 
 export interface IAuthStep {
   currentStep: number;

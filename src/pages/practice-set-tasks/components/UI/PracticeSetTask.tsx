@@ -10,7 +10,7 @@ import { DELETE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import authRoutes from "../../../../router/paths/auth.routes";
-import { deletePracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
+import { deletePracticeSetTask } from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import { IPracticeQuestion } from "../../../../types/practice";
 import { getTimeAgo } from "../../../../utils/date";
 import { generatePathNameWithParams } from "../../../../utils/route";

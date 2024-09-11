@@ -2,7 +2,7 @@ import { Button, Select } from "@radix-ui/themes";
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { setSettingData } from "../../store/codeCompiler/codeCompilerSettingSlice";
+import { setSettingData } from "../../store/codeCompiler/actions/codeCompilerSettingSlice";
 import Input from "../inputs/Input";
 import SelectInput from "../inputs/SelectInput";
 import { CompilerTypes } from "./constants";

@@ -1,10 +1,10 @@
-import { Button } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
 import Container from "../../../../components/containers/Container";
 import { practiceTabs } from "../../../../constants/practice.const";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { setCurrentPracticeSetTab } from "../../../../store/practiceSet/practiceSetTabSlice";
 import PracticeSetTabsSkeleton from "./PracticeSetTabsSkeleton";
+import Button from "../../../../components/inputs/Button";
 
 interface IPracticeSetTabs {
   loading?: boolean;
@@ -27,13 +27,14 @@ function PracticeSetTabs({ loading }: IPracticeSetTabs) {
     <Container className="flex justify-between">
       <div className="flex gap-5">
         {Object.values(practiceTabs).map((tab) => (
-          <Button onClick={() => onButtonClick(tab)} key={tab.id}>
+          <Button
+            color="indigo"
+            onClick={() => onButtonClick(tab)}
+            key={tab.id}
+          >
             {tab.name}
           </Button>
         ))}
-      </div>
-      <div>
-        <Button>Practice Today</Button>
       </div>
     </Container>
   );

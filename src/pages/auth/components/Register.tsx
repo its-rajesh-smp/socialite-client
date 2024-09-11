@@ -5,7 +5,7 @@ import { AuthSteps } from "../../../constants/auth.const";
 import { REGISTER_USER } from "../../../graphql/auth/auth.graphql";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { registerSchema } from "../../../schemas/auth.schema";
-import { authenticateUser } from "../../../store/auth/authSlice";
+import { authenticateUser } from "../../../store/auth/slices/authSlice";
 import { IAuthFormData } from "../Auth";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";

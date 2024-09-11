@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CompilerTypes } from "../../components/compiler/constants";
+import { CompilerTypes } from "../../../components/compiler/constants";
 
 const COMPILER_DEFAULT_DATA = "COMPILER_DEFAULT_DATA";
 

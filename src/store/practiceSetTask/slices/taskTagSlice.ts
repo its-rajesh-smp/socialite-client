@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ITaskTag } from "../../types/practice";
+import { ITaskTag } from "../../../types/practice";
 
 const initialState = {
   allTaskTags: [] as ITaskTag[],

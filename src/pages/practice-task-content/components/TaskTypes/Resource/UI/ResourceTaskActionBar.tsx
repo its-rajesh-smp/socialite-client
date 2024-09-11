@@ -5,7 +5,7 @@ import Button from "../../../../../../components/inputs/Button";
 import { SUBMIT_TASK } from "../../../../../../graphql/practice/userSubmitTask.graphql";
 import { useAppDispatch } from "../../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../../hooks/useAppSelector";
-import { updatePracticeSetTask } from "../../../../../../store/practiceSetTask/practiceSetTaskSlice";
+import { updatePracticeSetTask } from "../../../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import { updatePracticeTaskContent } from "../../../../../../store/practiceTaskContent/practiceTaskContentSlice";
 import { getTimeAgo } from "../../../../../../utils/date";
 

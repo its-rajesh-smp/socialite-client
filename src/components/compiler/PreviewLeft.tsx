@@ -6,7 +6,7 @@ import { useAppSelector } from "../../hooks/useAppSelector.ts";
 import {
   onSizeChangeLeft,
   setPreviewTabLeft,
-} from "../../store/codeCompiler/codeCompilerPreviewSlice.ts";
+} from "../../store/codeCompiler/actions/codeCompilerPreviewSlice.ts";
 import CodeCompilerSetting from "./CodeCompilerSetting.tsx";
 import {
   COLLAPSE_PREVIEW_SIZE,

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { accordionStates } from "../../constants/common.const";
+import { accordionStates } from "../../../constants/common.const";
 
 const initialState = {
   editing: false,

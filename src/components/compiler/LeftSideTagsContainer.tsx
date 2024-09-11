@@ -2,7 +2,7 @@ import { IoReorderThreeOutline } from "react-icons/io5";
 import { ImperativePanelHandle } from "react-resizable-panels";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { setCollapsedLeft } from "../../store/codeCompiler/codeCompilerPreviewSlice";
+import { setCollapsedLeft } from "../../store/codeCompiler/actions/codeCompilerPreviewSlice";
 import Tag from "../others/Tag";
 import {
   COLLAPSE_PREVIEW_SIZE,
