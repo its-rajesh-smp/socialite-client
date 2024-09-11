@@ -85,18 +85,20 @@ function CreateNewTaskModal({ setOpen, open }: ICreateNewTaskModalProps) {
             label="Title"
           />
 
-          <Input
-            containerClassName="!gap-1"
-            placeholder="Add your question's link"
-            label="Link"
-            value={taskInput?.questionLink || ""}
-            onChange={(e) =>
-              setTaskInput((prev) => ({
-                ...prev,
-                questionLink: e.target.value,
-              }))
-            }
-          />
+          {taskInput.taskType === taskTypes.LINK && (
+            <Input
+              containerClassName="!gap-1"
+              placeholder="Add your question's link"
+              label="Link"
+              value={taskInput?.questionLink || ""}
+              onChange={(e) =>
+                setTaskInput((prev) => ({
+                  ...prev,
+                  questionLink: e.target.value,
+                }))
+              }
+            />
+          )}
 
           <TagInput
             label="Tags"

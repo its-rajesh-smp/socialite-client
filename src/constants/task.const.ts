@@ -1,6 +1,6 @@
 export const taskTypes = {
   RESOURCE: "RESOURCE",
-  CODING: "CODING",
+  // CODING: "CODING",
   LINK: "LINK",
 };
 
