@@ -1,14 +1,10 @@
 import { useMutation } from "@apollo/client";
-import { BiCheck, BiCheckbox } from "react-icons/bi";
-import {
-  MdDelete,
-  MdHistory,
-  MdOutlineBarChart,
-  MdOutlineCheck,
-} from "react-icons/md";
+import { BiLink } from "react-icons/bi";
+import { MdDelete, MdOutlineBarChart, MdOutlineCheck } from "react-icons/md";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import Container from "../../../../components/containers/Container";
+import Button from "../../../../components/inputs/Button";
 import Chip from "../../../../components/others/Chip";
 import { DELETE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
@@ -18,12 +14,15 @@ import { deletePracticeSetTask } from "../../../../store/practiceSetTask/practic
 import { IPracticeQuestion } from "../../../../types/practice";
 import { getTimeAgo } from "../../../../utils/date";
 import { generatePathNameWithParams } from "../../../../utils/route";
+import TaskHardnessDot from "./TaskHardnessDot";
 
 function PracticeSetTask({
   title,
   id,
   submittedAt,
   userTaskMetadata,
+  questionLink,
+  taskTags,
 }: IPracticeQuestion) {
   const { editing } = useAppSelector((state) => state.practiceTaskActionSlice);
   const navigate = useNavigate();
@@ -60,6 +59,21 @@ function PracticeSetTask({
     }
   };
 
+  /**
+   * Function to handle click on question link
+   */
+  const handelQuestionLinkClick = (e: any) => {
+    e.stopPropagation();
+    if (questionLink) {
+      window.open(questionLink, "_blank");
+    }
+  };
+
+  /**
+   * Function to handle submit
+   */
+  const handleSubmit = () => {};
+
   return (
     <Container className="cursor-pointer" onClick={handleClick}>
       <div className="flex items-center justify-between">
@@ -68,9 +82,7 @@ function PracticeSetTask({
             <RxDragHandleDots2 className="cursor-move text-xl text-gray-500" />
           )}
 
-          <p className="text-2xl">
-            {submittedAt ? <BiCheck /> : <BiCheckbox />}
-          </p>
+          <TaskHardnessDot isSubmitted={submittedAt} tags={taskTags} />
 
           <p className="text-sm">{title}</p>
         </div>
@@ -90,13 +102,41 @@ function PracticeSetTask({
           )}
 
           {editing && (
-            <MdDelete
+            <Button
+              tooltip={true}
+              title="Delete"
               onClick={handleDelete}
-              className="cursor-pointer text-xl text-red-500 hover:text-red-600"
-            />
+              color="red"
+              type="iconButton"
+              variant="ghost"
+            >
+              <MdDelete />
+            </Button>
           )}
-          <MdHistory className="cursor-pointer text-xl text-blue-500 hover:text-blue-600" />
-          <MdOutlineCheck className="cursor-pointer text-xl text-green-500 hover:text-green-600" />
+
+          {questionLink && (
+            <Button
+              onClick={handelQuestionLinkClick}
+              tooltip={true}
+              title="Question Link"
+              color="blue"
+              type="iconButton"
+              variant="ghost"
+            >
+              <BiLink />
+            </Button>
+          )}
+
+          <Button
+            onClick={handleSubmit}
+            title="Submit"
+            tooltip={true}
+            color="green"
+            type="iconButton"
+            variant="ghost"
+          >
+            <MdOutlineCheck />
+          </Button>
         </div>
       </div>
     </Container>

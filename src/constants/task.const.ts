@@ -1,6 +1,7 @@
 export const taskTypes = {
   RESOURCE: "RESOURCE",
   CODING: "CODING",
+  LINK: "LINK",
 };
 
 export const taskTabs = {
@@ -20,4 +21,10 @@ export const taskTabs = {
     slug: "remaining",
     id: 2,
   },
+};
+
+export const commonTagColors = {
+  hard: "red",
+  medium: "yellow",
+  easy: "green",
 };

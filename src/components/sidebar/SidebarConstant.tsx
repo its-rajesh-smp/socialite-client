@@ -6,7 +6,7 @@ const sidebarItems = {
     id: 1,
     name: "Feed",
     iconImage: "https://cdn-icons-png.flaticon.com/512/2163/2163350.png",
-    status: "live",
+    status: "archived",
     path: authRoutes.FEED,
   },
   message: {
@@ -49,7 +49,7 @@ const sidebarItems = {
     name: "Courses",
     path: authRoutes.COURSES,
     iconImage: "https://cdn-icons-png.flaticon.com/512/3352/3352681.png",
-    status: "live",
+    status: "archived",
   },
   practice: {
     id: 8,
@@ -64,14 +64,14 @@ const sidebarItems = {
     name: "Compiler",
     path: authRoutes.COMPILER,
     iconImage: "https://cdn-icons-png.flaticon.com/512/3573/3573187.png",
-    status: "live",
+    status: "archived",
   },
   myCalendar: {
     id: 10,
     name: "My Calendar",
     path: authRoutes.MY_CALENDAR,
     iconImage: "https://cdn-icons-png.flaticon.com/512/10692/10692035.png",
-    status: "live",
+    status: "archived",
   },
 };
 

@@ -71,7 +71,7 @@ function Input({
             value={tagValue}
             onChange={onChange}
             name={label}
-            placeHolder={placeholder}
+            placeHolder={tagValue.length === 0 ? placeholder : ""}
             disabled={disabled}
           />
         </div>

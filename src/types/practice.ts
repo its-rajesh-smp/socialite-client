@@ -20,6 +20,8 @@ export interface IPracticeQuestion {
   user: IUser;
   submittedAt: Date;
   userTaskMetadata: IUserTaskMetadata;
+  taskTags: ITaskTag[];
+  questionLink: string;
 }
 
 export interface IUserTaskMetadata {

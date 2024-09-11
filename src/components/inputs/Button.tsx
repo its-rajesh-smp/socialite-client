@@ -1,4 +1,4 @@
-import { Button as RadixButton } from "@radix-ui/themes";
+import { Button as RadixButton, Tooltip } from "@radix-ui/themes";
 import Loader from "../others/Loader";
 
 export interface IButtonProps {
@@ -8,7 +8,6 @@ export interface IButtonProps {
   childrenContainerClassName?: string;
   disabled?: boolean;
   loading?: boolean;
-  title?: string;
   variant?: "outline" | "classic" | "solid" | "soft" | "surface" | "ghost";
   type?: "normal" | "iconButton";
   color?:
@@ -38,6 +37,8 @@ export interface IButtonProps {
     | "lime"
     | "mint"
     | "sky";
+  title?: string;
+  tooltip?: boolean;
 }
 
 function Button({
@@ -48,9 +49,16 @@ function Button({
   type = "normal",
   color = "blue",
   className = "",
+  variant = "solid",
   childrenContainerClassName = "",
+  title = "",
+  tooltip = false,
 }: IButtonProps) {
-  let finalClassName = `relative flex items-center justify-center ${className} transition-all ${disabled ? "cursor-not-allowed" : "cursor-pointer opacity-70 hover:opacity-100"}`;
+  let finalClassName = `relative flex items-center justify-center ${className} transition-all ${
+    disabled
+      ? "cursor-not-allowed"
+      : "cursor-pointer opacity-70 hover:opacity-100"
+  }`;
   switch (type) {
     case "iconButton":
       finalClassName += ` rounded-md p-1 text-2xl  `;
@@ -63,12 +71,13 @@ function Button({
       break;
   }
 
-  return (
+  const buttonContent = (
     <RadixButton
       disabled={disabled || loading}
       onClick={onClick}
       className={finalClassName}
       color={color}
+      variant={variant}
     >
       {loading && <Loader className="absolute text-lg" />}
       <span
@@ -78,6 +87,17 @@ function Button({
       </span>
     </RadixButton>
   );
+
+  if (tooltip && title) {
+    return (
+      <Tooltip disableHoverableContent={true} content={title}>
+        {buttonContent}
+      </Tooltip>
+    );
+  }
+
+  // Return the button without a Tooltip if no valid title or tooltip is false
+  return buttonContent;
 }
 
 export default Button;
