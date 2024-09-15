@@ -14,34 +14,37 @@ import { toast } from "react-toastify";
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
 const WS_URL = import.meta.env.VITE_SERVER_URL_WSS;
 
-const httpLink = createHttpLink({
-  uri: BASE_URL,
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  },
-});
-
-const wsLink = new GraphQLWsLink(
-  createClient({
-    url: WS_URL,
-    connectionParams: {
+const getHttpLink = () =>
+  createHttpLink({
+    uri: BASE_URL,
+    headers: {
       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      "Apollo-Require-Preflight": "true",
     },
-  }),
-);
+  });
 
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === "OperationDefinition" &&
-      definition.operation === "subscription"
-    );
-  },
-  wsLink,
-  httpLink,
-);
+const getWsLink = () =>
+  new GraphQLWsLink(
+    createClient({
+      url: WS_URL,
+      connectionParams: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "Apollo-Require-Preflight": "true",
+      },
+    }),
+  );
+
+const getSplitLink = () =>
+  split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === "OperationDefinition" &&
+        definition.operation === "subscription"
+      );
+    },
+    getHttpLink(),
+    getWsLink(),
+  );
 
 // Error handling link
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -59,11 +62,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 // Combine the error link with the rest of the links
-const link = ApolloLink.from([errorLink, splitLink]);
+const getClientLink = () => ApolloLink.from([errorLink, getSplitLink()]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link,
+  link: getClientLink(),
   defaultOptions: {
     watchQuery: {
       fetchPolicy: "network-only", // or 'no-cache'
@@ -73,5 +76,9 @@ const client = new ApolloClient({
     },
   },
 });
+
+export const resetClient = () => {
+  client.setLink(getClientLink());
+};
 
 export default client;

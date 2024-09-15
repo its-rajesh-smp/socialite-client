@@ -1,15 +1,14 @@
 import { useMutation } from "@apollo/client";
-import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
 import { LOGIN_USER } from "../../../graphql/auth/auth.graphql";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { loginSchema } from "../../../schemas/auth.schema";
 import { authenticateUser } from "../../../store/auth/slices/authSlice";
+import { IAuthFormData } from "../Auth";
 import AuthBrand from "./AuthBrand";
 import AuthButtonGroup from "./AuthButtonGroup";
 import AuthHeading from "./AuthHeading";
-import { IAuthFormData } from "../Auth";
 
 interface ILoginProps {
   authData: IAuthFormData;
@@ -23,7 +22,8 @@ function Login({ authData, setAuthData }: ILoginProps) {
   /**
    * Handles the login button click event.
    */
-  const onLoginBtnClick = async () => {
+  const onLoginBtnClick = async (e: any) => {
+    e.preventDefault();
     try {
       const authPayload = loginSchema.parse(authData);
       const response = await mutateLogin({
@@ -50,30 +50,31 @@ function Login({ authData, setAuthData }: ILoginProps) {
         />
 
         {/* FORM SECTION */}
-        <div className="flex flex-col gap-4">
-          <Input
-            onChange={(e) =>
-              setAuthData((prev: IAuthFormData) => ({
-                ...prev,
-                email: e.target.value,
-              }))
-            }
-            value={authData.email}
-            label="Email address"
-            placeholder="Email"
-          />
-          <Input
-            onChange={(e) =>
-              setAuthData((prev: IAuthFormData) => ({
-                ...prev,
-                password: e.target.value,
-              }))
-            }
-            value={authData.password}
-            label="Password"
-            placeholder="***"
-          />
-          <div className="flex items-center justify-between">
+        <form onSubmit={onLoginBtnClick} className="flex flex-col gap-7">
+          <div className="flex flex-col gap-4">
+            <Input
+              onChange={(e) =>
+                setAuthData((prev: IAuthFormData) => ({
+                  ...prev,
+                  email: e.target.value,
+                }))
+              }
+              value={authData.email}
+              label="Email address"
+              placeholder="Email"
+            />
+            <Input
+              onChange={(e) =>
+                setAuthData((prev: IAuthFormData) => ({
+                  ...prev,
+                  password: e.target.value,
+                }))
+              }
+              value={authData.password}
+              label="Password"
+              placeholder="***"
+            />
+            {/* <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Checkbox
                 onChange={() =>
@@ -89,14 +90,15 @@ function Login({ authData, setAuthData }: ILoginProps) {
             <p className="cursor-pointer text-sm font-semibold text-blue-600">
               Forgot Password
             </p>
+          </div> */}
           </div>
-        </div>
 
-        {/* BTN GROUPS */}
-        <AuthButtonGroup
-          mainButtonCallback={onLoginBtnClick}
-          mainBtnText="Sign In"
-        />
+          {/* BTN GROUPS */}
+          <AuthButtonGroup
+            mainButtonCallback={onLoginBtnClick}
+            mainBtnText="Sign In"
+          />
+        </form>
       </div>
     </div>
   );

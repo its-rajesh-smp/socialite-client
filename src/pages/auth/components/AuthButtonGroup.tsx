@@ -1,9 +1,8 @@
 import { Button } from "@radix-ui/themes";
-import { FaGoogle } from "react-icons/fa";
 
 interface IAuthButtonGroupProps {
   mainBtnText?: string;
-  mainButtonCallback?: () => void;
+  mainButtonCallback?: (e: any) => void;
 }
 
 function AuthButtonGroup({
@@ -14,16 +13,16 @@ function AuthButtonGroup({
     <>
       {/* SIGN IN BTN */}
       <Button onClick={mainButtonCallback}>{mainBtnText}</Button>
-      <div className="flex items-center justify-center">
+      {/* <div className="flex items-center justify-center">
         <hr className="w-1/2 md:w-full" />
         <span className="mx-0 w-full text-center text-xs font-semibold md:mx-5 md:text-sm">
           Or continue with
         </span>
         <hr className="w-1/2 md:w-full" />
-      </div>
+      </div> */}
 
       {/* BTN GROUPS */}
-      <div className="flex items-center justify-center gap-5 md:justify-between md:gap-5">
+      {/* <div className="flex items-center justify-center gap-5 md:justify-between md:gap-5">
         <Button className="px-6">
           <FaGoogle />
           <span className="hidden md:block">Google</span>
@@ -36,7 +35,7 @@ function AuthButtonGroup({
           <FaGoogle />
           <span className="hidden md:block">Google</span>
         </Button>
-      </div>
+      </div> */}
     </>
   );
 }
