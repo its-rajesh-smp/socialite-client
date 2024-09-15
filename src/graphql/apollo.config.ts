@@ -6,13 +6,11 @@ import {
   split,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
-import { createClient } from "graphql-ws";
 import { toast } from "react-toastify";
 
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
-const WS_URL = import.meta.env.VITE_SERVER_URL_WSS;
+// const WS_URL = import.meta.env.VITE_SERVER_URL_WSS;
 
 const getHttpLink = () =>
   createHttpLink({
@@ -22,16 +20,16 @@ const getHttpLink = () =>
     },
   });
 
-const getWsLink = () =>
-  new GraphQLWsLink(
-    createClient({
-      url: WS_URL,
-      connectionParams: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        "Apollo-Require-Preflight": "true",
-      },
-    }),
-  );
+// const getWsLink = () =>
+//   new GraphQLWsLink(
+//     createClient({
+//       url: WS_URL,
+//       connectionParams: {
+//         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+//         "Apollo-Require-Preflight": "true",
+//       },
+//     }),
+//   );
 
 const getSplitLink = () =>
   split(
@@ -58,6 +56,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
   if (networkError) {
     console.error(`[Network error]: ${networkError}`);
+    toast.error(`Oops! Something went wrong.`);
   }
 });
 
