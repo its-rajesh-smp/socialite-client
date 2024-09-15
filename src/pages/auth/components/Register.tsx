@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import { Checkbox } from "@radix-ui/themes";
 import Input from "../../../components/inputs/Input";
 import { AuthSteps } from "../../../constants/auth.const";
 import { REGISTER_USER } from "../../../graphql/auth/auth.graphql";
@@ -23,7 +22,8 @@ function Register({ authData, setAuthData }: IRegisterProps) {
   /**
    * Handles the register button click event.
    */
-  const onRegisterBtnClick = async () => {
+  const onRegisterBtnClick = async (e: any) => {
+    e.preventDefault();
     try {
       const authPayload = registerSchema.parse(authData);
 
@@ -58,70 +58,71 @@ function Register({ authData, setAuthData }: IRegisterProps) {
         />
 
         {/* FORM SECTION */}
-        <div className="flex flex-col gap-4">
-          <div className="flex w-full flex-col items-center justify-between gap-5 md:flex-row">
-            <Input
-              onChange={(e) =>
-                setAuthData((prev: IAuthFormData) => ({
-                  ...prev,
-                  firstName: e.target.value,
-                }))
-              }
-              value={authData.firstName}
-              label="First name"
-              placeholder="First name"
-            />
-            <Input
-              onChange={(e) =>
-                setAuthData((prev: IAuthFormData) => ({
-                  ...prev,
-                  lastName: e.target.value,
-                }))
-              }
-              value={authData.lastName}
-              label="Last name"
-              placeholder="Last name"
-            />
-          </div>
+        <form onSubmit={onRegisterBtnClick} className="flex flex-col gap-7">
+          <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col items-center justify-between gap-5 md:flex-row">
+              <Input
+                onChange={(e) =>
+                  setAuthData((prev: IAuthFormData) => ({
+                    ...prev,
+                    firstName: e.target.value,
+                  }))
+                }
+                value={authData.firstName}
+                label="First name"
+                placeholder="First name"
+              />
+              <Input
+                onChange={(e) =>
+                  setAuthData((prev: IAuthFormData) => ({
+                    ...prev,
+                    lastName: e.target.value,
+                  }))
+                }
+                value={authData.lastName}
+                label="Last name"
+                placeholder="Last name"
+              />
+            </div>
 
-          <Input
-            onChange={(e) =>
-              setAuthData((prev: IAuthFormData) => ({
-                ...prev,
-                email: e.target.value,
-              }))
-            }
-            value={authData.email}
-            label="Email address"
-            placeholder="Email"
-          />
-
-          <div className="flex flex-col items-center justify-between gap-5 md:flex-row">
             <Input
               onChange={(e) =>
                 setAuthData((prev: IAuthFormData) => ({
                   ...prev,
-                  password: e.target.value,
+                  email: e.target.value,
                 }))
               }
-              value={authData.password}
-              label="Password"
-              placeholder="***"
+              value={authData.email}
+              label="Email address"
+              placeholder="Email"
             />
-            <Input
-              onChange={(e) =>
-                setAuthData((prev: IAuthFormData) => ({
-                  ...prev,
-                  confirmPassword: e.target.value,
-                }))
-              }
-              value={authData.confirmPassword}
-              label="Confirm Password"
-              placeholder="***"
-            />
-          </div>
 
-          <div className="flex items-center justify-between">
+            <div className="flex flex-col items-center justify-between gap-5 md:flex-row">
+              <Input
+                onChange={(e) =>
+                  setAuthData((prev: IAuthFormData) => ({
+                    ...prev,
+                    password: e.target.value,
+                  }))
+                }
+                value={authData.password}
+                label="Password"
+                placeholder="***"
+              />
+              <Input
+                onChange={(e) =>
+                  setAuthData((prev: IAuthFormData) => ({
+                    ...prev,
+                    confirmPassword: e.target.value,
+                  }))
+                }
+                value={authData.confirmPassword}
+                label="Confirm Password"
+                placeholder="***"
+              />
+            </div>
+
+            {/* <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Checkbox
                 onClick={() => {
@@ -139,14 +140,15 @@ function Register({ authData, setAuthData }: IRegisterProps) {
                 </span>
               </p>
             </div>
+          </div> */}
           </div>
-        </div>
 
-        {/* BTN GROUPS */}
-        <AuthButtonGroup
-          mainButtonCallback={onRegisterBtnClick}
-          mainBtnText="Get Started"
-        />
+          {/* BTN GROUPS */}
+          <AuthButtonGroup
+            mainButtonCallback={onRegisterBtnClick}
+            mainBtnText="Get Started"
+          />
+        </form>
       </div>
     </div>
   );

@@ -8,9 +8,9 @@ export const loginSchema = z.object({
 export const registerSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required"),
   lastName: z.string().trim().optional(),
-  agreeToTerms: z.boolean().refine((val) => val === true, {
-    message: "You must agree to the terms",
-  }),
+  // agreeToTerms: z.boolean().refine((val) => val === true, {
+  //   message: "You must agree to the terms",
+  // }),
   email: z
     .string()
     .trim()

@@ -1,5 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { resetClient } from "../../../graphql/apollo.config";
 
 export interface IAuthState {
   accessToken: string;
@@ -10,7 +11,7 @@ export interface IAuthState {
   id: string;
 }
 
-const initialState: IAuthState = {
+const defaultState: IAuthState = {
   accessToken: "",
   isAuthenticated: false,
   isLoading: true,
@@ -21,10 +22,14 @@ const initialState: IAuthState = {
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: defaultState,
   reducers: {
     authenticateUser: (_, action: PayloadAction<IAuthState>) => {
       localStorage.setItem("accessToken", action.payload.accessToken);
+      // Since we are using apollo client, we need to reset the client
+      // So that we can use the new token
+      resetClient();
+
       return {
         ...action.payload,
         isAuthenticated: true,
@@ -35,8 +40,14 @@ const authSlice = createSlice({
     setUserLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+
+    logout: () => {
+      localStorage.clear();
+      resetClient();
+      return { ...defaultState, isLoading: false };
+    },
   },
 });
 
-export const { authenticateUser, setUserLoading } = authSlice.actions;
+export const { authenticateUser, setUserLoading, logout } = authSlice.actions;
 export default authSlice.reducer;
