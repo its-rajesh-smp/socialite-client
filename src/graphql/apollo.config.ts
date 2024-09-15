@@ -3,16 +3,12 @@ import {
   ApolloLink,
   InMemoryCache,
   createHttpLink,
-  split,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
-import { getMainDefinition } from "@apollo/client/utilities";
-import { createClient } from "graphql-ws";
 import { toast } from "react-toastify";
 
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
-const WS_URL = import.meta.env.VITE_SERVER_URL_WSS;
+// const WS_URL = import.meta.env.VITE_SERVER_URL_WSS;
 
 const getHttpLink = () =>
   createHttpLink({
@@ -22,31 +18,39 @@ const getHttpLink = () =>
     },
   });
 
-const getWsLink = () =>
-  new GraphQLWsLink(
-    createClient({
-      url: WS_URL,
-      connectionParams: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        "Apollo-Require-Preflight": "true",
-      },
-    }),
-  );
+/**
+ * This function is used for generating subscriptions link
+ */
+// const getWsLink = () =>
+//   new GraphQLWsLink(
+//     createClient({
+//       url: WS_URL,
+//       connectionParams: {
+//         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+//         "Apollo-Require-Preflight": "true",
+//       },
+//     }),
+//   );
 
-const getSplitLink = () =>
-  split(
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-      return (
-        definition.kind === "OperationDefinition" &&
-        definition.operation === "subscription"
-      );
-    },
-    getHttpLink(),
-    getWsLink(),
-  );
+/**
+ * Split link to handle subscriptions and non-subscriptions queries
+ */
+// const getSplitLink = () =>
+//   split(
+//     ({ query }) => {
+//       const definition = getMainDefinition(query);
+//       return (
+//         definition.kind === "OperationDefinition" &&
+//         definition.operation === "subscription"
+//       );
+//     },
+//     getHttpLink(),
+//     // getWsLink(),
+//   );
 
-// Error handling link
+/**
+ * This function is used for handling graphql errors
+ */
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path }) => {
@@ -61,8 +65,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-// Combine the error link with the rest of the links
-const getClientLink = () => ApolloLink.from([errorLink, getSplitLink()]);
+/**
+ * This function is used for generating client link
+ * @returns  ApolloLink
+ */
+const getClientLink = () => ApolloLink.from([errorLink, getHttpLink()]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -77,6 +84,9 @@ const client = new ApolloClient({
   },
 });
 
+/**
+ * This function is used for resetting client
+ */
 export const resetClient = () => {
   client.setLink(getClientLink());
 };
