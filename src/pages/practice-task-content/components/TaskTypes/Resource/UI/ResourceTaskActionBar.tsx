@@ -1,17 +1,17 @@
 import { useMutation } from "@apollo/client";
 import { GoBug } from "react-icons/go";
 import { toast } from "react-toastify";
-import Button from "../../../../components/inputs/Button";
-import { SUBMIT_TASK } from "../../../../graphql/practice/userSubmitTask.graphql";
-import { useAppDispatch } from "../../../../hooks/useAppDispatch";
-import { useAppSelector } from "../../../../hooks/useAppSelector";
-import { updatePracticeSetTask } from "../../../../store/practiceSetTask/practiceSetTaskSlice";
-import { updatePracticeTaskContent } from "../../../../store/practiceTaskContent/practiceTaskContentSlice";
-import { getTimeAgo } from "../../../../utils/date";
+import Button from "../../../../../../components/inputs/Button";
+import { SUBMIT_TASK } from "../../../../../../graphql/practice/userSubmitTask.graphql";
+import { useAppDispatch } from "../../../../../../hooks/useAppDispatch";
+import { useAppSelector } from "../../../../../../hooks/useAppSelector";
+import { updatePracticeSetTask } from "../../../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
+import { updateTaskAfterSubmit } from "../../../../../../store/practiceTaskContent/practiceTaskContentSlice";
+import { getTimeAgo } from "../../../../../../utils/date";
 
 function ResourceTaskActionBar() {
   const currentPracticeTask = useAppSelector(
-    (state) => state.practiceTaskContentSlice,
+    (state) => state.practiceTaskContentSlice.currentTask,
   );
   const isEditing = useAppSelector(
     (state) => state.practiceTaskContentActionSlice.isContentEditable,
@@ -34,9 +34,8 @@ function ResourceTaskActionBar() {
         data: payload,
       },
     });
-
     dispatch(updatePracticeSetTask({ submittedAt: payload.submittedAt }));
-    dispatch(updatePracticeTaskContent({ submittedAt: payload.submittedAt }));
+    dispatch(updateTaskAfterSubmit({ submittedAt: payload.submittedAt }));
     toast.success("Submitted successfully");
   };
 

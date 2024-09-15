@@ -1,25 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./auth/authSlice";
-import authStepSlice from "./auth/authStepSlice";
-import codeCompilerPreviewSlice from "./codeCompiler/codeCompilerPreviewSlice";
-import codeCompilerSettingSlice from "./codeCompiler/codeCompilerSettingSlice";
-import practiceSetTaskSlice from "./practiceSetTask/practiceSetTaskSlice";
-import practiceTaskActionSlice from "./practiceSetTask/practiceTaskActionSlice";
-import practiceTaskContentActionSlice from "./practiceTaskContent/practiceTaskContentActionSlice";
-import practiceTaskContentSlice from "./practiceTaskContent/practiceTaskContentSlice";
+import authenticationSlice from "./auth/authenticationSlice";
+import codeCompilerSlice from "./codeCompiler/codeCompilerSlice";
+import practiceSetTaskSlice from "./practiceSetTask/slices/practiceSetTaskSlice";
+import taskSlice from "./practiceSetTask/taskSlice";
 import sidebarSlice from "./sidebar/sidebarSlice";
 
 export const store = configureStore({
   reducer: {
-    authSlice,
-    authStepSlice,
+    ...authenticationSlice,
     practiceSetTaskSlice,
-    codeCompilerPreviewSlice,
-    codeCompilerSettingSlice,
+    ...codeCompilerSlice,
     sidebarSlice,
-    practiceTaskActionSlice,
-    practiceTaskContentSlice,
-    practiceTaskContentActionSlice,
+    ...taskSlice,
   },
 });
 

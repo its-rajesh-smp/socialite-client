@@ -10,7 +10,7 @@ import { useAppSelector } from "../../hooks/useAppSelector.ts";
 import {
   onSizeChangeRight,
   setPreviewTabRight,
-} from "../../store/codeCompiler/codeCompilerPreviewSlice.ts";
+} from "../../store/codeCompiler/actions/codeCompilerPreviewSlice.ts";
 import {
   COLLAPSE_PREVIEW_SIZE,
   DEFAULT_PREVIEW_SIZE,

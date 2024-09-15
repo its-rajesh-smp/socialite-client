@@ -1,5 +1,6 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, generatePath, Navigate } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout.tsx";
+import { practiceTabs } from "../constants/practice.const.ts";
 import Auth from "../pages/auth/Auth.tsx";
 import Compiler from "../pages/compiler/Compiler.tsx";
 import CourseContent from "../pages/course-content/CourseContent.tsx";
@@ -84,7 +85,13 @@ const appRoutes = createBrowserRouter([
           },
           {
             path: "/",
-            element: <Navigate to={authRoutes.FEED} />,
+            element: (
+              <Navigate
+                to={generatePath(authRoutes.PRACTICE, {
+                  practiceTabSlug: practiceTabs.all.slug,
+                })}
+              />
+            ),
           },
         ],
       },

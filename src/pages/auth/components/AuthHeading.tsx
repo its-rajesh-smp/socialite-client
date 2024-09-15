@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { setAuthStep } from "../../../store/auth/authStepSlice";
+import { setAuthStep } from "../../../store/auth/slices/authStepSlice";
 
 interface IAuthHeadingProps {
   linkText?: string;

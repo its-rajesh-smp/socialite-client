@@ -19,4 +19,28 @@ export interface IPracticeQuestion {
   description: string;
   user: IUser;
   submittedAt: Date;
+  userTaskMetadata: IUserTaskMetadata;
+  taskTags: ITaskTag[];
+  questionLink: string;
+}
+
+export interface IUserTaskMetadata {
+  isBookmarked: boolean;
+  note: string;
+  submissionCount: number;
+}
+
+export interface ITaskTag {
+  id: string;
+  name: string;
+}
+
+export interface IPracticeTaskContent {
+  title: string;
+  description: string;
+  id: string;
+  submittedAt: Date | null;
+  type: "resource" | "coding";
+  user: IUser | null;
+  taskTags: ITaskTag[];
 }
