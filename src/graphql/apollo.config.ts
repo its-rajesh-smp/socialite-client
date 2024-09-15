@@ -43,7 +43,7 @@ const getSplitLink = () =>
       );
     },
     getHttpLink(),
-    getWsLink(),
+    // getWsLink(),
   );
 
 // Error handling link
