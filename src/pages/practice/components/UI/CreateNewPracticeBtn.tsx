@@ -15,7 +15,7 @@ function CreateNewPracticeBtn(props: ICreateNewPracticeBtnProps) {
     <>
       <NewPracticeModal {...props} open={open} setOpen={setOpen} />
       <Button icon={<BiPlus />} onClick={() => setOpen(true)}>
-        <p>Create New Task</p>
+        <p>Create New Practice</p>
       </Button>
     </>
   );

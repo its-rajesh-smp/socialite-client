@@ -20,6 +20,7 @@ import {
   SelectValue,
   SelectTrigger,
 } from "@/components/ui/select";
+import { Label } from "@radix-ui/react-select";
 
 interface INewPracticeModalProps {
   open: boolean;
@@ -79,7 +80,6 @@ function NewPracticeModal({
         <form className="flex flex-col gap-4">
           <Input
             value={practiceSetInput.title}
-            containerClassName="gap-1"
             label="Practice Set Name"
             placeholder="ex. DSA practice"
             onChange={(e) =>
@@ -91,7 +91,6 @@ function NewPracticeModal({
           />
           <Input
             value={practiceSetInput.description}
-            containerClassName="gap-1"
             inputType="text-area"
             label="Description"
             placeholder="ex. This is a practice set for DSA"
@@ -102,34 +101,36 @@ function NewPracticeModal({
               }))
             }
           />
-          <div className="flex justify-between">
-            <Select
-              defaultValue={practiceSetInput.visibility}
-              onValueChange={(value) =>
-                setPracticeSetInput((prev) => ({
-                  ...prev,
-                  visibility: value,
-                }))
-              }
-            >
-              <SelectTrigger className="w-fit">
-                <SelectValue placeholder="Select visibility" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {Object.entries(Visibility).map(([key, value]) => (
-                    <SelectItem key={key} value={value}>
-                      {value}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-
+          <div className="flex flex-col justify-between gap-4 md:flex-row">
+            <div className="flex flex-col gap-3">
+              <label className="text-sm font-medium">Visibility</label>
+              <Select
+                defaultValue={practiceSetInput.visibility}
+                onValueChange={(value) =>
+                  setPracticeSetInput((prev) => ({
+                    ...prev,
+                    visibility: value,
+                  }))
+                }
+              >
+                <SelectTrigger className="w-full md:w-56">
+                  <SelectValue placeholder="Select visibility" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {Object.entries(Visibility).map(([key, value]) => (
+                      <SelectItem key={key} value={value}>
+                        {value}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
             <Button
               loading={createPracticeSetLoading}
               onClick={handelCreatePracticeSet}
-              className="cursor-pointer rounded-md px-2 py-1"
+              className="cursor-pointer rounded-md px-2 py-1 md:self-end"
             >
               Create
             </Button>

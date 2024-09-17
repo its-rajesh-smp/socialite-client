@@ -14,11 +14,12 @@ function PracticeSetTabs({ rightSide }: any) {
   };
 
   return (
-    <div className="m-2 flex gap-5">
+    <div className="m-2 flex flex-col gap-5 md:flex-row">
       <Tabs defaultValue="all" className="w-full">
-        <TabsList>
+        <TabsList className="w-full md:w-fit">
           {Object.values(practiceTabs).map((tab) => (
             <TabsTrigger
+              className="w-full md:w-fit"
               onClick={() => onButtonClick(tab)}
               key={tab.id}
               value={tab.slug}
