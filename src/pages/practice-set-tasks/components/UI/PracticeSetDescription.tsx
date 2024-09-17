@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 import Container from "../../../../components/containers/Container";
 import Button from "../../../../components/inputs/Button";
 import Chip from "../../../../components/others/Chip";
-import { accordionStates } from "../../../../constants/common.const";
 import { FORK_PRACTICE_SET } from "../../../../graphql/practice/userPracticeSet.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
@@ -20,6 +19,7 @@ import {
   toggleEditing,
 } from "../../../../store/practiceSetTask/slices/practiceTaskActionSlice";
 import PracticeSetDescriptionSkeleton from "./PracticeSetDescriptionSkeleton";
+import { accordionStates } from "../../../../constants/common.const";
 
 interface IPracticeSetDescriptionProps {
   loading?: boolean;

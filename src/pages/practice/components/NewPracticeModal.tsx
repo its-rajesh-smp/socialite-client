@@ -6,9 +6,9 @@ import Button from "../../../components/inputs/Button";
 import Input from "../../../components/inputs/Input";
 import SelectInput from "../../../components/inputs/SelectInput";
 import Modal from "../../../components/others/Modal";
-import { Visibility } from "../../../constants/feed.const";
 import { CREATE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
 import { IPracticeSet } from "../../../types/practice";
+import { Visibility } from "../../../constants/common.const";
 
 interface INewPracticeModalProps {
   open: boolean;

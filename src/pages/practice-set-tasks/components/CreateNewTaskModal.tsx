@@ -8,7 +8,7 @@ import Input from "../../../components/inputs/Input";
 import SelectInput from "../../../components/inputs/SelectInput";
 import TagInput from "../../../components/inputs/TagInput";
 import Modal from "../../../components/others/Modal";
-import { Visibility } from "../../../constants/feed.const";
+import { Visibility } from "../../../constants/common.const";
 import { taskTypes } from "../../../constants/task.const";
 import { CREATE_PRACTICE_TASK } from "../../../graphql/practice/practiceTask.graphql";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";

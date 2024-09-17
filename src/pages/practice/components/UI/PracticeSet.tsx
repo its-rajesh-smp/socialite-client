@@ -1,7 +1,6 @@
 import { MdDelete, MdOutlineHistory } from "react-icons/md";
 import Container from "../../../../components/containers/Container";
 import Chip from "../../../../components/others/Chip";
-import { accordionStates } from "../../../../constants/common.const";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import {
@@ -9,6 +8,7 @@ import {
   setPracticeTaskEditing,
 } from "../../../../store/practiceSetTask/slices/practiceTaskActionSlice";
 import { IPracticeSet } from "../../../../types/practice";
+import { accordionStates } from "../../../../constants/common.const";
 
 function PracticeSet({
   id,
