@@ -7,7 +7,7 @@ const sidebarItems = {
     name: "Practice",
     path: authRoutes.PRACTICE,
     params: { practiceTabSlug: practiceTabs.all.slug },
-    iconImage: "https://cdn-icons-png.flaticon.com/512/6747/6747027.png",
+    iconImage: "https://cdn-icons-png.flaticon.com/512/2211/2211504.png",
     status: "live",
   },
 };
