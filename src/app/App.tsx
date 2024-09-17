@@ -3,6 +3,7 @@ import useFetchUser from "../hooks/useFetchUser";
 import Error from "../pages/error/Error";
 import Loading from "../pages/loading/Loading";
 import appRoutes from "../router/routes";
+import "./app.css";
 
 function App() {
   const { loading, error } = useFetchUser();
