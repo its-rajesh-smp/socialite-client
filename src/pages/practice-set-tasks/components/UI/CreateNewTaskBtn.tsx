@@ -1,5 +1,6 @@
-import { Button } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { BiPlus } from "react-icons/bi";
 import { useAppSelector } from "../../../../hooks/useAppSelector";
 import CreateNewTaskModal from "../CreateNewTaskModal";
 
@@ -14,9 +15,9 @@ function CreateNewTaskBtn() {
     currentPracticeSet?.user?.id === authenticatedUser?.id && (
       <>
         <CreateNewTaskModal open={open} setOpen={setOpen} />
-        <div onClick={() => setOpen(true)} className="fixed bottom-5 right-5">
-          <Button className="cursor-pointer">Create New Task</Button>
-        </div>
+        <Button icon={<BiPlus />} onClick={() => setOpen(true)}>
+          Create New Task
+        </Button>
       </>
     )
   );

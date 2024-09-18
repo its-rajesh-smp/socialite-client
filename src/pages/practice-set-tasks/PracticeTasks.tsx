@@ -4,7 +4,6 @@ import { GET_ALL_PRACTICE_TASKS } from "../../graphql/practice/practiceTask.grap
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { setPracticeSetTasks } from "../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import PracticeSetTaskContainer from "./components/PracticeSetTaskContainer";
-import CreateNewTaskBtn from "./components/UI/CreateNewTaskBtn";
 import PracticeSetDescription from "./components/UI/PracticeSetDescription";
 import PracticeTaskTabs from "./components/UI/PracticeTaskTabs";
 
@@ -39,7 +38,6 @@ function PracticeTasks() {
       <PracticeSetDescription loading={loadingPracticeTasks} />
       <PracticeTaskTabs loading={loadingPracticeTasks} />
       <PracticeSetTaskContainer loading={loadingPracticeTasks} />
-      <CreateNewTaskBtn />
     </div>
   );
 }
