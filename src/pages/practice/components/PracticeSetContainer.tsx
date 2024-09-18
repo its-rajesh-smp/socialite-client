@@ -7,6 +7,7 @@ import { IPracticeSet } from "../../../types/practice";
 import { generatePathNameWithParams } from "../../../utils/route";
 import PracticeSet from "./UI/PracticeSet";
 import PracticeSetContainerSkeleton from "./UI/PracticeSetContainerSkeleton";
+import PracticeCard from "./UI/PracticeSetCard";
 
 interface IPracticeSetContainerProps {
   practiceSets: IPracticeSet[];
@@ -60,7 +61,7 @@ function PracticeSetContainer({
   return (
     <div className="flex flex-col gap-3">
       {practiceSets.map((practiceSet) => (
-        <PracticeSet
+        <PracticeCard
           onPracticeSetClick={onPracticeSetClick}
           onPracticeSetDelete={onPracticeSetDelete}
           key={practiceSet.id}
