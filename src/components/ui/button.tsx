@@ -74,8 +74,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         )}
 
-        {icon && <span className="mr-2">{icon}</span>}
-        {children}
+        {icon && <span className={`${children ? "mr-2" : ""} `}>{icon}</span>}
+        {children && children}
       </Comp>
     );
   },
