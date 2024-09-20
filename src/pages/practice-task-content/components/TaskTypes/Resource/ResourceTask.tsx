@@ -3,6 +3,7 @@ import Editor from "../../../../../components/editor/Editor";
 import { useAppDispatch } from "../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
 import { updatePracticeTaskContent } from "../../../../../store/practiceTaskContent/practiceTaskContentSlice";
+import EditTaskPopover from "../../UI/EditTaskPopover";
 import ResourceTaskActionBar from "./UI/ResourceTaskActionBar";
 
 function ResourceTask() {
@@ -22,7 +23,7 @@ function ResourceTask() {
         className="flex w-3/4 flex-col items-center gap-0 px-3 pb-0"
       >
         <div className="small_scrollbar h-[calc(100vh-150px)] w-full overflow-x-auto overflow-y-auto px-2">
-          <Container className="pt-0">
+          <Container className="flex justify-between pt-0">
             <p
               onInput={(e) =>
                 dispatch(
@@ -37,6 +38,7 @@ function ResourceTask() {
             >
               {currentTask.title}
             </p>
+            <EditTaskPopover />
           </Container>
           <hr />
           <Editor
