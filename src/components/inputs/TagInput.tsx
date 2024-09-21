@@ -6,8 +6,8 @@ import {
 } from "../../graphql/practice/taskTag.graphql";
 import { ITaskTag } from "../../types/practice";
 import { getTagColorUsingTagName } from "../../utils/color";
-import Chip from "../others/Chip";
 import Input from "./Input";
+import { Badge } from "../ui/badge";
 
 interface ITagInputProps {
   tags: ITaskTag[];
@@ -89,14 +89,14 @@ function TagInput({ tags, setTags, label, placeholder }: ITagInputProps) {
       <div className="flex flex-wrap gap-2">
         {existingTags.map((tag) => {
           const color = getTagColorUsingTagName(tag.name);
-
           return (
-            <Chip
+            <Badge
               className={`cursor-pointer ${color}`}
               onClick={() => onChipClick(tag)}
               key={tag.id}
-              text={tag.name}
-            />
+            >
+              {tag.name}
+            </Badge>
           );
         })}
       </div>

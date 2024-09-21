@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -5,22 +6,21 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useMutation } from "@apollo/client";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import Input from "../../../components/inputs/Input";
-import { Visibility } from "../../../constants/common.const";
-import { CREATE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
-import { IPracticeSet } from "../../../types/practice";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectValue,
   SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@radix-ui/react-select";
+import { useMutation } from "@apollo/client";
+import { useState } from "react";
+import Input from "../../../components/inputs/Input";
+import { Visibility } from "../../../constants/common.const";
+import { CREATE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
+import { IPracticeSet } from "../../../types/practice";
+import SelectInput from "@/components/inputs/SelectInput";
 
 interface INewPracticeModalProps {
   open: boolean;
@@ -102,31 +102,26 @@ function NewPracticeModal({
             }
           />
           <div className="flex flex-col justify-between gap-4 md:flex-row">
-            <div className="flex flex-col gap-3">
-              <label className="text-sm font-medium">Visibility</label>
-              <Select
-                defaultValue={practiceSetInput.visibility}
-                onValueChange={(value) =>
-                  setPracticeSetInput((prev) => ({
-                    ...prev,
-                    visibility: value,
-                  }))
-                }
-              >
-                <SelectTrigger className="w-full md:w-56">
-                  <SelectValue placeholder="Select visibility" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {Object.entries(Visibility).map(([key, value]) => (
-                      <SelectItem key={key} value={value}>
-                        {value}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
+            <SelectInput
+              selectTriggerClassName="w-full md:w-56"
+              label="Visibility"
+              defaultValue={practiceSetInput.visibility}
+              onValueChange={(value) =>
+                setPracticeSetInput((prev) => ({
+                  ...prev,
+                  visibility: value,
+                }))
+              }
+            >
+              <SelectGroup>
+                {Object.entries(Visibility).map(([key, value]) => (
+                  <SelectItem key={key} value={value}>
+                    {value}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectInput>
+
             <Button
               loading={createPracticeSetLoading}
               onClick={handelCreatePracticeSet}

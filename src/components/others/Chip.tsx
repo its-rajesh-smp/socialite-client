@@ -1,59 +1,25 @@
-import { Badge } from "@radix-ui/themes";
+import { Badge, BadgeProps } from "../ui/badge";
 
-interface IChipProps {
+interface IChipProps extends BadgeProps {
   children?: React.ReactNode;
-  color?:
-    | "gray"
-    | "gold"
-    | "bronze"
-    | "brown"
-    | "yellow"
-    | "amber"
-    | "orange"
-    | "tomato"
-    | "red"
-    | "ruby"
-    | "crimson"
-    | "pink"
-    | "plum"
-    | "purple"
-    | "violet"
-    | "iris"
-    | "indigo"
-    | "blue"
-    | "cyan"
-    | "teal"
-    | "jade"
-    | "green"
-    | "grass"
-    | "lime"
-    | "mint"
-    | "sky";
-  size?: "1" | "2" | "3";
-  className?: string;
-  radius?: "small" | "full" | "none" | "medium" | "large";
-  variant?: "soft" | "solid" | "surface" | "outline";
   text?: string;
   onClick?: () => void;
+  closeBtn;
 }
 
 function Chip({
   className,
   children,
-  color = "jade",
-  size = "2",
-  radius = "full",
-  variant = "soft",
+  color = "gray",
+  variant = "default",
   text = "",
   onClick = () => {},
 }: IChipProps) {
   return (
     <Badge
       className={`${className} w-fit`}
-      size={size}
       color={color}
       variant={variant}
-      radius={radius}
       onClick={onClick}
     >
       {text && <p>{text}</p>}

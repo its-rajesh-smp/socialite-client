@@ -73,6 +73,9 @@ function Input({
             name={label}
             placeHolder={tagValue.length === 0 ? placeholder : ""}
             disabled={disabled}
+            classNames={{
+              tag: "!bg-black !text-white !p-1 !pl-2 ",
+            }}
           />
         </div>
       );
