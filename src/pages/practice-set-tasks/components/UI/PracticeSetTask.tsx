@@ -6,15 +6,10 @@ import { Checkbox } from "@radix-ui/themes";
 import { CheckCircle2, Link } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { DELETE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
 import { SUBMIT_TASK } from "../../../../graphql/practice/userSubmitTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
-import { useAppSelector } from "../../../../hooks/useAppSelector";
 import authRoutes from "../../../../router/paths/auth.routes";
-import {
-  deletePracticeSetTask,
-  updatePracticeSetTask,
-} from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
+import { updatePracticeSetTask } from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import { IPracticeQuestion } from "../../../../types/practice";
 import { generatePathNameWithParams } from "../../../../utils/route";
 
@@ -22,14 +17,14 @@ function PracticeSetTask({
   title,
   id,
   submittedAt,
-  userTaskMetadata,
+  // userTaskMetadata,
   questionLink,
   taskTags,
 }: IPracticeQuestion) {
-  const { editing } = useAppSelector((state) => state.practiceTaskActionSlice);
+  // const { editing } = useAppSelector((state) => state.practiceTaskActionSlice);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [mutateDelete] = useMutation(DELETE_PRACTICE_TASK);
+  // const [mutateDelete] = useMutation(DELETE_PRACTICE_TASK);
   const [mutateSubmitResourceTask, { loading: submitLoading }] =
     useMutation(SUBMIT_TASK);
 
@@ -48,20 +43,20 @@ function PracticeSetTask({
    * Function to handle click on delete button
    * @param e  - click event
    */
-  const handleDelete = async (e: any) => {
-    e.stopPropagation();
-    try {
-      await mutateDelete({
-        variables: {
-          id,
-        },
-      });
+  // const handleDelete = async (e: any) => {
+  //   e.stopPropagation();
+  //   try {
+  //     await mutateDelete({
+  //       variables: {
+  //         id,
+  //       },
+  //     });
 
-      dispatch(deletePracticeSetTask(id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     dispatch(deletePracticeSetTask(id));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   /**
    * Function to handle click on question link
@@ -112,18 +107,26 @@ function PracticeSetTask({
                   {tag.name}
                 </Badge>
               ))}
-              <Badge className={`text-xs`}>
-                HARD
-                {/* {task.difficulty} */}
-              </Badge>
+              <Badge className={`text-xs`}>HARD</Badge>
             </div>
           </div>
         </div>
         <div className="flex space-x-2">
-          <Button variant="ghost" size="icon" className="h-8 w-8">
+          <Button
+            onClick={handelQuestionLinkClick}
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+          >
             <Link className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
+          <Button
+            loading={submitLoading}
+            onClick={handleSubmit}
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+          >
             <CheckCircle2 className="h-4 w-4" />
           </Button>
         </div>

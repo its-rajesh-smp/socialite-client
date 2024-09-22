@@ -1,3 +1,4 @@
+import SelectInput from "@/components/inputs/SelectInput";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -6,21 +7,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { SelectGroup, SelectItem } from "@/components/ui/select";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import Input from "../../../components/inputs/Input";
 import { Visibility } from "../../../constants/common.const";
 import { CREATE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
 import { IPracticeSet } from "../../../types/practice";
-import SelectInput from "@/components/inputs/SelectInput";
 
 interface INewPracticeModalProps {
   open: boolean;

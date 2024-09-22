@@ -5,7 +5,7 @@ import { DELETE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graph
 import authRoutes from "../../../router/paths/auth.routes";
 import { IPracticeSet } from "../../../types/practice";
 import { generatePathNameWithParams } from "../../../utils/route";
-import PracticeCard from "./UI/PracticeSetCard";
+import PracticeSet from "./UI/PracticeSet";
 import PracticeSetContainerSkeleton from "./UI/PracticeSetContainerSkeleton";
 
 interface IPracticeSetContainerProps {
@@ -60,7 +60,7 @@ function PracticeSetContainer({
   return (
     <div className="flex flex-col gap-3">
       {practiceSets.map((practiceSet) => (
-        <PracticeCard
+        <PracticeSet
           onPracticeSetClick={onPracticeSetClick}
           onPracticeSetDelete={onPracticeSetDelete}
           key={practiceSet.id}
