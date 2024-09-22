@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Settings2Icon } from "lucide-react";
-import React from "react";
 
 function EditTaskPopover() {
   return (

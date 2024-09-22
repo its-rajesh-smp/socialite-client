@@ -4,7 +4,6 @@ import { useAppDispatch } from "../../../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
 import { updatePracticeTaskContent } from "../../../../../store/practiceTaskContent/practiceTaskContentSlice";
 import EditTaskPopover from "../../UI/EditTaskPopover";
-import ResourceTaskActionBar from "./UI/ResourceTaskActionBar";
 
 function ResourceTask() {
   const { currentTask } = useAppSelector(
@@ -54,7 +53,6 @@ function ResourceTask() {
             value={currentTask.description}
           />
         </div>
-        <ResourceTaskActionBar />
       </Container>
     </div>
   );

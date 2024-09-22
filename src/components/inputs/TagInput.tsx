@@ -6,8 +6,8 @@ import {
 } from "../../graphql/practice/taskTag.graphql";
 import { ITaskTag } from "../../types/practice";
 import { getTagColorUsingTagName } from "../../utils/color";
-import Input from "./Input";
 import { Badge } from "../ui/badge";
+import Input from "./Input";
 
 interface ITagInputProps {
   tags: ITaskTag[];
