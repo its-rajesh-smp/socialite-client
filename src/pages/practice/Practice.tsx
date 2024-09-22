@@ -24,11 +24,14 @@ function Practice() {
 
   return (
     <div className="relative flex flex-col gap-5">
-      <CreateNewPracticeBtn
-        practiceSets={practiceSets}
-        setPracticeSets={setPracticeSets}
+      <PracticeSetTabs
+        rightSide={
+          <CreateNewPracticeBtn
+            practiceSets={practiceSets}
+            setPracticeSets={setPracticeSets}
+          />
+        }
       />
-      <PracticeSetTabs loading={loadingPracticeSets} />
       <PracticeSetContainer
         loading={loadingPracticeSets}
         setPracticeSets={setPracticeSets}

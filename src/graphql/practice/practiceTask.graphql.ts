@@ -1,8 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_PRACTICE_TASKS = gql`
-  query getAllPracticeTasks($practiceSetId: String) {
-    getAllPracticeTasks(practiceSetId: $practiceSetId) {
+  query getAllPracticeTasks(
+    $practiceSetId: String
+    $practiceTaskTabSlug: String
+  ) {
+    getAllPracticeTasks(
+      practiceSetId: $practiceSetId
+      practiceTaskTabSlug: $practiceTaskTabSlug
+    ) {
       id
       description
       title

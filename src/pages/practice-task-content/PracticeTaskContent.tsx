@@ -33,7 +33,6 @@ function PracticeTaskContent() {
         {/* <CodingTask /> */}
         <ResourceTask />
       </div>
-      <TaskContainerSidebar />
     </div>
   );
 }

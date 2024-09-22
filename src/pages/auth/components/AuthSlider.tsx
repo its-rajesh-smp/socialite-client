@@ -2,7 +2,7 @@ function AuthSlider() {
   return (
     <div className="relative flex h-screen w-full items-center justify-center lg:w-[60%]">
       <div className="absolute z-10">
-        <h1 className="text-7xl font-bold text-white">GuideFair</h1>
+        <h1 className="text-7xl font-bold text-white">guideFair</h1>
 
         <p className="text-right font-semibold text-white">
           An another way to practice

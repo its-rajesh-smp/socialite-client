@@ -10,6 +10,7 @@ export interface IButtonProps {
   loading?: boolean;
   variant?: "outline" | "classic" | "solid" | "soft" | "surface" | "ghost";
   type?: "normal" | "iconButton";
+  size?: "1" | "2" | "3" | "4";
   color?:
     | "gray"
     | "gold"
@@ -53,6 +54,7 @@ function Button({
   childrenContainerClassName = "",
   title = "",
   tooltip = false,
+  size = "2",
 }: IButtonProps) {
   let finalClassName = `relative flex items-center justify-center ${className} transition-all rounded-md  ${
     disabled
@@ -61,13 +63,13 @@ function Button({
   }`;
   switch (type) {
     case "iconButton":
-      finalClassName += `  p-1 text-2xl  `;
+      finalClassName += `p-1 text-2xl`;
       break;
     case "normal":
-      finalClassName += `  px-3 py-1 `;
+      finalClassName += `px-3 py-1`;
       break;
     default:
-      finalClassName += ` px-3 py-1 `;
+      finalClassName += `px-3 py-1`;
       break;
   }
 
@@ -78,10 +80,11 @@ function Button({
       className={finalClassName}
       color={color}
       variant={variant}
+      size={size}
     >
       {loading && <Loader className="absolute text-lg" />}
       <span
-        className={`${loading ? "opacity-0" : "opacity-100"} ${childrenContainerClassName}`}
+        className={`${loading ? "opacity-0" : "opacity-100"} ${childrenContainerClassName} flex items-center justify-center gap-2`}
       >
         {children}
       </span>

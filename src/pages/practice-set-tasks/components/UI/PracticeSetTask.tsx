@@ -1,12 +1,11 @@
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { useMutation } from "@apollo/client";
-import { BiLink } from "react-icons/bi";
-import { MdDelete, MdOutlineBarChart, MdOutlineCheck } from "react-icons/md";
-import { RxDragHandleDots2 } from "react-icons/rx";
+import { Checkbox } from "@radix-ui/themes";
+import { CheckCircle2, Link } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Container from "../../../../components/containers/Container";
-import Button from "../../../../components/inputs/Button";
-import Chip from "../../../../components/others/Chip";
 import { DELETE_PRACTICE_TASK } from "../../../../graphql/practice/practiceTask.graphql";
 import { SUBMIT_TASK } from "../../../../graphql/practice/userSubmitTask.graphql";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
@@ -17,9 +16,7 @@ import {
   updatePracticeSetTask,
 } from "../../../../store/practiceSetTask/slices/practiceSetTaskSlice";
 import { IPracticeQuestion } from "../../../../types/practice";
-import { getTimeAgo } from "../../../../utils/date";
 import { generatePathNameWithParams } from "../../../../utils/route";
-import TaskHardnessDot from "./TaskHardnessDot";
 
 function PracticeSetTask({
   title,
@@ -98,72 +95,40 @@ function PracticeSetTask({
   };
 
   return (
-    <Container className="cursor-pointer" onClick={handleClick}>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {editing && (
-            <RxDragHandleDots2 className="cursor-move text-xl text-gray-500" />
-          )}
-
-          <TaskHardnessDot isSubmitted={submittedAt} tags={taskTags} />
-
-          <p className="text-sm">{title}</p>
-        </div>
-
-        <div className="flex items-center gap-4">
-          {submittedAt && (
-            <Chip size="1">
-              <p>{getTimeAgo(submittedAt)}</p>
-            </Chip>
-          )}
-
-          {userTaskMetadata?.submissionCount && (
-            <div className="flex items-center gap-0.5 text-xs text-gray-500">
-              <MdOutlineBarChart />
-              <p>{userTaskMetadata?.submissionCount}</p>
+    <Card onClick={handleClick} key={id} className="border-2 border-gray-200">
+      <CardContent className="flex items-center justify-between p-4">
+        <div className="flex items-center space-x-4">
+          <Checkbox id={`task-${id}`} checked={submittedAt ? true : false} />
+          <div>
+            <label
+              htmlFor={`task-${id}`}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {title}
+            </label>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {taskTags.map((tag, index) => (
+                <Badge key={index} variant="secondary" className="text-xs">
+                  {tag.name}
+                </Badge>
+              ))}
+              <Badge className={`text-xs`}>
+                HARD
+                {/* {task.difficulty} */}
+              </Badge>
             </div>
-          )}
-
-          {editing && (
-            <Button
-              tooltip={true}
-              title="Delete"
-              onClick={handleDelete}
-              color="red"
-              type="iconButton"
-              variant="ghost"
-            >
-              <MdDelete />
-            </Button>
-          )}
-
-          {questionLink && (
-            <Button
-              onClick={handelQuestionLinkClick}
-              tooltip={true}
-              title="Question Link"
-              color="blue"
-              type="iconButton"
-              variant="ghost"
-            >
-              <BiLink />
-            </Button>
-          )}
-
-          <Button
-            onClick={handleSubmit}
-            title="Submit"
-            tooltip={true}
-            color="green"
-            type="iconButton"
-            variant="ghost"
-            loading={submitLoading}
-          >
-            <MdOutlineCheck />
+          </div>
+        </div>
+        <div className="flex space-x-2">
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Link className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <CheckCircle2 className="h-4 w-4" />
           </Button>
         </div>
-      </div>
-    </Container>
+      </CardContent>
+    </Card>
   );
 }
 

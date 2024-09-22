@@ -1,42 +1,36 @@
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
-import Container from "../../../../components/containers/Container";
 import { practiceTabs } from "../../../../constants/practice.const";
 import { useAppDispatch } from "../../../../hooks/useAppDispatch";
 import { setCurrentPracticeSetTab } from "../../../../store/practiceSet/practiceSetTabSlice";
-import PracticeSetTabsSkeleton from "./PracticeSetTabsSkeleton";
-import Button from "../../../../components/inputs/Button";
 
-interface IPracticeSetTabs {
-  loading?: boolean;
-}
-
-function PracticeSetTabs({ loading }: IPracticeSetTabs) {
+function PracticeSetTabs({ rightSide }: any) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onButtonClick = (tab: any) => {
+  const onTabClick = (tab: any) => {
     dispatch(setCurrentPracticeSetTab(tab));
     navigate(`/practice/${tab.slug}`);
   };
 
-  if (loading) {
-    return <PracticeSetTabsSkeleton />;
-  }
-
   return (
-    <Container className="flex justify-between">
-      <div className="flex gap-5">
-        {Object.values(practiceTabs).map((tab) => (
-          <Button
-            color="indigo"
-            onClick={() => onButtonClick(tab)}
-            key={tab.id}
-          >
-            {tab.name}
-          </Button>
-        ))}
-      </div>
-    </Container>
+    <div className="m-2 flex flex-col gap-5 md:flex-row">
+      <Tabs defaultValue="all" className="w-full">
+        <TabsList className="w-full md:w-fit">
+          {Object.values(practiceTabs).map((tab) => (
+            <TabsTrigger
+              className="w-full md:w-fit"
+              onClick={() => onTabClick(tab)}
+              key={tab.id}
+              value={tab.slug}
+            >
+              {tab.name}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+      {rightSide}
+    </div>
   );
 }
 

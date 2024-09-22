@@ -1,5 +1,6 @@
-import { Button } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { BiPlus } from "react-icons/bi";
 import { IPracticeSet } from "../../../../types/practice";
 import NewPracticeModal from "../NewPracticeModal";
 
@@ -13,11 +14,9 @@ function CreateNewPracticeBtn(props: ICreateNewPracticeBtnProps) {
   return (
     <>
       <NewPracticeModal {...props} open={open} setOpen={setOpen} />
-      <div className="fixed bottom-5 right-5">
-        <Button onClick={() => setOpen(true)} className="cursor-pointer">
-          Create New Practice
-        </Button>
-      </div>
+      <Button icon={<BiPlus />} onClick={() => setOpen(true)}>
+        <p>Create New Practice</p>
+      </Button>
     </>
   );
 }

@@ -1,11 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import { taskTabs } from "../../../constants/task.const";
+import { practiceTaskTabs } from "../../../constants/task.const";
 import { DELETE_PRACTICE_SET } from "../../../graphql/practice/practiceSet.graphql";
 import authRoutes from "../../../router/paths/auth.routes";
 import { IPracticeSet } from "../../../types/practice";
 import { generatePathNameWithParams } from "../../../utils/route";
-import PracticeSet from "./UI/PracticeSet";
+import PracticeCard from "./UI/PracticeSetCard";
 import PracticeSetContainerSkeleton from "./UI/PracticeSetContainerSkeleton";
 
 interface IPracticeSetContainerProps {
@@ -30,7 +30,7 @@ function PracticeSetContainer({
     navigate(
       generatePathNameWithParams(authRoutes.PRACTICE_SET_TASKS, {
         practiceSetId,
-        taskTabSlug: taskTabs.all.slug,
+        taskTabSlug: practiceTaskTabs.all.slug,
       }),
     );
   };
@@ -60,7 +60,7 @@ function PracticeSetContainer({
   return (
     <div className="flex flex-col gap-3">
       {practiceSets.map((practiceSet) => (
-        <PracticeSet
+        <PracticeCard
           onPracticeSetClick={onPracticeSetClick}
           onPracticeSetDelete={onPracticeSetDelete}
           key={practiceSet.id}
