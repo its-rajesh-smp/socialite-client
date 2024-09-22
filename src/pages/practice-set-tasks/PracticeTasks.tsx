@@ -22,6 +22,7 @@ function PracticeTasks() {
   const { loading: loadingPracticeTasks } = useQuery(GET_ALL_PRACTICE_TASKS, {
     variables: {
       practiceSetId: params.practiceSetId,
+      practiceTaskTabSlug: params.taskTabSlug,
     },
     onCompleted: (data) => {
       const { getAPracticeSet, getAllPracticeTasks } = data;
@@ -36,7 +37,7 @@ function PracticeTasks() {
   return (
     <div className="relative flex flex-col gap-5">
       <PracticeSetDescription loading={loadingPracticeTasks} />
-      <PracticeTaskTabs loading={loadingPracticeTasks} />
+      <PracticeTaskTabs />
       <PracticeSetTaskContainer loading={loadingPracticeTasks} />
     </div>
   );

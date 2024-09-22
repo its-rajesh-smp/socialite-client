@@ -8,30 +8,45 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import authRoutes from "@/router/paths/auth.routes";
+import { setCurrentPracticeTaskTab } from "@/store/practiceSetTask/slices/practiceTaskTabSlice";
+import { generatePathNameWithParams } from "@/utils/route";
 import { useState } from "react";
-import { taskTabs } from "../../../../constants/task.const";
+import { useNavigate, useParams } from "react-router-dom";
+import { practiceTaskTabs } from "../../../../constants/task.const";
 import CreateNewTaskBtn from "./CreateNewTaskBtn";
-import PracticeTasksTabsSkeleton from "./PracticeTasksTabsSkeleton";
 
-interface IPracticeTaskTabs {
-  loading?: boolean;
-}
-
-function PracticeTaskTabs({ loading }: IPracticeTaskTabs) {
-  if (loading) {
-    return <PracticeTasksTabsSkeleton />;
-  }
-
+function PracticeTaskTabs() {
   const [tag, setTag] = useState("All");
   const allTags = ["All", "Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5"];
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const onTabClick = (tab: any) => {
+    dispatch(setCurrentPracticeTaskTab(tab));
+    console.log({
+      practiceSetId: params.practiceSetId,
+      taskTabSlug: tab.slug,
+    });
+    navigate(
+      generatePathNameWithParams(authRoutes.PRACTICE_SET_TASKS, {
+        practiceSetId: params.practiceSetId,
+        taskTabSlug: tab.slug,
+      }),
+    );
+  };
 
   return (
     <div className="flex items-center justify-between">
       <Tabs defaultValue="all" className="w-full sm:w-auto">
         <TabsList className="grid w-full grid-cols-4 bg-transparent">
-          {Object.values(taskTabs).map((tab) => (
+          {Object.values(practiceTaskTabs).map((tab) => (
             <TabsTrigger
               value={tab.slug}
+              onClick={() => onTabClick(tab)}
               className="data-[state=active]:bg-black data-[state=active]:text-white"
             >
               {tab.name}

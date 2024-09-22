@@ -4,7 +4,7 @@ export const taskTypes = {
   LINK: "LINK",
 };
 
-export const taskTabs = {
+export const practiceTaskTabs = {
   all: { name: "All", slug: "all", id: 0 },
   revision: {
     name: "Revision",

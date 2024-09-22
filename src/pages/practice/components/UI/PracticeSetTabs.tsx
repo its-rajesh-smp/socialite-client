@@ -8,7 +8,7 @@ function PracticeSetTabs({ rightSide }: any) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onButtonClick = (tab: any) => {
+  const onTabClick = (tab: any) => {
     dispatch(setCurrentPracticeSetTab(tab));
     navigate(`/practice/${tab.slug}`);
   };
@@ -20,7 +20,7 @@ function PracticeSetTabs({ rightSide }: any) {
           {Object.values(practiceTabs).map((tab) => (
             <TabsTrigger
               className="w-full md:w-fit"
-              onClick={() => onButtonClick(tab)}
+              onClick={() => onTabClick(tab)}
               key={tab.id}
               value={tab.slug}
             >
